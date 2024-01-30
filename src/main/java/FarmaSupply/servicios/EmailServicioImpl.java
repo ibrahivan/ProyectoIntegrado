@@ -28,7 +28,7 @@ public class EmailServicioImpl implements IEmailServicio {
 	            MimeMessage mensaje = javaMailSender.createMimeMessage();
 	            MimeMessageHelper helper = new MimeMessageHelper(mensaje, true, "UTF-8");
 
-	            helper.setFrom("nikoalvarezzapata@gmail.com"); //AQUI VA EL EMAIL DEL .PROPERTIES
+	            helper.setFrom("ivan.vazquez.cod@gmail.com"); //AQUI VA EL EMAIL DEL .PROPERTIES
 	            helper.setTo(emailDestino);
 	            helper.setSubject("RESTABLECER CONTRASEÑA BIBLIOTECA");
 

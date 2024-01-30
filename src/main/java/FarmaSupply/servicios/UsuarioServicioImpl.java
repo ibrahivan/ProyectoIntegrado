@@ -1,4 +1,5 @@
 package FarmaSupply.servicios;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -63,7 +64,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 			// registrar
 			userDto.setClaveUsuario(passwordEncoder.encode(userDto.getClaveUsuario()));
 			Usuario usuarioDao = toDao.usuarioToDao(userDto);
-			usuarioDao.setRol("Usuario");
+			usuarioDao.setRol("ROLE_USER");
+			
 			repositorio.save(usuarioDao);
 
 			return userDto;
@@ -80,14 +82,14 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	 */
 	private void inicializarUsuarioAdmin() {
 		// Comprueba si ya existe un usuario admin
-		if (!repositorio.existsByNombreUsuario("Administrador")) {
+		if (!repositorio.existsByNombreUsuario("admin")) {
 			// Si no existe, crea un nuevo usuario con rol de administrador
 			Usuario admin = new Usuario();
 			admin.setNombreUsuario("admin");
 			admin.setClaveUsuario(passwordEncoder.encode("admin"));
 			admin.setDniUsuario("-");
 			admin.setEmailUsuario("admin@admin.com");
-			admin.setRol("Administrador");
+			admin.setRol("ROLE_ADMIN");
 
 			repositorio.save(admin);
 		}
