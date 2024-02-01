@@ -20,20 +20,27 @@ public class UsuarioDTO {
 	private String password;
 	private String password2;
 	private Calendar expiracionToken;
+	private boolean cuentaConfirmada;
+	private String rol;
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
 	}
 
-	public UsuarioDTO(String dniUsuario, String nombreUsuario, String apellidosUsuario, String tlfUsuario,
+
+
+	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario) {
-		this.dniUsuario = dniUsuario;
+		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
+		this.dniUsuario = dniUsuario;
 		this.tlfUsuario = tlfUsuario;
 		this.emailUsuario = emailUsuario;
 		this.claveUsuario = claveUsuario;
 	}
+
+
 
 	//GETTERS Y SETTERS
 	public long getId() {
@@ -53,6 +60,30 @@ public class UsuarioDTO {
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
+
+	public boolean isCuentaConfirmada() {
+		return cuentaConfirmada;
+	}
+
+
+
+	public String getRol() {
+		return rol;
+	}
+
+
+
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+
+
+
+	public void setCuentaConfirmada(boolean cuentaConfirmada) {
+		this.cuentaConfirmada = cuentaConfirmada;
+	}
+
+
 
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;

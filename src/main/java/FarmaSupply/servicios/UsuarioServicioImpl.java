@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import FarmaSupply.daos.Usuario;
 import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.repositorios.UsuarioRepositorio;
+import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transactional;
 
 /**
@@ -62,11 +63,26 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 
 			// Si llega a esta línea es que no existe el usuario con el email y el dni a
 			// registrar
+			// Si continua la ejecución es que el email no se encuentra ya registrado
 			userDto.setClaveUsuario(passwordEncoder.encode(userDto.getClaveUsuario()));
 			Usuario usuarioDao = toDao.usuarioToDao(userDto);
 			usuarioDao.setRol("ROLE_USER");
-			
-			repositorio.save(usuarioDao);
+			if (userDto.isCuentaConfirmada()) {
+				usuarioDao.setCuentaConfirmada(true);
+				repositorio.save(usuarioDao);
+			} else {
+				usuarioDao.setCuentaConfirmada(false);
+				// Generar token de confirmación
+				String token = passwordEncoder.encode(RandomStringUtils.random(30));
+				usuarioDao.setToken(token);
+
+				// Guardar el usuario en la base de datos
+				repositorio.save(usuarioDao);
+
+				// Enviar el correo de confirmación
+				String nombreUsuario = usuarioDao.getNombreUsuario() + " " + usuarioDao.getApellidosUsuario();
+				emailServicio.enviarEmailConfirmacion(userDto.getEmailUsuario(), nombreUsuario, token);
+			}
 
 			return userDto;
 		} catch (IllegalArgumentException iae) {
@@ -78,7 +94,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	}
 
 	/**
-	 * Metodo que ejecuta la creacion de un usuario administrador con su rol de administrador
+	 * Metodo que ejecuta la creacion de un usuario administrador con su rol de
+	 * administrador
 	 */
 	private void inicializarUsuarioAdmin() {
 		// Comprueba si ya existe un usuario admin
@@ -90,13 +107,14 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 			admin.setDniUsuario("-");
 			admin.setEmailUsuario("admin@admin.com");
 			admin.setRol("ROLE_ADMIN");
-
+			admin.setCuentaConfirmada(true);
 			repositorio.save(admin);
 		}
 	}
 
 	/**
-	 * Metodo que automatiza la creacion de un usuario administrador que se ejecuta la primera vez que se despliega la aplicacion
+	 * Metodo que automatiza la creacion de un usuario administrador que se ejecuta
+	 * la primera vez que se despliega la aplicacion
 	 */
 	@EventListener(ApplicationReadyEvent.class)
 	public void onApplicationReady() {
@@ -160,6 +178,49 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	}
 
 	@Override
+	public boolean confirmarCuenta(String token) {
+		try {
+			Usuario usuarioExistente = repositorio.findByToken(token);
+
+			if (usuarioExistente != null && !usuarioExistente.isCuentaConfirmada()) {
+				// Entra en esta condición si el usuario existe y su cuenta no se ha confirmado
+				usuarioExistente.setCuentaConfirmada(true);
+				usuarioExistente.setToken(null);
+				repositorio.save(usuarioExistente);
+
+				return true;
+			} else {
+				System.out.println("La cuenta no existe o ya está confirmada");
+				return false;
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println(
+					"[Error UsuarioServicioImpl - confirmarCuenta()] Error al confirmar la cuenta " + iae.getMessage());
+			return false;
+		} catch (PersistenceException e) {
+			System.out.println(
+					"[Error UsuarioServicioImpl - confirmarCuenta()] Error de persistencia al confirmar la cuenta"
+							+ e.getMessage());
+			return false;
+		}
+	}
+
+	@Override
+	public boolean estaLaCuentaConfirmada(String email) {
+		try {
+			Usuario usuarioExistente = repositorio.findFirstByEmailUsuario(email);
+			if (usuarioExistente != null && usuarioExistente.isCuentaConfirmada()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println(
+					"[Error UsuarioServicioImpl - estaLaCuentaConfirmada()] Error al comprobar si la cuenta ya ha sido confirmada"
+							+ e.getMessage());
+		}
+		return false;
+	}
+
+	@Override
 	public UsuarioDTO obtenerUsuarioPorToken(String token) {
 		Usuario usuarioExistente = repositorio.findByToken(token);
 
@@ -177,30 +238,59 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	public Usuario buscarPorEmail(String email) {
 		return repositorio.findFirstByEmailUsuario(email);
 	}
-	
+
 	@Override
-	public Usuario eliminar(long id) {
-		Usuario usuario = repositorio.findById(id).orElse(null);
-		if (usuario != null) {
-			repositorio.delete(usuario);
+	public void eliminar(long id) {
+		try {
+			Usuario usuario = repositorio.findById(id).orElse(null);
+			if (usuario != null) {
+				repositorio.delete(usuario);
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println("[Error UsuarioServicioImpl - eliminar()] Al eliminar el usuario por su id " + iae.getMessage());
 		} 
-		return usuario;
-		
 	}
 
-	// ESTOS METODO NO SE USAN DE MOMENTO
+	@Override
+	public void actualizarUsuario(UsuarioDTO usuarioModificado) {
+
+		try {
+			Usuario usuarioActual = repositorio.findById(usuarioModificado.getId()).orElse(null);
+
+			usuarioActual.setNombreUsuario(
+					usuarioModificado.getNombreUsuario() + " " + usuarioModificado.getApellidosUsuario());
+			usuarioActual.setTlfUsuario(usuarioModificado.getTlfUsuario());
+			usuarioActual.setRol(usuarioModificado.getRol());
+
+			repositorio.save(usuarioActual);
+		} catch (PersistenceException pe) {
+			System.out.println(
+					"[Error UsuarioServicioImpl - actualizarUsuario()] Al modificar el usuario " + pe.getMessage());
+
+		}
+
+	}
+	public UsuarioDTO buscarPorId(long id) {
+		try {
+			Usuario usuario = repositorio.findById(id).orElse(null);
+			if (usuario != null) {
+				return toDto.usuarioToDto(usuario);
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println("[Error UsuarioServicioImpl - buscarPorId()] Al buscar el usuario por su id " + iae.getMessage());
+		}
+		return null;
+	}
+
 	@Override
 	public boolean buscarPorDni(String dni) {
 		return repositorio.existsByDniUsuario(dni);
 	}
 
-	@Override
-	public Usuario buscarPorId(long id) {
-		return repositorio.findById(id).orElse(null);
-	}
+
 
 	@Override
-	public List<UsuarioDTO> buscarTodos() {
+	public List<UsuarioDTO> obtenerTodos() {
 		return toDto.listaUsuarioToDto(repositorio.findAll());
 	}
 }

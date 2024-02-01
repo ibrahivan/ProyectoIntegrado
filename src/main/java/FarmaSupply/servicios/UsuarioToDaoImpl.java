@@ -29,6 +29,7 @@ public class UsuarioToDaoImpl implements IUsuarioToDao {
 			usuarioDao.setClaveUsuario(usuarioDTO.getClaveUsuario());
 			usuarioDao.setTlfUsuario(usuarioDTO.getTlfUsuario());
 			usuarioDao.setDniUsuario(usuarioDTO.getDniUsuario());
+			usuarioDao.setRol(usuarioDTO.getRol());
 			
 			return usuarioDao;
 

@@ -136,7 +136,10 @@
 				</div>
 			</div>
 		</div>
-		<script th:if="*{not #strings.isEmpty(emailYaRegistrado)}">
+		<script th:if="*{not #strings.isEmpty(mensajeErrorDni)}">
+			mostrarNotificacion("¡Error al crear cuenta!", "El DNI introducido ya se encuentra registrado en el sistema", 'error');
+		</script>
+		<script th:if="*{not #strings.isEmpty(mensajeErrorMail)}">
 			mostrarNotificacion("¡Error al crear cuenta!", "El email introducido ya se encuentra registrado en el sistema", 'error');
 		</script>
 		<script th:if="*{not #strings.isEmpty(error)}">

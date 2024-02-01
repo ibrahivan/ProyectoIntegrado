@@ -51,24 +51,14 @@ public class Usuario {
 	@Column(name = "rol_usuario", nullable = true, length = 20)
 	private String rol;
 	
-
-    
+	@Column(name = "cuenta_confirmada", nullable = false, columnDefinition = "boolean default false")
+	private boolean cuentaConfirmada;
+	
+	@Column(name = "imagen" ,nullable = true, length = 100)
+	private String foto;
 
 
 	//CONSTRUCTORES
-    public Usuario(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
- 			String emailUsuario, String claveUsuario, String token, Calendar expiracionToken, String rol) {
- 		super();
- 		this.nombreUsuario = nombreUsuario;
- 		this.apellidosUsuario = apellidosUsuario;
- 		this.dniUsuario = dniUsuario;
- 		this.tlfUsuario = tlfUsuario;
- 		this.emailUsuario = emailUsuario;
- 		this.claveUsuario = claveUsuario;
- 		this.token = token;
- 		this.expiracionToken = expiracionToken;
- 		this.rol = rol;
- 	}
 	
 	public Usuario() {
 		super();
@@ -153,6 +143,22 @@ public class Usuario {
 
 	public void setExpiracionToken(Calendar expiracionToken) {
 		this.expiracionToken = expiracionToken;
+	}
+
+	public boolean isCuentaConfirmada() {
+		return cuentaConfirmada;
+	}
+
+	public void setCuentaConfirmada(boolean cuentaConfirmada) {
+		this.cuentaConfirmada = cuentaConfirmada;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	@Override
