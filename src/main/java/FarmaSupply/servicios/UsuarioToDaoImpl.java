@@ -20,9 +20,10 @@ public class UsuarioToDaoImpl implements IUsuarioToDao {
 	@Override
 	public Usuario usuarioToDao(UsuarioDTO usuarioDTO) {
 
-		Usuario usuarioDao = new Usuario();
+		
 
 		try {
+			Usuario usuarioDao = new Usuario();
 			usuarioDao.setNombreUsuario(usuarioDTO.getNombreUsuario());
 			usuarioDao.setApellidosUsuario(usuarioDTO.getApellidosUsuario());
 			usuarioDao.setEmailUsuario(usuarioDTO.getEmailUsuario());

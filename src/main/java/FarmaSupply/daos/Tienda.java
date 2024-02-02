@@ -13,7 +13,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
+/**
+ * Clase DAO (Data Access Object) que representa la tabla tiendas de la BBDD,
+ * ejerce como modelo virtual de la tabla en la aplicación.
+ */
 @Entity
 @Table(name = "tiendas", schema = "fs_logica")
 public class Tienda {

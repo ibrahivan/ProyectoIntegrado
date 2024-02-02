@@ -10,21 +10,25 @@ import FarmaSupply.daos.Usuario;
 public class PedidoDTO {
 
 	private long idPedido;
-	private String descripcionPedido;
+	private String productoPedido;
 	private Usuario idUsuario_Ped;
 	private Tienda idPedido_Tie;
+	private int cantidad;
 	
 	//Constructores
-	public PedidoDTO(String descripcionPedido, Usuario idUsuario_Ped, Tienda idPedido_Tie) {
-		super();
-		this.descripcionPedido = descripcionPedido;
-		this.idUsuario_Ped = idUsuario_Ped;
-		this.idPedido_Tie = idPedido_Tie;
-	}
+	
 	public PedidoDTO() {
 		super();
 	}
 	
+	public PedidoDTO(String productoPedido, Usuario idUsuario_Ped, Tienda idPedido_Tie, int cantidad) {
+		super();
+		this.productoPedido = productoPedido;
+		this.idUsuario_Ped = idUsuario_Ped;
+		this.idPedido_Tie = idPedido_Tie;
+		this.cantidad = cantidad;
+	}
+
 	//getters y setters
 	public long getIdPedido() {
 		return idPedido;
@@ -32,12 +36,15 @@ public class PedidoDTO {
 	public void setIdPedido(long idPedido) {
 		this.idPedido = idPedido;
 	}
-	public String getDescripcionPedido() {
-		return descripcionPedido;
+	
+	public String getProductoPedido() {
+		return productoPedido;
 	}
-	public void setDescripcionPedido(String descripcionPedido) {
-		this.descripcionPedido = descripcionPedido;
+
+	public void setProductoPedido(String productoPedido) {
+		this.productoPedido = productoPedido;
 	}
+
 	public Usuario getIdUsuario_Ped() {
 		return idUsuario_Ped;
 	}
@@ -50,9 +57,15 @@ public class PedidoDTO {
 	public void setIdPedido_Tie(Tienda idPedido_Tie) {
 		this.idPedido_Tie = idPedido_Tie;
 	}
-	
-	
-	
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
 	
 }
 
