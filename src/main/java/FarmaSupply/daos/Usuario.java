@@ -1,13 +1,15 @@
 package FarmaSupply.daos;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -15,7 +17,7 @@ import jakarta.persistence.Table;
  * ejerce como modelo virtual de la tabla en la aplicación.
  */
 @Entity
-@Table(name = "usuarios", schema = "fs_operacional")
+@Table(name = "usuarios", schema = "fs_gestion")
 public class Usuario {
 
 	// ATRIBUTOS
@@ -29,7 +31,7 @@ public class Usuario {
 
 	@Column(name = "apellidos_usuario", nullable = true, length = 100)
 	private String apellidosUsuario;
-	
+
 	@Column(name = "dni_usuario", nullable = false, unique = true, length = 9)
 	private String dniUsuario;
 
@@ -47,24 +49,29 @@ public class Usuario {
 
 	@Column(name = "expiracion_token", nullable = true, length = 100)
 	private Calendar expiracionToken;
-	
+
 	@Column(name = "rol_usuario", nullable = true, length = 20)
 	private String rol;
-	
+
 	@Column(name = "cuenta_confirmada", nullable = false, columnDefinition = "boolean default false")
 	private boolean cuentaConfirmada;
-	
-	@Column(name = "imagen" ,nullable = true, length = 100)
+
+	@Column(name = "imagen", nullable = true, length = 100)
 	private String foto;
 
+	@OneToMany(mappedBy = "idUsuario_Ped")
+	private List<Pedido> list_Usu_Ped = new ArrayList<>();
 
-	//CONSTRUCTORES
-	
+	@OneToMany(mappedBy = "idUsuario_Tie")
+	private List<Tienda> list_Usu_Tie = new ArrayList<>();
+
+	// CONSTRUCTORES
+
 	public Usuario() {
 		super();
 	}
 
-	//GETTERS Y SETTERS
+	// GETTERS Y SETTERS
 	public long getIdUsuario() {
 		return idUsuario;
 	}
@@ -163,8 +170,8 @@ public class Usuario {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, 
-				idUsuario, nombreUsuario, rol, tlfUsuario, token);
+		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, idUsuario,
+				nombreUsuario, rol, tlfUsuario, token);
 	}
 
 	@Override
@@ -179,16 +186,12 @@ public class Usuario {
 		return Objects.equals(apellidosUsuario, other.apellidosUsuario)
 				&& Objects.equals(claveUsuario, other.claveUsuario) && Objects.equals(dniUsuario, other.dniUsuario)
 				&& Objects.equals(emailUsuario, other.emailUsuario)
-				&& Objects.equals(expiracionToken, other.expiracionToken)
-				&& idUsuario == other.idUsuario
+				&& Objects.equals(expiracionToken, other.expiracionToken) && idUsuario == other.idUsuario
 				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(rol, other.rol)
 				&& Objects.equals(tlfUsuario, other.tlfUsuario) && Objects.equals(token, other.token);
 	}
-	
 
-
-	
-	//TOSTRING
+	// TOSTRING
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombreUsuario=" + nombreUsuario + ", apellidosUsuario="
@@ -196,10 +199,5 @@ public class Usuario {
 				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", token=" + token + ", expiracionToken="
 				+ expiracionToken + "]";
 	}
-	
-	
-    
-    
-	
+
 }
-	

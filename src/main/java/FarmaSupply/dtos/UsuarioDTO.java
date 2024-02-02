@@ -1,6 +1,11 @@
 package FarmaSupply.dtos;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import FarmaSupply.daos.Pedido;
+import FarmaSupply.daos.Tienda;
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas 
@@ -22,6 +27,8 @@ public class UsuarioDTO {
 	private Calendar expiracionToken;
 	private boolean cuentaConfirmada;
 	private String rol;
+	private List<Pedido> list_Usu_Ped = new ArrayList<>();
+	private List<Tienda> list_Usu_Tie = new ArrayList<>();
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
@@ -38,6 +45,23 @@ public class UsuarioDTO {
 		this.tlfUsuario = tlfUsuario;
 		this.emailUsuario = emailUsuario;
 		this.claveUsuario = claveUsuario;
+	}
+
+
+	
+
+	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
+			String emailUsuario, String claveUsuario, List<Pedido> list_Usu_Ped,
+			List<Tienda> list_Usu_Tie) {
+		super();
+		this.nombreUsuario = nombreUsuario;
+		this.apellidosUsuario = apellidosUsuario;
+		this.dniUsuario = dniUsuario;
+		this.tlfUsuario = tlfUsuario;
+		this.emailUsuario = emailUsuario;
+		this.claveUsuario = claveUsuario;
+		this.list_Usu_Ped = list_Usu_Ped;
+		this.list_Usu_Tie = list_Usu_Tie;
 	}
 
 
@@ -152,8 +176,32 @@ public class UsuarioDTO {
 	public void setExpiracionToken(Calendar expiracionToken) {
 		this.expiracionToken = expiracionToken;
 	}
+	public List<Pedido> getList_Usu_Ped() {
+		return list_Usu_Ped;
+	}
+
+
+
+	public void setList_Usu_Ped(List<Pedido> list_Usu_Ped) {
+		this.list_Usu_Ped = list_Usu_Ped;
+	}
+
+
+
+	public List<Tienda> getList_Usu_Tie() {
+		return list_Usu_Tie;
+	}
+
+
+
+	public void setList_Usu_Tie(List<Tienda> list_Usu_Tie) {
+		this.list_Usu_Tie = list_Usu_Tie;
+	}
+		
 
 	//tostring
+
+
 
 	@Override
 	public String toString() {
