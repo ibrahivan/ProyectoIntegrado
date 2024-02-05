@@ -1,6 +1,5 @@
 package FarmaSupply.servicios;
 
-import java.util.Base64;
 import java.util.Calendar;
 import java.util.List;
 
@@ -259,12 +258,11 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 		try {
 			Usuario usuarioActual = repositorio.findById(usuarioModificado.getId()).orElse(null);
 
-			usuarioActual.setNombreUsuario(
-					usuarioModificado.getNombreUsuario());
+			usuarioActual.setNombreUsuario(usuarioModificado.getNombreUsuario());
 			usuarioActual.setApellidosUsuario(usuarioModificado.getApellidosUsuario());
 			usuarioActual.setTlfUsuario(usuarioModificado.getTlfUsuario());
 			usuarioActual.setRol(usuarioModificado.getRol());
-		
+			usuarioActual.setFoto(usuarioModificado.getFoto());
 			repositorio.save(usuarioActual);
 		} catch (PersistenceException pe) {
 			System.out.println(

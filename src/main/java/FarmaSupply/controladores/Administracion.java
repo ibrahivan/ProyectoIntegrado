@@ -1,7 +1,10 @@
 package FarmaSupply.controladores;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -119,8 +122,23 @@ public class Administracion {
 	 *         edición.
 	 */
 	@PostMapping("/privada/procesar-editar")
-	public String procesarFormularioEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO, Model model, @RequestParam(file) MultipartFile imagen) {
+	public String procesarFormularioEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO, Model model,
+			@RequestParam("file") MultipartFile imagen) {
 		try {
+			//si sube una imagen la enviamos a la bbdd sino que actualice y ya esta
+			
+			if (!imagen.isEmpty()) {
+				Path directorioImagenes = Paths.get("src//main//resources//static//css//assets");
+				String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+				try {
+					byte[] bytesImg = imagen.getBytes();
+					Path rutaCompleta= Paths.get(rutaAbsoluta+ "//"+ imagen.getOriginalFilename());
+					Files.write(rutaCompleta,bytesImg);
+					usuarioDTO.setFoto(imagen.getOriginalFilename());  
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			usuarioServicio.actualizarUsuario(usuarioDTO);
 			model.addAttribute("edicionCorrecta", "El Usuario se ha editado correctamente");
 			model.addAttribute("usuarios", usuarioServicio.obtenerTodos());
