@@ -1,5 +1,6 @@
 package FarmaSupply.servicios;
 
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.List;
 
@@ -247,8 +248,9 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 				repositorio.delete(usuario);
 			}
 		} catch (IllegalArgumentException iae) {
-			System.out.println("[Error UsuarioServicioImpl - eliminar()] Al eliminar el usuario por su id " + iae.getMessage());
-		} 
+			System.out.println(
+					"[Error UsuarioServicioImpl - eliminar()] Al eliminar el usuario por su id " + iae.getMessage());
+		}
 	}
 
 	@Override
@@ -258,10 +260,11 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 			Usuario usuarioActual = repositorio.findById(usuarioModificado.getId()).orElse(null);
 
 			usuarioActual.setNombreUsuario(
-					usuarioModificado.getNombreUsuario() + " " + usuarioModificado.getApellidosUsuario());
+					usuarioModificado.getNombreUsuario());
+			usuarioActual.setApellidosUsuario(usuarioModificado.getApellidosUsuario());
 			usuarioActual.setTlfUsuario(usuarioModificado.getTlfUsuario());
 			usuarioActual.setRol(usuarioModificado.getRol());
-
+		
 			repositorio.save(usuarioActual);
 		} catch (PersistenceException pe) {
 			System.out.println(
@@ -270,6 +273,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 		}
 
 	}
+
 	public UsuarioDTO buscarPorId(long id) {
 		try {
 			Usuario usuario = repositorio.findById(id).orElse(null);
@@ -277,7 +281,8 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 				return toDto.usuarioToDto(usuario);
 			}
 		} catch (IllegalArgumentException iae) {
-			System.out.println("[Error UsuarioServicioImpl - buscarPorId()] Al buscar el usuario por su id " + iae.getMessage());
+			System.out.println(
+					"[Error UsuarioServicioImpl - buscarPorId()] Al buscar el usuario por su id " + iae.getMessage());
 		}
 		return null;
 	}
@@ -286,8 +291,6 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	public boolean buscarPorDni(String dni) {
 		return repositorio.existsByDniUsuario(dni);
 	}
-
-
 
 	@Override
 	public List<UsuarioDTO> obtenerTodos() {

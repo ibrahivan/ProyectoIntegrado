@@ -31,6 +31,8 @@ public class UsuarioToDaoImpl implements IUsuarioToDao {
 			usuarioDao.setTlfUsuario(usuarioDTO.getTlfUsuario());
 			usuarioDao.setDniUsuario(usuarioDTO.getDniUsuario());
 			usuarioDao.setRol(usuarioDTO.getRol());
+			usuarioDao.setFoto(usuarioDTO.getFoto());
+			
 			
 			return usuarioDao;
 

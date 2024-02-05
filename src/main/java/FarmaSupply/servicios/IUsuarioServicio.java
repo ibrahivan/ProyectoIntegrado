@@ -64,8 +64,10 @@ public interface IUsuarioServicio {
 
 	/**
 	 * Comprueba si el usuario existe y si su cuenta ha sido confirmada
+	 * 
 	 * @param email El email del usuario
-	 * @return true si el usuario existe y su cuenta ha sido confirmada, false en caso contrario
+	 * @return true si el usuario existe y su cuenta ha sido confirmada, false en
+	 *         caso contrario
 	 */
 	public boolean estaLaCuentaConfirmada(String email);
 
@@ -94,19 +96,21 @@ public interface IUsuarioServicio {
 	 * @param id del usuario
 	 */
 	public void eliminar(long id);
-	
 
 	/**
 	 * Modifica un usuario en la bbdd
+	 * 
 	 * @param usuario el usuario con los datos modificados
 	 */
 	public void actualizarUsuario(UsuarioDTO usuarioModificado);
 
 	/**
 	 * Obtiene la lista de todos los usuarios registrados
+	 * 
 	 * @return la lista de todos los usuarios DTO
 	 */
 	public List<UsuarioDTO> obtenerTodos();
 
+	
 
 }
