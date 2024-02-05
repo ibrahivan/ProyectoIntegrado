@@ -3,12 +3,13 @@ package FarmaSupply.daos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -55,7 +56,8 @@ public class Usuario {
 
 	@Column(name = "cuenta_confirmada", nullable = false, columnDefinition = "boolean default false")
 	private boolean cuentaConfirmada;
-
+	
+	@Lob
 	@Column(name = "imagen", nullable = true, length = 100)
 	private String foto;
 
@@ -70,6 +72,29 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
+	
+	
+
+	public Usuario(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
+			String emailUsuario, String claveUsuario, String token, Calendar expiracionToken, String rol,
+			boolean cuentaConfirmada, String foto, List<Pedido> list_Usu_Ped, List<Tienda> list_Usu_Tie) {
+		super();
+		this.nombreUsuario = nombreUsuario;
+		this.apellidosUsuario = apellidosUsuario;
+		this.dniUsuario = dniUsuario;
+		this.tlfUsuario = tlfUsuario;
+		this.emailUsuario = emailUsuario;
+		this.claveUsuario = claveUsuario;
+		this.token = token;
+		this.expiracionToken = expiracionToken;
+		this.rol = rol;
+		this.cuentaConfirmada = cuentaConfirmada;
+		this.foto = foto;
+		this.list_Usu_Ped = list_Usu_Ped;
+		this.list_Usu_Tie = list_Usu_Tie;
+	}
+
+
 
 	// GETTERS Y SETTERS
 	public long getIdUsuario() {
@@ -160,44 +185,36 @@ public class Usuario {
 		this.cuentaConfirmada = cuentaConfirmada;
 	}
 
+
+
 	public String getFoto() {
 		return foto;
 	}
+
+
 
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(apellidosUsuario, claveUsuario, dniUsuario, emailUsuario, expiracionToken, idUsuario,
-				nombreUsuario, rol, tlfUsuario, token);
+
+
+	public List<Pedido> getList_Usu_Ped() {
+		return list_Usu_Ped;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		return Objects.equals(apellidosUsuario, other.apellidosUsuario)
-				&& Objects.equals(claveUsuario, other.claveUsuario) && Objects.equals(dniUsuario, other.dniUsuario)
-				&& Objects.equals(emailUsuario, other.emailUsuario)
-				&& Objects.equals(expiracionToken, other.expiracionToken) && idUsuario == other.idUsuario
-				&& Objects.equals(nombreUsuario, other.nombreUsuario) && Objects.equals(rol, other.rol)
-				&& Objects.equals(tlfUsuario, other.tlfUsuario) && Objects.equals(token, other.token);
+	public void setList_Usu_Ped(List<Pedido> list_Usu_Ped) {
+		this.list_Usu_Ped = list_Usu_Ped;
 	}
 
-	// TOSTRING
-	@Override
-	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", nombreUsuario=" + nombreUsuario + ", apellidosUsuario="
-				+ apellidosUsuario + ", dniUsuario=" + dniUsuario + ", tlfUsuario=" + tlfUsuario + ", emailUsuario="
-				+ emailUsuario + ", claveUsuario=" + claveUsuario + ", token=" + token + ", expiracionToken="
-				+ expiracionToken + "]";
+	public List<Tienda> getList_Usu_Tie() {
+		return list_Usu_Tie;
 	}
+
+	public void setList_Usu_Tie(List<Tienda> list_Usu_Tie) {
+		this.list_Usu_Tie = list_Usu_Tie;
+	}
+
+
 
 }

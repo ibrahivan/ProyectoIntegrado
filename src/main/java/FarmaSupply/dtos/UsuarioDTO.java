@@ -26,6 +26,7 @@ public class UsuarioDTO {
 	private String password2;
 	private Calendar expiracionToken;
 	private boolean cuentaConfirmada;
+	private String foto;
 	private String rol;
 	private List<Pedido> list_Usu_Ped = new ArrayList<>();
 	private List<Tienda> list_Usu_Tie = new ArrayList<>();
@@ -35,9 +36,8 @@ public class UsuarioDTO {
 	}
 
 
-
 	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
-			String emailUsuario, String claveUsuario) {
+			String emailUsuario, String claveUsuario, String foto, String rol) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
@@ -45,13 +45,14 @@ public class UsuarioDTO {
 		this.tlfUsuario = tlfUsuario;
 		this.emailUsuario = emailUsuario;
 		this.claveUsuario = claveUsuario;
+		this.foto = foto;
+		this.rol = rol;
 	}
 
 
-	
-
 	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
-			String emailUsuario, String claveUsuario, List<Pedido> list_Usu_Ped,
+			String emailUsuario, String claveUsuario, String token, String password, String password2,
+			Calendar expiracionToken, boolean cuentaConfirmada, String foto, String rol, List<Pedido> list_Usu_Ped,
 			List<Tienda> list_Usu_Tie) {
 		super();
 		this.nombreUsuario = nombreUsuario;
@@ -60,6 +61,13 @@ public class UsuarioDTO {
 		this.tlfUsuario = tlfUsuario;
 		this.emailUsuario = emailUsuario;
 		this.claveUsuario = claveUsuario;
+		this.token = token;
+		this.password = password;
+		this.password2 = password2;
+		this.expiracionToken = expiracionToken;
+		this.cuentaConfirmada = cuentaConfirmada;
+		this.foto = foto;
+		this.rol = rol;
 		this.list_Usu_Ped = list_Usu_Ped;
 		this.list_Usu_Tie = list_Usu_Tie;
 	}
@@ -182,6 +190,18 @@ public class UsuarioDTO {
 
 
 
+	public String getFoto() {
+		return foto;
+	}
+
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+
+
 	public void setList_Usu_Ped(List<Pedido> list_Usu_Ped) {
 		this.list_Usu_Ped = list_Usu_Ped;
 	}
@@ -197,6 +217,8 @@ public class UsuarioDTO {
 	public void setList_Usu_Tie(List<Tienda> list_Usu_Tie) {
 		this.list_Usu_Tie = list_Usu_Tie;
 	}
+	
+	
 		
 
 	//tostring

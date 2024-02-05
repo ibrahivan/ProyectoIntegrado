@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.servicios.IUsuarioServicio;
@@ -117,7 +119,7 @@ public class Administracion {
 	 *         edición.
 	 */
 	@PostMapping("/privada/procesar-editar")
-	public String procesarFormularioEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO, Model model) {
+	public String procesarFormularioEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO, Model model, @RequestParam(file) MultipartFile imagen) {
 		try {
 			usuarioServicio.actualizarUsuario(usuarioDTO);
 			model.addAttribute("edicionCorrecta", "El Usuario se ha editado correctamente");
