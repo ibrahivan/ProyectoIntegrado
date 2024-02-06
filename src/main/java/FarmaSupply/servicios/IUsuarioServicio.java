@@ -111,6 +111,18 @@ public interface IUsuarioServicio {
 	 */
 	public List<UsuarioDTO> obtenerTodos();
 
-	
+	/**
+	 * 
+	 * @param data
+	 * @return un string, convierte la imagen en String
+	 */
+	public String convertToBase64(byte[] data);
+
+	/**
+	 * 
+	 * @param base64String
+	 * @return un array de bytes, convierte el string de la imagen
+	 */
+	public byte[] convertToByteArray(String base64String);
 
 }

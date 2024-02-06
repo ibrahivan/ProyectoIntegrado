@@ -23,6 +23,7 @@ public class UsuarioToDaoImpl implements IUsuarioToDao {
 		
 
 		try {
+			UsuarioServicioImpl impU= new UsuarioServicioImpl();
 			Usuario usuarioDao = new Usuario();
 			usuarioDao.setNombreUsuario(usuarioDTO.getNombreUsuario());
 			usuarioDao.setApellidosUsuario(usuarioDTO.getApellidosUsuario());
@@ -31,7 +32,8 @@ public class UsuarioToDaoImpl implements IUsuarioToDao {
 			usuarioDao.setTlfUsuario(usuarioDTO.getTlfUsuario());
 			usuarioDao.setDniUsuario(usuarioDTO.getDniUsuario());
 			usuarioDao.setRol(usuarioDTO.getRol());
-			usuarioDao.setFoto(usuarioDTO.getFoto());
+			usuarioDao.setFoto(impU.convertToByteArray(usuarioDTO.getFoto()));
+			
 			
 			
 			return usuarioDao;

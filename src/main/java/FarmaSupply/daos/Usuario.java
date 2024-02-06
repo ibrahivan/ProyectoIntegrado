@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -57,9 +57,9 @@ public class Usuario {
 	@Column(name = "cuenta_confirmada", nullable = false, columnDefinition = "boolean default false")
 	private boolean cuentaConfirmada;
 	
-	@Lob
-	@Column(name = "imagen", nullable = true, length = 100)
-	private String foto;
+	
+	@Column(name = "foto")
+	private byte[] foto;
 
 	@OneToMany(mappedBy = "idUsuario_Ped")
 	private List<Pedido> list_Usu_Ped = new ArrayList<>();
@@ -77,7 +77,7 @@ public class Usuario {
 
 	public Usuario(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario, String token, Calendar expiracionToken, String rol,
-			boolean cuentaConfirmada, String foto, List<Pedido> list_Usu_Ped, List<Tienda> list_Usu_Tie) {
+			boolean cuentaConfirmada, byte[] foto, List<Pedido> list_Usu_Ped, List<Tienda> list_Usu_Tie) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
@@ -107,7 +107,20 @@ public class Usuario {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+		
 	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+
 
 	public void setIdUsuario(long idUsuario) {
 		this.idUsuario = idUsuario;
@@ -183,18 +196,6 @@ public class Usuario {
 
 	public void setCuentaConfirmada(boolean cuentaConfirmada) {
 		this.cuentaConfirmada = cuentaConfirmada;
-	}
-
-
-
-	public String getFoto() {
-		return foto;
-	}
-
-
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 

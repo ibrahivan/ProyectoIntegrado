@@ -20,6 +20,7 @@ public class UsuarioToDtoImpl implements IUsuarioToDto {
 	public UsuarioDTO usuarioToDto(Usuario u) {
 		
 		try {
+			UsuarioServicioImpl impU= new UsuarioServicioImpl();
 			UsuarioDTO dto = new UsuarioDTO();
 			dto.setNombreUsuario(u.getNombreUsuario());
 			dto.setApellidosUsuario(u.getApellidosUsuario());
@@ -31,7 +32,8 @@ public class UsuarioToDtoImpl implements IUsuarioToDto {
 			dto.setExpiracionToken(u.getExpiracionToken());
 			dto.setId(u.getIdUsuario());
 			dto.setRol(u.getRol());
-			dto.setFoto(u.getFoto());
+			dto.setFoto(impU.convertToBase64(u.getFoto()));
+			
 			
 			return dto;
 		} catch (Exception e) {
