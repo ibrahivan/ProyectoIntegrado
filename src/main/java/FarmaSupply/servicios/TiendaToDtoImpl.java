@@ -7,7 +7,7 @@ import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.TiendaDTO;
 
 
-public class TiendaToDto implements ITiendaToDto {
+public class TiendaToDtoImpl implements ITiendaToDto {
 
 	@Override
 	public TiendaDTO tiendaToDto(Tienda t) {

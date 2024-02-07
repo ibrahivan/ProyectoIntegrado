@@ -16,7 +16,7 @@ import FarmaSupply.dtos.TiendaDTO;
  * para la gestión de las tiendas.
  */
 @Service
-public class TiendaToDao implements ITiendaToDao {
+public class TiendaToDaoImpl implements ITiendaToDao {
 
 	public Tienda tiendaToDao(TiendaDTO tiendaDTO) {
 
@@ -24,9 +24,9 @@ public class TiendaToDao implements ITiendaToDao {
 		try {
 			Tienda tiendaDao = new Tienda();
 
-			tiendaDao.setNombreTienda(tiendaDao.getNombreTienda());
-			tiendaDao.setDireccionTienda(tiendaDao.getDireccionTienda());
-			tiendaDao.setCodigopostalTienda(tiendaDao.getCodigopostalTienda());
+			tiendaDao.setNombreTienda(tiendaDTO.getNombreTienda());
+			tiendaDao.setDireccionTienda(tiendaDTO.getDireccionTienda());
+			tiendaDao.setCodigopostalTienda(tiendaDTO.getCodigopostalTienda());
 	
 			return tiendaDao;
 

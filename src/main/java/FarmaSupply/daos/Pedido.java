@@ -1,11 +1,16 @@
 package FarmaSupply.daos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 /**
@@ -22,11 +27,11 @@ public class Pedido {
 	@Column(name = "id_pedido", nullable = false)
 	private long idPedido;
 
-	@Column(name = "producto_pedido", nullable = false, length = 70)
-	private String productoPedido;
-
-	@Column(name = "cantidad_pedido", nullable = false)
-	private int cantidad;
+	@ManyToMany
+	@JoinTable(name = "rel_ped_cat", schema="fs_logica",
+			   joinColumns = @JoinColumn(name = "id_pedido"), 
+			   inverseJoinColumns = @JoinColumn(name = "id_catalogo_producto"))
+	private List<CatalogoProducto> list_Ped_Cat = new ArrayList<>();
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
@@ -43,9 +48,9 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido(String productoPedido, Usuario idUsuario_Ped, Tienda idPedido_Tie) {
+	public Pedido( Usuario idUsuario_Ped, Tienda idPedido_Tie) {
 		super();
-		this.productoPedido = productoPedido;
+		
 		this.idUsuario_Ped = idUsuario_Ped;
 		this.idPedido_Tie = idPedido_Tie;
 	}
@@ -58,15 +63,7 @@ public class Pedido {
 		this.idPedido = idPedido;
 	}
 
-	
 
-	public String getProductoPedido() {
-		return productoPedido;
-	}
-
-	public void setProductoPedido(String productoPedido) {
-		this.productoPedido = productoPedido;
-	}
 
 	public Usuario getIdUsuario_Ped() {
 		return idUsuario_Ped;
@@ -82,14 +79,6 @@ public class Pedido {
 
 	public void setIdPedido_Tie(Tienda idPedido_Tie) {
 		this.idPedido_Tie = idPedido_Tie;
-	}
-
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
 	}
 
 

@@ -7,15 +7,14 @@ import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.PedidoDTO;
 
 
-public class PedidoToDto implements IPedidoToDto {
+public class PedidoToDtoImpl implements IPedidoToDto {
 
 	@Override
 	public PedidoDTO pedidoToDto(Pedido p) {
 		
 		try {
 			PedidoDTO dto = new PedidoDTO();
-			dto.setProductoPedido(p.getProductoPedido());
-			dto.setCantidad(p.getCantidad());
+			
 			
 			
 			return dto;

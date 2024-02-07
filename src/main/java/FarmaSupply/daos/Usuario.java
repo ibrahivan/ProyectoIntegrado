@@ -58,7 +58,7 @@ public class Usuario {
 	private boolean cuentaConfirmada;
 	
 	
-	@Column(name = "foto")
+	@Column(name = "foto_usuario")
 	private byte[] foto;
 
 	@OneToMany(mappedBy = "idUsuario_Ped")

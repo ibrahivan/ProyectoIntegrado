@@ -9,7 +9,7 @@ import FarmaSupply.dtos.TiendaDTO;
 public interface ITiendaToDto {
 
 	/**
-	 * Método que convierte campo a campo un objeto entidad Usuario a usuarioDTO
+	 * Método que convierte campo a campo un objeto entidad tienda a tiendaDTO
 	 * @param t , tienda a transformar
 	 * @return El DTO de la tienda
 	 */
