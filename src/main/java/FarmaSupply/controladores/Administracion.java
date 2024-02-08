@@ -130,11 +130,19 @@ public class Administracion {
 				String convertedImage = impU.convertToBase64(imagen.getBytes());
 				usuarioDTO.setFoto(convertedImage);
 
+			} else {
+				// Si no se selecciona una nueva imagen, asegúrate de no sobrescribir el valor
+				// existente
+				UsuarioDTO usuarioDTOexistente = usuarioServicio.buscarPorId(usuarioDTO.getId());
+				if (usuarioDTOexistente != null) {
+					usuarioDTO.setFoto(usuarioDTOexistente.getFoto());
+				}
 			}
 			usuarioServicio.actualizarUsuario(usuarioDTO);
 			model.addAttribute("edicionCorrecta", "El Usuario se ha editado correctamente");
 			model.addAttribute("usuarios", usuarioServicio.obtenerTodos());
 			return "listado";
+
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al editar el usuario");
 			return "home";

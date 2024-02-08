@@ -24,5 +24,5 @@ public interface IPedidoToDto {
 	 * @param listaPedido
 	 * @return
 	 */
-	public List<PedidoDTO> listaPedidoToDto(List<Pedido> listaUsuario);
+	public List<PedidoDTO> listaPedidoToDto(List<Pedido> listaPedido);
 }
