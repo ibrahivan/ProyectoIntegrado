@@ -38,16 +38,16 @@ public class Administracion {
 	@GetMapping("/privada/listado")
 	public String listadoUsuarios(Model model, HttpServletRequest request, Authentication authentication) {
 		try {
-			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
-			model.addAttribute("usuarios", usuarios);
+			
+			UsuarioDTO usuarioDTO= new UsuarioDTO();
 			String email = authentication.getName();
 			if (request.isUserInRole("ROLE_ADMIN")) {
-				usuarios = usuarioServicio.obtenerTodos();
+				List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();;
 	            model.addAttribute("usuarios", usuarios);
 				
 			}
 			else if(request.isUserInRole("ROLE_USER")){
-				 UsuarioDTO usuarioDTO = usuarioServicio.buscarPorEmail(email);
+				 usuarioDTO= usuarioServicio.buscarPorEmail(email);
 		         model.addAttribute("usuarios", usuarioDTO);
 			}
 			
@@ -95,17 +95,15 @@ public class Administracion {
 	@GetMapping("/privada/editar-usuario/{id}")
 	public String mostrarFormularioEdicion(@PathVariable Long id, Model model, HttpServletRequest request) {
 		try {
-			if (request.isUserInRole("ROLE_USER")) {
-				model.addAttribute("noAdmin", "No tiene permiso para realizar esta accion");
-				return "home";
-			} else {
+			
+			
 				UsuarioDTO usuarioDTO = usuarioServicio.buscarPorId(id);
 				if (usuarioDTO == null) {
 					return "listado";
 				}
 				model.addAttribute("usuarioDTO", usuarioDTO);
 				return "editarUsuario";
-			}
+			
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al obtener el usuario para editar");
 			return "home";
@@ -124,7 +122,7 @@ public class Administracion {
 	 */
 	@PostMapping("/privada/procesar-editar")
 	public String procesarFormularioEdicion(@ModelAttribute("usuarioDTO") UsuarioDTO usuarioDTO, Model model,
-			@RequestParam("file") MultipartFile imagen) {
+			@RequestParam("file") MultipartFile imagen,  HttpServletRequest request, Authentication authentication) {
 		try {
 			// si sube una imagen la enviamos a la bbdd sino que actualice y ya esta
 
@@ -144,8 +142,19 @@ public class Administracion {
 			}
 			usuarioServicio.actualizarUsuario(usuarioDTO);
 			model.addAttribute("edicionCorrecta", "El Usuario se ha editado correctamente");
-			model.addAttribute("usuarios", usuarioServicio.obtenerTodos());
+			String email = authentication.getName();
+			if (request.isUserInRole("ROLE_ADMIN")) {
+				List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();;
+	            model.addAttribute("usuarios", usuarios);
+				
+			}
+			else if(request.isUserInRole("ROLE_USER")){
+				 usuarioDTO= usuarioServicio.buscarPorEmail(email);
+		         model.addAttribute("usuarios", usuarioDTO);
+			}
+			
 			return "listado";
+			
 
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al editar el usuario");

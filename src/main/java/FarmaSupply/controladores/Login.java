@@ -1,7 +1,5 @@
 package FarmaSupply.controladores;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,10 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.servicios.IUsuarioServicio;
-
 
 /**
  * Clase que ejerce de controlador de la vista de login/registro para gestionar
@@ -64,24 +60,40 @@ public class Login {
 	 *         de lo contrario, la vista de registro de usuario (registro.html).
 	 */
 	@PostMapping("/auth/registrar")
-	public String registrarPost(@ModelAttribute UsuarioDTO usuarioDTO, Model model) {
+	public String registrarPost(@ModelAttribute UsuarioDTO usuarioDTO, Model model, Authentication authentication) {
 
-		UsuarioDTO nuevoUsuario = usuarioServicio.registrar(usuarioDTO);
+		try {
+			UsuarioDTO nuevoUsuario = usuarioServicio.registrar(usuarioDTO);
 
-		if (nuevoUsuario != null && nuevoUsuario.getDniUsuario() != null) {
-			// Si el usuario y el DNI no son null es que el registro se completo
-			// correctamente
-			model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
-			return "login";
-		} else {
-			// Se verifica si el DNI ya existe para mostrar error personalizado en la vista
-			if (usuarioDTO.getDniUsuario() == null) {
-				model.addAttribute("mensajeErrorDni", "Ya existe un usuario con ese DNI");
-				return "registro";
-			} else {
-				model.addAttribute("mensajeErrorMail", "Ya existe un usuario con ese email");
-				return "registro";
+			String rolDelUsuario = "";
+	        if (authentication != null && authentication.isAuthenticated()) {
+	            rolDelUsuario = authentication.getAuthorities().iterator().next().getAuthority();
+	        }
+			if(nuevoUsuario != null && rolDelUsuario.equals("ROLE_ADMIN")) {
+				model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
+				model.addAttribute("usuarios", usuarioServicio.obtenerTodos());
+				return "listado";
 			}
+			else if (nuevoUsuario != null && nuevoUsuario.getDniUsuario() != null) {
+				// Si el usuario y el DNI no son null es que el registro se completo
+				// correctamente
+				model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
+				return "login";
+			} else {
+				// Se verifica si el DNI ya existe para mostrar error personalizado en la vista
+				if (usuarioDTO.getDniUsuario() == null) {
+					model.addAttribute("mensajeErrorDni", "Ya existe un usuario con ese DNI");
+					return "registro";
+				} else {
+					model.addAttribute("mensajeErrorMail", "Ya existe un usuario con ese email");
+					return "registro";
+				}
+			}
+		} catch (
+
+		Exception e) {
+			model.addAttribute("error", "Error al procesar la solicitud. Por favor, inténtelo de nuevo.");
+			return "registro";
 		}
 	}
 
@@ -111,8 +123,6 @@ public class Login {
 		}
 	}
 
-
-
 	/**
 	 * Gestiona la solicitud HTTP GET para llevar a la página de home una vez
 	 * logeado con exito.
@@ -136,6 +146,5 @@ public class Login {
 			return "login";
 		}
 	}
-	
 
 }

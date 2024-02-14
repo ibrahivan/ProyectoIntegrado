@@ -69,8 +69,8 @@
 						<div>
 							<img alt="Image" class="profile-image" width="200px" th:if="${usuarioDTO.foto!= null}"
 								th:src="'data:image/png;base64, ' + ${usuarioDTO.foto}" />
-							<img alt="Default Image" width="200px" class="profile-image" th:src="@{/css/assets/default.png}"
-								th:unless="${usuarioDTO.foto!= null}"/>
+							<img alt="Default Image" width="200px" class="profile-image"
+								th:src="@{/css/assets/default.png}" th:unless="${usuarioDTO.foto!= null}" />
 						</div>
 						<div class="mb-3">
 							<label for="email" class="form-label textoPrincipal">Correo Electrónico</label>
@@ -91,16 +91,33 @@
 							<label for="telefono" class="form-label textoPrincipal">Teléfono</label>
 							<input th:field="*{tlfUsuario}" type="tel" id="telefono" name="telefono"
 								class="form-control" required />
-							<div class="mb-3">
-								<label for="rol" class="form-label textoPrincipal">Rol del usuario</label>
-								<select th:field="*{rol}" id="rol" name="rol" class="form-select" required>
-									<option value="ROLE_USER">Usuario</option>
-									<option value="ROLE_ADMIN">Administrador</option>
-								</select>
-							</div>
+							<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+								<div class="mb-3" th:if="${usuarioDTO.rol == 'ROLE_USER'}">
+									<label for="rol" class="form-label textoPrincipal">Rol del usuario </label>
+									<select id="rol" name="rol" class="form-select" required>
+										<option value="ROLE_USER" selected>Usuario</option>
+										<option value="ROLE_ADMIN">Administrador</option>
+									</select>
+								</div>
+								<div class="mb-3" th:if="${usuarioDTO.rol == 'ROLE_ADMIN'}">
+									<label for="rol" class="form-label textoPrincipal">Rol del usuario </label>
+									<select id="rol" name="rol" class="form-select" required>
+										<option value="ROLE_USER">Usuario</option>
+										<option value="ROLE_ADMIN" selected>Administrador</option>
+									</select>
+								</div>
+							</th:block>
+							<th:block sec:authorize="hasRole('ROLE_USER')">
+								<div class="mb-3">
+									<label for="rol" class="form-label textoPrincipal">Rol del usuario </label>
+									<input type="text" name="rol" id="rol" class="form-control" th:value="${usuarioDTO.rol}"
+										readonly>
+								</div>
+							</th:block>
+
 							<div class="mb-3">
 								<label for="foto" class="form-label textoPrincipal">Foto de Perfil</label>
-								<input  class="form-control" type="file" id="foto" name="file" accept="image/*"  />
+								<input class="form-control" type="file" id="foto" name="file" accept="image/*" />
 							</div>
 							<button type="submit" class="btn btn-primary mt-5">
 								<i class="bi bi-person-fill-gear fs-5"> Guardar cambios</i>
