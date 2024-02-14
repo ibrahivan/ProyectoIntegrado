@@ -2,7 +2,7 @@ package FarmaSupply.servicios;
 
 import java.util.List;
 
-import FarmaSupply.daos.Usuario;
+
 import FarmaSupply.dtos.UsuarioDTO;
 
 /**
@@ -34,7 +34,7 @@ public interface IUsuarioServicio {
 	 * @param email del usario que se quiere encontrar
 	 * @return El usuario buscado
 	 */
-	public Usuario buscarPorEmail(String email);
+	public UsuarioDTO buscarPorEmail(String email);
 
 	/**
 	 * Busca a un usuario por su dni

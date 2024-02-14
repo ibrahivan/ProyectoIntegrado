@@ -236,10 +236,23 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	}
 
 	@Override
-	public Usuario buscarPorEmail(String email) {
-		return repositorio.findFirstByEmailUsuario(email);
+	public UsuarioDTO buscarPorEmail(String email) {
+		try {
+			
+			UsuarioDTO uDto = new UsuarioDTO();
+			Usuario usuario = repositorio.findFirstByEmailUsuario(email);
+			
+			uDto = toDto.usuarioToDto(usuario);
+			
+			
+			if (usuario != null) {
+				return uDto;
+			}
+		} catch (Exception e) {
+			System.out.println("[Error UsuarioServicioImpl - buscarPorEmail()] Al buscar el usuario por su email " + e.getMessage());
+		}	
+		return null;
 	}
-
 	@Override
 	public void eliminar(long id) {
 		try {

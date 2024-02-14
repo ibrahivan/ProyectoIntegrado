@@ -40,14 +40,18 @@ public class Administracion {
 		try {
 			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
 			model.addAttribute("usuarios", usuarios);
-
+			String email = authentication.getName();
 			if (request.isUserInRole("ROLE_ADMIN")) {
-				return "listado";
+				usuarios = usuarioServicio.obtenerTodos();
+	            model.addAttribute("usuarios", usuarios);
+				
 			}
-
-			model.addAttribute("noAdmin", "No eres admin");
-			model.addAttribute("nombreUsuario", authentication.getName());
-			return "home";
+			else if(request.isUserInRole("ROLE_USER")){
+				 UsuarioDTO usuarioDTO = usuarioServicio.buscarPorEmail(email);
+		         model.addAttribute("usuarios", usuarioDTO);
+			}
+			
+			return "listado";
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al obtener la lista de usuarios");
 			return "home";
