@@ -24,7 +24,7 @@ public class LogAspecto {
 	
 	// Registrar en el fichero log despues de lanzar cualquier excepción	
 	// En estos caso el pointcut es cualquier metodo o clase de la app
-	@AfterThrowing(pointcut = "execution(* com.bikerconnect..*.*(..))", throwing = "ex")
+	@AfterThrowing(pointcut = "execution(* FarmaSupply..*.*(..))", throwing = "ex")
 	public void logException(JoinPoint joinPoint, Throwable ex) {
 		logger.error("Error en el método {}() de la clase {}: {}", 
 				joinPoint.getSignature().getName(),
@@ -33,7 +33,7 @@ public class LogAspecto {
 	}
 	
 	// Registrar en el fichero log la entrada a métodos
-    @Before("execution(* com.bikerconnect..*.*(..))")
+    @Before("execution(* FarmaSupply..*.*(..))")
     public void logMetodoEntrada(JoinPoint joinPoint) {
         logger.info("Entrando en el método {}() de la clase {}", 
                      joinPoint.getSignature().getName(),
@@ -41,7 +41,7 @@ public class LogAspecto {
     }
 
     // Registrar en el fichero log la salida de métodos (después de la ejecución exitosa)
-    @AfterReturning("execution(* com.bikerconnect..*.*(..))")
+    @AfterReturning("execution(* FarmaSupply..*.*(..))")
     public void logMethodoSalida(JoinPoint joinPoint) {
         logger.info("Saliendo del método {}() de la clase {}", 
                      joinPoint.getSignature().getName(),

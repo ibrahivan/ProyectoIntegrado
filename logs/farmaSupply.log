@@ -1,31 +1,71 @@
-2024-02-19T11:50:53.992+01:00  INFO 4296 --- [main] FarmaSupply.FarmaSupplyApplication       : Starting FarmaSupplyApplication using Java 21.0.2 with PID 4296 (C:\Users\Puesto12\Desktop\WK_PROYECTO_JAVA\FarmaSupply_Java\target\classes started by Puesto12 in C:\Users\Puesto12\Desktop\WK_PROYECTO_JAVA\FarmaSupply_Java)
-2024-02-19T11:50:53.995+01:00  INFO 4296 --- [main] FarmaSupply.FarmaSupplyApplication       : No active profile set, falling back to 1 default profile: "default"
-2024-02-19T11:50:54.620+01:00  INFO 4296 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-02-19T11:50:54.680+01:00  INFO 4296 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 1 JPA repository interface.
-2024-02-19T11:50:55.457+01:00  INFO 4296 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-02-19T11:50:55.471+01:00  INFO 4296 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-02-19T11:50:55.471+01:00  INFO 4296 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-02-19T11:50:55.538+01:00  INFO 4296 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-02-19T11:50:55.539+01:00  INFO 4296 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1499 ms
-2024-02-19T11:50:55.779+01:00  INFO 4296 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-02-19T11:50:55.837+01:00  INFO 4296 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-02-19T11:50:55.876+01:00  INFO 4296 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-02-19T11:50:56.122+01:00  INFO 4296 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-02-19T11:50:56.149+01:00  INFO 4296 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-02-19T11:50:56.315+01:00  INFO 4296 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@16a09809
-2024-02-19T11:50:56.317+01:00  INFO 4296 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-02-19T11:50:56.351+01:00  WARN 4296 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-02-19T11:50:57.314+01:00  INFO 4296 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-02-19T11:50:57.452+01:00  INFO 4296 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-02-19T11:50:58.178+01:00  WARN 4296 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-02-19T11:50:58.320+01:00  INFO 4296 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2024-02-19T11:50:58.943+01:00  INFO 4296 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@22db12f6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68e6856c, org.springframework.security.web.context.SecurityContextHolderFilter@4795876e, org.springframework.security.web.header.HeaderWriterFilter@138110f8, org.springframework.web.filter.CorsFilter@10acfe30, org.springframework.security.web.csrf.CsrfFilter@453bbb9b, org.springframework.security.web.authentication.logout.LogoutFilter@2044f708, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4f96e484, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56897de0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40874f54, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22bbbe6, org.springframework.security.web.access.ExceptionTranslationFilter@c6a1be2, org.springframework.security.web.access.intercept.AuthorizationFilter@7c16cc25]
-2024-02-19T11:50:59.529+01:00  INFO 4296 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
-2024-02-19T11:50:59.539+01:00  INFO 4296 --- [main] FarmaSupply.FarmaSupplyApplication       : Started FarmaSupplyApplication in 5.898 seconds (process running for 6.478)
-2024-02-19T11:51:07.729+01:00  INFO 4296 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-02-19T11:51:07.729+01:00  INFO 4296 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-02-19T11:51:07.730+01:00  INFO 4296 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2024-02-19T11:52:08.512+01:00  INFO 4296 --- [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2024-02-19T11:52:08.521+01:00  INFO 4296 --- [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-02-19T11:52:08.523+01:00  INFO 4296 --- [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-02-19T11:52:08.531+01:00  INFO 4296 --- [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-02-19T12:27:19.629+01:00  INFO 11064 --- [main] FarmaSupply.FarmaSupplyApplication       : Starting FarmaSupplyApplication using Java 21.0.2 with PID 11064 (C:\Users\Puesto12\Desktop\WK_PROYECTO_JAVA\FarmaSupply_Java\target\classes started by Puesto12 in C:\Users\Puesto12\Desktop\WK_PROYECTO_JAVA\FarmaSupply_Java)
+2024-02-19T12:27:19.632+01:00  INFO 11064 --- [main] FarmaSupply.FarmaSupplyApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-02-19T12:27:20.290+01:00  INFO 11064 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-02-19T12:27:20.355+01:00  INFO 11064 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54 ms. Found 1 JPA repository interface.
+2024-02-19T12:27:21.141+01:00  INFO 11064 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-02-19T12:27:21.156+01:00  INFO 11064 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-19T12:27:21.156+01:00  INFO 11064 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-02-19T12:27:21.222+01:00  INFO 11064 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-19T12:27:21.223+01:00  INFO 11064 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1536 ms
+2024-02-19T12:27:21.474+01:00  INFO 11064 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-02-19T12:27:21.530+01:00  INFO 11064 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-02-19T12:27:21.566+01:00  INFO 11064 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-02-19T12:27:21.805+01:00  INFO 11064 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-02-19T12:27:21.832+01:00  INFO 11064 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-02-19T12:27:22.144+01:00  INFO 11064 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48277712
+2024-02-19T12:27:22.146+01:00  INFO 11064 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-02-19T12:27:22.181+01:00  WARN 11064 --- [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-02-19T12:27:23.135+01:00  INFO 11064 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-02-19T12:27:23.264+01:00  INFO 11064 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-02-19T12:27:23.825+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Entrando en el método passwordEncoder() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:23.826+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Saliendo del método passwordEncoder() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:23.914+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Entrando en el método authenticationProvider() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:23.926+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Saliendo del método authenticationProvider() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:23.948+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Entrando en el método authenticationManager() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:23.987+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Saliendo del método authenticationManager() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:24.018+01:00  WARN 11064 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-02-19T12:27:24.140+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Entrando en el método filterChain() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:24.184+01:00  INFO 11064 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-02-19T12:27:24.889+01:00  INFO 11064 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d397e87, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36def543, org.springframework.security.web.context.SecurityContextHolderFilter@11ec699, org.springframework.security.web.header.HeaderWriterFilter@1f8a1b, org.springframework.web.filter.CorsFilter@2e07dc23, org.springframework.security.web.csrf.CsrfFilter@6bf2ecbb, org.springframework.security.web.authentication.logout.LogoutFilter@1ebcfcf1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@22f756c5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4eee730c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1b1d1558, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7859fc7, org.springframework.security.web.access.ExceptionTranslationFilter@64864875, org.springframework.security.web.access.intercept.AuthorizationFilter@64a9fca7]
+2024-02-19T12:27:24.889+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Saliendo del método filterChain() de la clase FarmaSupply.seguridad.ConfiguracionSeguridad$$SpringCGLIB$$0
+2024-02-19T12:27:25.494+01:00  INFO 11064 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-02-19T12:27:25.503+01:00  INFO 11064 --- [main] FarmaSupply.FarmaSupplyApplication       : Started FarmaSupplyApplication in 6.254 seconds (process running for 6.899)
+2024-02-19T12:27:25.512+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Entrando en el método onApplicationReady() de la clase FarmaSupply.servicios.UsuarioServicioImpl
+2024-02-19T12:27:25.512+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Entrando en el método existsByNombreUsuario() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:25.618+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Saliendo del método existsByNombreUsuario() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:25.618+01:00  INFO 11064 --- [main] FarmaSupply.aspectos.LogAspecto          : Saliendo del método onApplicationReady() de la clase FarmaSupply.servicios.UsuarioServicioImpl
+2024-02-19T12:27:32.090+01:00  INFO 11064 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-19T12:27:32.090+01:00  INFO 11064 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-02-19T12:27:32.092+01:00  INFO 11064 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-02-19T12:27:32.488+01:00  INFO 11064 --- [http-nio-8080-exec-8] FarmaSupply.aspectos.LogAspecto          : Entrando en el método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:32.489+01:00  INFO 11064 --- [http-nio-8080-exec-8] FarmaSupply.aspectos.LogAspecto          : Saliendo del método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:32.630+01:00  INFO 11064 --- [http-nio-8080-exec-1] FarmaSupply.aspectos.LogAspecto          : Entrando en el método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:32.633+01:00  INFO 11064 --- [http-nio-8080-exec-1] FarmaSupply.aspectos.LogAspecto          : Saliendo del método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:33.575+01:00  INFO 11064 --- [http-nio-8080-exec-3] FarmaSupply.aspectos.LogAspecto          : Entrando en el método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:33.575+01:00  INFO 11064 --- [http-nio-8080-exec-3] FarmaSupply.aspectos.LogAspecto          : Saliendo del método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:33.624+01:00  INFO 11064 --- [http-nio-8080-exec-9] FarmaSupply.aspectos.LogAspecto          : Entrando en el método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:33.625+01:00  INFO 11064 --- [http-nio-8080-exec-9] FarmaSupply.aspectos.LogAspecto          : Saliendo del método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:33.681+01:00  INFO 11064 --- [http-nio-8080-exec-3] FarmaSupply.aspectos.LogAspecto          : Entrando en el método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:33.682+01:00  INFO 11064 --- [http-nio-8080-exec-3] FarmaSupply.aspectos.LogAspecto          : Saliendo del método login() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:38.108+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Entrando en el método loadUserByUsername() de la clase FarmaSupply.seguridad.UserDetailsServiceImpl
+2024-02-19T12:27:38.109+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:38.170+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:38.172+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Saliendo del método loadUserByUsername() de la clase FarmaSupply.seguridad.UserDetailsServiceImpl
+2024-02-19T12:27:38.306+01:00  INFO 11064 --- [http-nio-8080-exec-6] FarmaSupply.aspectos.LogAspecto          : Entrando en el método loginCorrecto() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:38.306+01:00  INFO 11064 --- [http-nio-8080-exec-6] FarmaSupply.aspectos.LogAspecto          : Entrando en el método estaLaCuentaConfirmada() de la clase FarmaSupply.servicios.UsuarioServicioImpl
+2024-02-19T12:27:38.306+01:00  INFO 11064 --- [http-nio-8080-exec-6] FarmaSupply.aspectos.LogAspecto          : Entrando en el método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:38.309+01:00  INFO 11064 --- [http-nio-8080-exec-6] FarmaSupply.aspectos.LogAspecto          : Saliendo del método findFirstByEmailUsuario() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:38.309+01:00  INFO 11064 --- [http-nio-8080-exec-6] FarmaSupply.aspectos.LogAspecto          : Saliendo del método estaLaCuentaConfirmada() de la clase FarmaSupply.servicios.UsuarioServicioImpl
+2024-02-19T12:27:38.321+01:00  INFO 11064 --- [http-nio-8080-exec-6] FarmaSupply.aspectos.LogAspecto          : Saliendo del método loginCorrecto() de la clase FarmaSupply.controladores.Login
+2024-02-19T12:27:58.786+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Entrando en el método listadoUsuarios() de la clase FarmaSupply.controladores.Administracion
+2024-02-19T12:27:58.787+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Entrando en el método obtenerTodos() de la clase FarmaSupply.servicios.UsuarioServicioImpl
+2024-02-19T12:27:58.789+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Entrando en el método findAll() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:58.801+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Saliendo del método findAll() de la clase jdk.proxy2.$Proxy124
+2024-02-19T12:27:58.801+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Entrando en el método listaUsuarioToDto() de la clase FarmaSupply.servicios.UsuarioToDtoImpl
+2024-02-19T12:27:58.801+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Saliendo del método listaUsuarioToDto() de la clase FarmaSupply.servicios.UsuarioToDtoImpl
+2024-02-19T12:27:58.801+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Saliendo del método obtenerTodos() de la clase FarmaSupply.servicios.UsuarioServicioImpl
+2024-02-19T12:27:58.802+01:00  INFO 11064 --- [http-nio-8080-exec-7] FarmaSupply.aspectos.LogAspecto          : Saliendo del método listadoUsuarios() de la clase FarmaSupply.controladores.Administracion
+2024-02-19T12:28:17.399+01:00  INFO 11064 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-02-19T12:28:17.417+01:00  INFO 11064 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-02-19T12:28:17.419+01:00  INFO 11064 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-02-19T12:28:17.430+01:00  INFO 11064 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
