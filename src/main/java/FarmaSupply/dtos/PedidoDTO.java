@@ -1,5 +1,8 @@
 package FarmaSupply.dtos;
 
+import java.util.List;
+
+import FarmaSupply.daos.CatalogoProducto;
 import FarmaSupply.daos.Tienda;
 import FarmaSupply.daos.Usuario;
 
@@ -10,10 +13,9 @@ import FarmaSupply.daos.Usuario;
 public class PedidoDTO {
 
 	private long idPedido;
-	private String productoPedido;
-	private Usuario idUsuario_Ped;
+	private int precioPedido;
 	private Tienda idPedido_Tie;
-	private int cantidad;
+	private List<CatalogoProducto> list_Ped_Cat;
 	
 	//Constructores
 	
@@ -21,13 +23,14 @@ public class PedidoDTO {
 		super();
 	}
 	
-	public PedidoDTO(String productoPedido, Usuario idUsuario_Ped, Tienda idPedido_Tie, int cantidad) {
+
+	public PedidoDTO(int precioPedido, Tienda idPedido_Tie, List<CatalogoProducto> list_Ped_Cat) {
 		super();
-		this.productoPedido = productoPedido;
-		this.idUsuario_Ped = idUsuario_Ped;
+		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
-		this.cantidad = cantidad;
+		this.list_Ped_Cat = list_Ped_Cat;
 	}
+
 
 	//getters y setters
 	public long getIdPedido() {
@@ -37,20 +40,15 @@ public class PedidoDTO {
 		this.idPedido = idPedido;
 	}
 	
-	public String getProductoPedido() {
-		return productoPedido;
+	public int getPrecioPedido() {
+		return precioPedido;
 	}
 
-	public void setProductoPedido(String productoPedido) {
-		this.productoPedido = productoPedido;
+	public void setPrecioPedido(int precioPedido) {
+		this.precioPedido = precioPedido;
 	}
 
-	public Usuario getIdUsuario_Ped() {
-		return idUsuario_Ped;
-	}
-	public void setIdUsuario_Ped(Usuario idUsuario_Ped) {
-		this.idUsuario_Ped = idUsuario_Ped;
-	}
+
 	public Tienda getIdPedido_Tie() {
 		return idPedido_Tie;
 	}
@@ -58,15 +56,19 @@ public class PedidoDTO {
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
-	public int getCantidad() {
-		return cantidad;
+
+	public List<CatalogoProducto> getList_Ped_Cat() {
+		return list_Ped_Cat;
 	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
 
+	public void setList_Ped_Cat(List<CatalogoProducto> list_Ped_Cat) {
+		this.list_Ped_Cat = list_Ped_Cat;
+	}
 	
 }
+
+
+
 
 

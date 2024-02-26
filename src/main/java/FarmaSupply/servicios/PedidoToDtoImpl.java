@@ -15,7 +15,7 @@ public class PedidoToDtoImpl implements IPedidoToDto {
 		try {
 			PedidoDTO dto = new PedidoDTO();
 			
-			
+			dto.setPrecioPedido(p.getPrecioPedido());
 			
 			return dto;
 		} catch (Exception e) {

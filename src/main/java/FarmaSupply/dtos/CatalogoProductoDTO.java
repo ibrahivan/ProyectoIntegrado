@@ -11,6 +11,8 @@ public class CatalogoProductoDTO {
 	private long idCatalogoProducto;
 	private int cantidad;
 	private String descripcion;
+	private String nombreProducto;
+	private int precioUnitario;
 	
 	//Constructores
 	
@@ -28,6 +30,26 @@ public class CatalogoProductoDTO {
 	//Getters y setters
 	public long getIdCatalogoProducto() {
 		return idCatalogoProducto;
+	}
+
+
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+
+
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+
+
+	public int getPrecioUnitario() {
+		return precioUnitario;
+	}
+
+
+	public void setPrecioUnitario(int precioUnitario) {
+		this.precioUnitario = precioUnitario;
 	}
 
 

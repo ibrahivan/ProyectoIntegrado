@@ -33,10 +33,10 @@ public class Usuario {
 	@Column(name = "apellidos_usuario", nullable = true, length = 100)
 	private String apellidosUsuario;
 
-	@Column(name = "dni_usuario", nullable = false, unique = true, length = 9)
+	@Column(name = "dni_usuario", nullable = false, unique = true)
 	private String dniUsuario;
 
-	@Column(name = "tlf_usuario", nullable = true, length = 9)
+	@Column(name = "tlf_usuario", nullable = true )
 	private String tlfUsuario;
 
 	@Column(name = "email_usuario", nullable = false, unique = true, length = 100)
@@ -61,8 +61,7 @@ public class Usuario {
 	@Column(name = "foto_usuario")
 	private byte[] foto;
 
-	@OneToMany(mappedBy = "idUsuario_Ped")
-	private List<Pedido> list_Usu_Ped = new ArrayList<>();
+;
 
 	@OneToMany(mappedBy = "idUsuario_Tie")
 	private List<Tienda> list_Usu_Tie = new ArrayList<>();
@@ -77,7 +76,7 @@ public class Usuario {
 
 	public Usuario(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario, String token, Calendar expiracionToken, String rol,
-			boolean cuentaConfirmada, byte[] foto, List<Pedido> list_Usu_Ped, List<Tienda> list_Usu_Tie) {
+			boolean cuentaConfirmada, byte[] foto, List<Tienda> list_Usu_Tie) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
@@ -90,7 +89,7 @@ public class Usuario {
 		this.rol = rol;
 		this.cuentaConfirmada = cuentaConfirmada;
 		this.foto = foto;
-		this.list_Usu_Ped = list_Usu_Ped;
+	
 		this.list_Usu_Tie = list_Usu_Tie;
 	}
 
@@ -200,13 +199,6 @@ public class Usuario {
 
 
 
-	public List<Pedido> getList_Usu_Ped() {
-		return list_Usu_Ped;
-	}
-
-	public void setList_Usu_Ped(List<Pedido> list_Usu_Ped) {
-		this.list_Usu_Ped = list_Usu_Ped;
-	}
 
 	public List<Tienda> getList_Usu_Tie() {
 		return list_Usu_Tie;

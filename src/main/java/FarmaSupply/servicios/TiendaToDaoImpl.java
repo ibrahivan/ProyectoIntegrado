@@ -27,7 +27,7 @@ public class TiendaToDaoImpl implements ITiendaToDao {
 			tiendaDao.setNombreTienda(tiendaDTO.getNombreTienda());
 			tiendaDao.setDireccionTienda(tiendaDTO.getDireccionTienda());
 			tiendaDao.setCodigopostalTienda(tiendaDTO.getCodigopostalTienda());
-	
+			
 			return tiendaDao;
 
 		} catch (Exception e) {

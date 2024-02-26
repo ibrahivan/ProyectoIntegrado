@@ -33,9 +33,8 @@ public class Pedido {
 			   inverseJoinColumns = @JoinColumn(name = "id_catalogo_producto"))
 	private List<CatalogoProducto> list_Ped_Cat = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario idUsuario_Ped;
+	@Column(name = "precio_pedido", nullable = false)
+	private int precioPedido;
 
 	@ManyToOne
 	@JoinColumn(name = "id_tienda")
@@ -48,10 +47,10 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido( Usuario idUsuario_Ped, Tienda idPedido_Tie) {
+	public Pedido( Tienda idPedido_Tie) {
 		super();
 		
-		this.idUsuario_Ped = idUsuario_Ped;
+
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
@@ -65,13 +64,6 @@ public class Pedido {
 
 
 
-	public Usuario getIdUsuario_Ped() {
-		return idUsuario_Ped;
-	}
-
-	public void setIdUsuario_Ped(Usuario idUsuario_Ped) {
-		this.idUsuario_Ped = idUsuario_Ped;
-	}
 
 	public Tienda getIdPedido_Tie() {
 		return idPedido_Tie;
@@ -81,5 +73,20 @@ public class Pedido {
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
+	public List<CatalogoProducto> getList_Ped_Cat() {
+		return list_Ped_Cat;
+	}
+
+	public void setList_Ped_Cat(List<CatalogoProducto> list_Ped_Cat) {
+		this.list_Ped_Cat = list_Ped_Cat;
+	}
+
+	public int getPrecioPedido() {
+		return precioPedido;
+	}
+
+	public void setPrecioPedido(int precioPedido) {
+		this.precioPedido = precioPedido;
+	}
 
 }

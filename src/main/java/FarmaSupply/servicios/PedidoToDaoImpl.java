@@ -16,7 +16,7 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 		try {
 			Pedido pedidoDao = new Pedido();
 			
-		
+			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
 			
 			return pedidoDao;
 

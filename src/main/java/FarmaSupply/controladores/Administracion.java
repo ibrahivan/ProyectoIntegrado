@@ -42,7 +42,7 @@ public class Administracion {
 			UsuarioDTO usuarioDTO= new UsuarioDTO();
 			String email = authentication.getName();
 			if (request.isUserInRole("ROLE_ADMIN")) {
-				List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();;
+				List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
 	            model.addAttribute("usuarios", usuarios);
 				
 			}

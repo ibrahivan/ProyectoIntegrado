@@ -25,6 +25,13 @@ public class CatalogoProducto {
 	@Column(name = "id_catalogo_producto", nullable = false)
 	private long idCatalogoProducto;
 
+	@Column(name = "nombre_producto ", nullable = false)
+	private String nombreProducto;
+	
+	@Column(name = "precio_unitario_producto ", nullable = false)
+	private int precioUnitario;
+
+
 	@Column(name = "cantidad_producto", nullable = false)
 	private int cantidad;
 
@@ -80,4 +87,19 @@ public class CatalogoProducto {
 	};
 	
 	
+	public String getNombreProducto() {
+		return nombreProducto;
+	}
+
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
+	}
+
+	public int getPrecioUnitario() {
+		return precioUnitario;
+	}
+
+	public void setPrecioUnitario(int precioUnitario) {
+		this.precioUnitario = precioUnitario;
+	}
 }

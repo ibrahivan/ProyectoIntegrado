@@ -7,6 +7,9 @@ import FarmaSupply.dtos.TiendaDTO;
 
 
 
+/**
+ * Interface donde se declaran los metodos necesarios para el paso de un tiendaDTO a DAO
+ */
 public interface ITiendaToDao {
 
 	/**

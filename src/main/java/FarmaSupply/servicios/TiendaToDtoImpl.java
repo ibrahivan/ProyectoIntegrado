@@ -3,10 +3,12 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.TiendaDTO;
 
-
+@Service
 public class TiendaToDtoImpl implements ITiendaToDto {
 
 	@Override

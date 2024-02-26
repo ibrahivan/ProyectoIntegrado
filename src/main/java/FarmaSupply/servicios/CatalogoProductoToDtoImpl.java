@@ -14,6 +14,8 @@ public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
 	public CatalogoProductoDTO catalogoProductoToDto(CatalogoProducto cP) {
 		try {
 			CatalogoProductoDTO dto = new CatalogoProductoDTO();
+			dto.setPrecioUnitario(cP.getPrecioUnitario());
+			dto.setNombreProducto(cP.getNombreProducto());
 			dto.setCantidad(cP.getCantidad());
 			dto.setDescripcion(cP.getDescripcion());
 			
