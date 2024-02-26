@@ -25,6 +25,7 @@ public class UsuarioToDaoImpl implements IUsuarioToDao {
 		try {
 			UsuarioServicioImpl impU= new UsuarioServicioImpl();
 			Usuario usuarioDao = new Usuario();
+			usuarioDao.setIdUsuario(usuarioDTO.getId());
 			usuarioDao.setNombreUsuario(usuarioDTO.getNombreUsuario());
 			usuarioDao.setApellidosUsuario(usuarioDTO.getApellidosUsuario());
 			usuarioDao.setEmailUsuario(usuarioDTO.getEmailUsuario());

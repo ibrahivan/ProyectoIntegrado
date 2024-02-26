@@ -3,6 +3,7 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Usuario;
@@ -16,6 +17,8 @@ import FarmaSupply.dtos.UsuarioDTO;
 @Service
 public class UsuarioToDtoImpl implements IUsuarioToDto {
 
+	@Autowired
+	private ITiendaToDto tiendaToDto;
 	@Override
 	public UsuarioDTO usuarioToDto(Usuario u) {
 		
@@ -33,7 +36,10 @@ public class UsuarioToDtoImpl implements IUsuarioToDto {
 			dto.setId(u.getIdUsuario());
 			dto.setRol(u.getRol());
 			dto.setFoto(impU.convertToBase64(u.getFoto()));
-			
+			if(u.getList_Usu_Tie().size() > 0) {
+				dto.setMisTiendas(tiendaToDto.listaTiendaToDto(u.getList_Usu_Tie()));
+				
+			}
 			
 			return dto;
 		} catch (Exception e) {

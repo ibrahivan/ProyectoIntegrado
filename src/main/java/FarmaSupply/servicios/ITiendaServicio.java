@@ -18,7 +18,7 @@ public interface ITiendaServicio {
 	 * @param tiendaDTO La tienda a registrar
 	 * @return El usuario registrado
 	 */
-	public TiendaDTO registrar(TiendaDTO tiendaDTO);
+	public TiendaDTO registrarTienda(TiendaDTO tiendaDTO);
 
 	/**
 	 * Busca a una tienda por su identificador asignado en la bbdd
@@ -28,6 +28,12 @@ public interface ITiendaServicio {
 	 */
 	public TiendaDTO buscarPorId(long id);
 
+
+	/**
+	 * Elimina una tienda de la base de datos
+	 * @param id El ID de la tienda a eliminar
+	 */
+	public void eliminarTienda(long id);
 	/**
 	 * Obtiene la lista de todos las tiendas registradas
 	 * 

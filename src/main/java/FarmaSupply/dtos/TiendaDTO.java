@@ -19,7 +19,7 @@ public class TiendaDTO {
 	private String direccionTienda;
 	private String codigopostalTienda;
 	private List<PedidoDTO> list_Tie_Ped = new ArrayList<>();
-	private Usuario idUsuario_Tie;
+	private long idUsuario_Tie;
 	
 	//Constructores
 
@@ -29,7 +29,7 @@ public class TiendaDTO {
 	}
 
 	public TiendaDTO(String nombreTienda, String direccionTienda, String codigopostalTienda,
-			List<PedidoDTO> list_Tie_Ped, Usuario idUsuario_Tie) {
+			List<PedidoDTO> list_Tie_Ped, long idUsuario_Tie) {
 		super();
 		this.nombreTienda = nombreTienda;
 		this.direccionTienda = direccionTienda;
@@ -70,11 +70,12 @@ public class TiendaDTO {
 	}
 	
 
-	public Usuario getIdUsuario_Tie() {
+
+	public long getIdUsuario_Tie() {
 		return idUsuario_Tie;
 	}
 
-	public void setIdUsuario_Tie(Usuario idUsuario_Tie) {
+	public void setIdUsuario_Tie(long idUsuario_Tie) {
 		this.idUsuario_Tie = idUsuario_Tie;
 	}
 

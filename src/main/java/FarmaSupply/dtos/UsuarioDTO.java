@@ -28,8 +28,8 @@ public class UsuarioDTO {
 	private boolean cuentaConfirmada;
 	private String foto;
 	private String rol;
-	private List<Pedido> list_Usu_Ped = new ArrayList<>();
-	private List<Tienda> list_Usu_Tie = new ArrayList<>();
+
+	private List<TiendaDTO> misTiendas = new ArrayList<>();
 
 	//CONSTRUCTORES
 	public UsuarioDTO() {
@@ -52,8 +52,8 @@ public class UsuarioDTO {
 
 	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario, String token, String password, String password2,
-			Calendar expiracionToken, boolean cuentaConfirmada, String foto, String rol, List<Pedido> list_Usu_Ped,
-			List<Tienda> list_Usu_Tie) {
+			Calendar expiracionToken, boolean cuentaConfirmada, String foto, String rol, 
+			List<TiendaDTO> misTiendas) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
@@ -68,8 +68,8 @@ public class UsuarioDTO {
 		this.cuentaConfirmada = cuentaConfirmada;
 		this.foto = foto;
 		this.rol = rol;
-		this.list_Usu_Ped = list_Usu_Ped;
-		this.list_Usu_Tie = list_Usu_Tie;
+	
+		this.misTiendas = misTiendas;
 	}
 
 
@@ -184,9 +184,6 @@ public class UsuarioDTO {
 	public void setExpiracionToken(Calendar expiracionToken) {
 		this.expiracionToken = expiracionToken;
 	}
-	public List<Pedido> getList_Usu_Ped() {
-		return list_Usu_Ped;
-	}
 
 
 
@@ -202,20 +199,16 @@ public class UsuarioDTO {
 
 
 
-	public void setList_Usu_Ped(List<Pedido> list_Usu_Ped) {
-		this.list_Usu_Ped = list_Usu_Ped;
+
+
+	public List<TiendaDTO> getMisTiendas() {
+		return misTiendas;
 	}
 
 
 
-	public List<Tienda> getList_Usu_Tie() {
-		return list_Usu_Tie;
-	}
-
-
-
-	public void setList_Usu_Tie(List<Tienda> list_Usu_Tie) {
-		this.list_Usu_Tie = list_Usu_Tie;
+	public void setMisTiendas(List<TiendaDTO> misTiendas) {
+		this.misTiendas = misTiendas;
 	}
 	
 	

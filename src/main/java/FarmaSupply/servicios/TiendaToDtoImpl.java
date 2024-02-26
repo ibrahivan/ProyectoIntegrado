@@ -15,6 +15,7 @@ public class TiendaToDtoImpl implements ITiendaToDto {
 	public TiendaDTO tiendaToDto(Tienda t) {
 		try {
 			TiendaDTO dto = new TiendaDTO();
+			dto.setId(t.getIdTienda());
 			dto.setNombreTienda(t.getNombreTienda());
 			dto.setDireccionTienda(t.getDireccionTienda());
 			dto.setCodigopostalTienda(t.getCodigopostalTienda());

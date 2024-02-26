@@ -1,14 +1,16 @@
 package FarmaSupply.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Tienda;
-
+import FarmaSupply.daos.Usuario;
 import FarmaSupply.dtos.TiendaDTO;
 import FarmaSupply.repositorios.TiendaRepositorio;
+import FarmaSupply.repositorios.UsuarioRepositorio;
 import jakarta.transaction.Transactional;
 
 
@@ -31,10 +33,14 @@ public class TiendaServicioImpl implements ITiendaServicio {
 	@Autowired
 	private ITiendaToDto toDto;
 	
+	@Autowired
+	private UsuarioRepositorio usuarioRepositorio;
+	
 	@Override
-	public TiendaDTO registrar(TiendaDTO tiendaDTO) {
+	public TiendaDTO registrarTienda(TiendaDTO tiendaDTO) {
 		// TODO Auto-generated method stub
 		try {
+		Optional<Usuario> usuarioPropietario = usuarioRepositorio.findById(tiendaDTO.getIdUsuario_Tie());
 		// Comprueba si ya existe una tienda con el nombre que quiere registrar
 		Tienda tiendaDaoNombre = repositorio.findByNombreTienda(tiendaDTO.getNombreTienda());
 
@@ -56,8 +62,10 @@ public class TiendaServicioImpl implements ITiendaServicio {
 		// registrar
 	
 		Tienda tiendaDao = toDao.tiendaToDao(tiendaDTO);
+		if(usuarioPropietario.isPresent())
+			tiendaDao.setIdUsuario_Tie(usuarioPropietario.get());
 		
-		// Guardar el usuario en la base de datos
+		// Guardar la tienda en la base de datos
 		repositorio.save(tiendaDao);
 
 		
@@ -93,6 +101,21 @@ public class TiendaServicioImpl implements ITiendaServicio {
 	public List<TiendaDTO> obtenerTodas() {
 		// TODO Auto-generated method stub
 		return toDto.listaTiendaToDto(repositorio.findAll());
+	}
+
+
+	@Override
+	public void eliminarTienda(long id) {
+		// TODO Auto-generated method stub
+		try {
+			Tienda tienda = repositorio.findById(id).orElse(null);
+			if(tienda != null) {
+				repositorio.delete(tienda);
+			}
+		}catch(IllegalArgumentException iae) {
+			System.out.println("[Error TiendaServicioImpl - eliminarTienda()] Al eliminar una tienda por su id " + iae.getMessage());
+		}
+		
 	}
 
 }
