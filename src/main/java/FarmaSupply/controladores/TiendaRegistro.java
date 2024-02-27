@@ -1,5 +1,7 @@
 package FarmaSupply.controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -73,12 +75,16 @@ public class TiendaRegistro {
 			
 			 UsuarioDTO usuarioSesionActual = usuarioServicio.buscarPorEmail(authentication.getName());
 			 tiendaDTO.setIdUsuario_Tie(usuarioSesionActual.getId()); // Establecer el ID de usuario en el TiendaDTO
-			TiendaDTO nuevaTienda = tiendaServicio.registrarTienda(tiendaDTO);
+			 List<TiendaDTO> listaTiendas = usuarioSesionActual.getMisTiendas();
+			 TiendaDTO nuevaTienda = tiendaServicio.registrarTienda(tiendaDTO);
 			
 			
 			if (nuevaTienda != null && nuevaTienda.getDireccionTienda() != null) {
 				// Si el usuario y el DNI no son null es que el registro se completo
 				// correctamente
+				
+				listaTiendas.add(nuevaTienda);
+				usuarioSesionActual.setMisTiendas(listaTiendas);
 				model.addAttribute("mensajeRegistroExitoso", "Registro de la nueva tienda OK");
 				model.addAttribute("misTiendas", usuarioSesionActual.getMisTiendas());
 				return "listadoTiendas";

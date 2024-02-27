@@ -42,8 +42,8 @@
 					</a>
 				</div>
 				<div class="offcanvas-body ">
-					<ul class="nav-links">
-						<li><a th:href="@{/privada/listado}">Volver</a></li>
+					<ul class="navbar-nav  flex-grow-1">
+						<li class="btn btn-outline-dark mx-2"><a th:href="@{/privada/listado}">Volver</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,10 +66,10 @@
 						</h2>
 						<input type="hidden" th:field="*{id}" />
 
-						<div>
-							<img alt="Image" class="profile-image" width="200px" th:if="${usuarioDTO.foto!= null}"
+						  <div class="d-flex justify-content-center mt-4 mb-4">
+							<img alt="Image" class="rounded-circle img-fluid mx-auto" style="max-width: 200px; max-height: 200px;" th:if="${usuarioDTO.foto!= null}"
 								th:src="'data:image/png;base64, ' + ${usuarioDTO.foto}" />
-							<img alt="Default Image" width="200px" class="profile-image"
+							<img alt="Default Image" style="max-width: 200px; max-height: 200px;" class="rounded-circle img-fluid mx-auto"
 								th:src="@{/css/assets/default.png}" th:unless="${usuarioDTO.foto!= null}" />
 						</div>
 						<div class="mb-3">
@@ -92,20 +92,17 @@
 							<input th:field="*{tlfUsuario}" type="tel" id="telefono" name="telefono"
 								class="form-control" required />
 							<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-								<div class="mb-3" th:if="${usuarioDTO.rol == 'ROLE_USER'}">
-									<label for="rol" class="form-label textoPrincipal">Rol del usuario </label>
-									<select id="rol" name="rol" class="form-select" required>
-										<option value="ROLE_USER" selected>Usuario</option>
-										<option value="ROLE_ADMIN">Administrador</option>
-									</select>
-								</div>
-								<div class="mb-3" th:if="${usuarioDTO.rol == 'ROLE_ADMIN'}">
-									<label for="rol" class="form-label textoPrincipal">Rol del usuario </label>
-									<select id="rol" name="rol" class="form-select" required>
-										<option value="ROLE_USER">Usuario</option>
-										<option value="ROLE_ADMIN" selected>Administrador</option>
-									</select>
-								</div>
+								<div class="mb-3 mt-3" th:if="${usuarioDTO.rol == 'ROLE_USER'}">
+	          <label for="rol" class="form-label textoPrincipal">Rol del usuario</label>
+	          <select id="rol" name="rol" class="form-select" required>
+	              <option value="ROLE_USER" th:selected="${usuarioDTO.rol == 'ROLE_USER'}">Usuario</option>
+	              <option value="ROLE_ADMIN" th:selected="${usuarioDTO.rol == 'ROLE_ADMIN'}">Administrador</option>
+	          </select>
+	        </div>
+		  <div class="mb-3 mt-3" th:if="${usuarioDTO.rol == 'ROLE_ADMIN'}">
+			   <label for="rol" class="form-label textoPrincipal">Rol del usuario (No puedes ser degradado)</label>
+			   <input type="text" name="rol" value="Administrador" class="form-control" readonly>
+		  </div>
 							</th:block>
 							<th:block sec:authorize="hasRole('ROLE_USER')">
 								<div class="mb-3">

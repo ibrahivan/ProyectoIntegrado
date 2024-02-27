@@ -23,7 +23,7 @@ public class TiendaToDaoImpl implements ITiendaToDao {
 		
 		try {
 			Tienda tiendaDao = new Tienda();
-
+			tiendaDao.setIdTienda(tiendaDTO.getId());
 			tiendaDao.setNombreTienda(tiendaDTO.getNombreTienda());
 			tiendaDao.setDireccionTienda(tiendaDTO.getDireccionTienda());
 			tiendaDao.setCodigopostalTienda(tiendaDTO.getCodigopostalTienda());

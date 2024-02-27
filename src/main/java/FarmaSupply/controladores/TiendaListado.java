@@ -33,21 +33,27 @@ public class TiendaListado {
 	 * @param authentication Objeto Authentication que contiene el nombre de usuario.
 	 * @return La vista de listado de tiendas (listadoTiendas.html) 
 	 */
-	  @GetMapping("/listadoTiendas")
-	    public String mostrarMisTiendas(Authentication authentication, Model model) {
-	        try {
-	            UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
-	            if (usuario != null) {
-	            	 List<TiendaDTO> misTiendas = usuario.getMisTiendas();
-	                 System.out.println("Número de tiendas para el usuario actual: " + misTiendas.size()); // Verifica el tamaño de la lista
-	                model.addAttribute("misTiendas", usuario.getMisTiendas());
+	@GetMapping("/listadoTiendas")
+	public String mostrarMisTiendas(Authentication authentication, Model model) {
+	    try {
+	        UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+	        if (usuario != null) {
+	            List<TiendaDTO> misTiendas = usuario.getMisTiendas();
+	            if (misTiendas != null) {
+	                System.out.println("Número de tiendas para el usuario actual: " + misTiendas.size());
+	                model.addAttribute("misTiendas", misTiendas);
+	            } else {
+	                System.out.println("La lista de tiendas para el usuario actual es nula.");
 	            }
-	            return "listadoTiendas";
-	        } catch (Exception e) {
-	            model.addAttribute("error", "Error al obtener la lista de tiendas");
-	            return "listadoTiendas";
 	        }
+	        return "listadoTiendas";
+	    } catch (Exception e) {
+	        System.out.println("Error al obtener la lista de tiendas: " + e.getMessage());
+	        model.addAttribute("error", "Error al obtener la lista de tiendas");
+	        return "listadoTiendas";
 	    }
+	}
+
 	  
 	  
 	  /**
@@ -59,8 +65,8 @@ public class TiendaListado {
 	     * @param authentication Objeto Authentication que contiene datos sobre el usuario de la sesión.
 	     * @return La vista de listadoTiendas.html con el listado de tiendas actualizado
 	     */
-	    @GetMapping("/privada/eliminar-tienda/{id}")
-	    public String eliminarMoto(@PathVariable Long id, Model model, Authentication authentication) {
+	    @GetMapping("/eliminar-tienda/{id}")
+	    public String eliminarTienda(@PathVariable Long id, Model model, Authentication authentication) {
 	    	try {
 	    		TiendaDTO tienda = tiendaServicio.buscarPorId(id);
 	    		if (tienda != null) {

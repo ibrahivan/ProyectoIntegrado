@@ -47,17 +47,12 @@
 
 				<div class="offcanvas-body ">
 					<ul class="navbar-nav  flex-grow-1">
-						<li class="nav-list mx-3">
-							<a th:href="@{/privada/home}" sec:authorize='!isAuthenticated()' class="nav-link px-2">
+						<li class="btn btn-outline-dark mx-2">
+							<a th:href="@{/}" sec:authorize='!isAuthenticated()'>
 								<h5> Volver </h5>
 							</a>
 						</li>
-						<li class="nav-list mx-3">
-							<a th:href="@{/privada/listado}" sec:authorize="hasRole('ROLE_ADMIN')"
-								class="nav-link px-2">
-								<h5> Volver </h5>
-							</a>
-						</li>
+						
 					</ul>
 				</div>
 			</div>

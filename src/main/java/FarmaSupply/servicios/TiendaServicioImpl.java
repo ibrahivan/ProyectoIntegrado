@@ -43,7 +43,8 @@ public class TiendaServicioImpl implements ITiendaServicio {
 		Optional<Usuario> usuarioPropietario = usuarioRepositorio.findById(tiendaDTO.getIdUsuario_Tie());
 		// Comprueba si ya existe una tienda con el nombre que quiere registrar
 		Tienda tiendaDaoNombre = repositorio.findByNombreTienda(tiendaDTO.getNombreTienda());
-
+	
+		
 		if (tiendaDaoNombre != null) {
 			return null; // Si no es null es que ya está registrada
 		}
@@ -62,13 +63,15 @@ public class TiendaServicioImpl implements ITiendaServicio {
 		// registrar
 	
 		Tienda tiendaDao = toDao.tiendaToDao(tiendaDTO);
-		if(usuarioPropietario.isPresent())
+		if(usuarioPropietario.isPresent()) {
 			tiendaDao.setIdUsuario_Tie(usuarioPropietario.get());
+		
+
+		}
 		
 		// Guardar la tienda en la base de datos
 		repositorio.save(tiendaDao);
-
-		
+		tiendaDTO.setId(tiendaDao.getIdTienda());
 
 		return tiendaDTO;
 		

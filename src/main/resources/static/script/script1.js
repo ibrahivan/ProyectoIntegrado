@@ -71,7 +71,7 @@ function confirmarEliminarTienda(event) {
     const idTienda = event.currentTarget.getAttribute("data-id");
     confirmar().then(function (confirmado) {
         if (confirmado) {
-            window.location.href = 'http://localhost:8080/privada/eliminar/' + idTienda;
+            window.location.href = 'http://localhost:8080/privada/eliminar-tienda/' + idTienda;
         }
     });
   
