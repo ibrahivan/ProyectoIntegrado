@@ -29,7 +29,7 @@ public class EmailServicioImpl implements IEmailServicio {
 
 			helper.setFrom("ivan.vazquez.cod@gmail.com"); // AQUI VA EL EMAIL DEL .PROPERTIES
 			helper.setTo(emailDestino);
-			helper.setSubject("RESTABLECER CONTRASEÑA BIBLIOTECA");
+			helper.setSubject("Restablecer contraseña FarmaSupply");
 
 			String urlDominio = "http://localhost:8080";
 			String urlDeRecuperacion = String.format("%s/auth/recuperar?token=%s", urlDominio, token);

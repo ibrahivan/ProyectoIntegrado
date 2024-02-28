@@ -100,10 +100,10 @@
 			</div>
 		</div>
 		<script th:if="*{not #strings.isEmpty(mensajeErrorDireccion)}">
-			mostrarNotificacion("¡Error al crear cuenta!", "La dirección introducida ya se encuentra registrado en el sistema", 'error');
+			mostrarNotificacion("¡Error al crear tienda!", "La dirección introducida ya se encuentra registrado en el sistema", 'error');
 		</script>
 		<script th:if="*{not #strings.isEmpty(mensajeErrorNombre)}">
-			mostrarNotificacion("¡Error al crear cuenta!", "El nombre introducido para la tienda ya se encuentra registrado en el sistema", 'error');
+			mostrarNotificacion("¡Error al crear tienda!", "El nombre introducido para la tienda ya se encuentra registrado en el sistema", 'error');
 		</script>
 		<script th:if="*{not #strings.isEmpty(error)}">
 			mostrarNotificacion("¡Error!", "Ocurrio un error no esperado, intentelo de nuevo", 'error');
