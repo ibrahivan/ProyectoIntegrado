@@ -39,6 +39,10 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "id_tienda")
 	private Tienda idPedido_Tie;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_ruta")
+	private Ruta idRuta_Ped;
 
 	// Constructores
 

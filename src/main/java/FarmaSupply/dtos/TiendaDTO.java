@@ -3,7 +3,7 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
-import FarmaSupply.daos.Usuario;
+
 
 
 /**
@@ -18,7 +18,7 @@ public class TiendaDTO {
 	private String nombreTienda;
 	private String direccionTienda;
 	private String codigopostalTienda;
-	private List<PedidoDTO> list_Tie_Ped = new ArrayList<>();
+	private List<PedidoDTO> misPedidos = new ArrayList<>();
 	private long idUsuario_Tie;
 	
 	//Constructores
@@ -29,12 +29,12 @@ public class TiendaDTO {
 	}
 
 	public TiendaDTO(String nombreTienda, String direccionTienda, String codigopostalTienda,
-			List<PedidoDTO> list_Tie_Ped, long idUsuario_Tie) {
+			List<PedidoDTO> misPedidos, long idUsuario_Tie) {
 		super();
 		this.nombreTienda = nombreTienda;
 		this.direccionTienda = direccionTienda;
 		this.codigopostalTienda = codigopostalTienda;
-		this.list_Tie_Ped = list_Tie_Ped;
+		this.misPedidos = misPedidos;
 		this.idUsuario_Tie = idUsuario_Tie;
 	}
 
@@ -83,12 +83,12 @@ public class TiendaDTO {
 		this.codigopostalTienda = codigopostalTienda;
 	}
 
-	public List<PedidoDTO> getList_Tie_Ped() {
-		return list_Tie_Ped;
+	public List<PedidoDTO> getmisPedidos() {
+		return misPedidos;
 	}
 
-	public void setList_Tie_Ped(List<PedidoDTO> list_Tie_Ped) {
-		this.list_Tie_Ped = list_Tie_Ped;
+	public void setmisPedidos(List<PedidoDTO> misPedidos) {
+		this.misPedidos = misPedidos;
 	}
 	
 	

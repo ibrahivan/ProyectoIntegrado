@@ -20,6 +20,8 @@ public class TiendaToDtoImpl implements ITiendaToDto {
 			dto.setDireccionTienda(t.getDireccionTienda());
 			dto.setCodigopostalTienda(t.getCodigopostalTienda());
 			
+			
+			
 			return dto;
 		} catch (Exception e) {
 			System.out.println(

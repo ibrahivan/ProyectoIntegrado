@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import FarmaSupply.daos.Pedido;
-import FarmaSupply.daos.Tienda;
+
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas 
