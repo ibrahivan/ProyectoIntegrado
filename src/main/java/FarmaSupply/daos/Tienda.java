@@ -38,7 +38,7 @@ public class Tienda {
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
-	private Usuario idUsuario_Tie;
+	private Usuario idTienda_Usu;
 
 	@OneToMany(mappedBy = "idPedido_Tie")
 	private List<Pedido> list_Tie_Ped = new ArrayList<>();
@@ -51,13 +51,13 @@ public class Tienda {
 	
 	
 
-	public Tienda(String nombreTienda, String direccionTienda, String codigopostalTienda, Usuario idUsuario_Tie,
+	public Tienda(String nombreTienda, String direccionTienda, String codigopostalTienda, Usuario idTienda_Usu,
 			List<Pedido> list_Tie_Ped) {
 		super();
 		this.nombreTienda = nombreTienda;
 		this.direccionTienda = direccionTienda;
 		this.codigopostalTienda = codigopostalTienda;
-		this.idUsuario_Tie = idUsuario_Tie;
+		this.idTienda_Usu = idTienda_Usu;
 		this.list_Tie_Ped = list_Tie_Ped;
 	}
 
@@ -97,12 +97,12 @@ public class Tienda {
 		this.codigopostalTienda = codigopostalTienda;
 	}
 
-	public Usuario getIdUsuario_Tie() {
-		return idUsuario_Tie;
+	public Usuario getIdTienda_Usu() {
+		return idTienda_Usu;
 	}
 
-	public void setIdUsuario_Tie(Usuario idUsuario_Tie) {
-		this.idUsuario_Tie = idUsuario_Tie;
+	public void setIdTienda_Usu(Usuario idTienda_Usu) {
+		this.idTienda_Usu = idTienda_Usu;
 	}
 
 

@@ -5,6 +5,12 @@ import java.util.List;
 import FarmaSupply.daos.CatalogoProducto;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 
+
+
+/**
+ * Interface donde se declaran los metodos que son necesarios para el paso de una entidad
+ * CatalogoProducto (DAO) a CatalogoProductoDTO
+ */
 public interface ICatalogoProductoToDto {
 
 	/**

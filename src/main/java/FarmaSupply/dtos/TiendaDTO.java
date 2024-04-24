@@ -19,7 +19,7 @@ public class TiendaDTO {
 	private String direccionTienda;
 	private String codigopostalTienda;
 	private List<PedidoDTO> misPedidos = new ArrayList<>();
-	private long idUsuario_Tie;
+	private long idTienda_Usu;
 	
 	//Constructores
 
@@ -28,15 +28,17 @@ public class TiendaDTO {
 		super();
 	}
 
-	public TiendaDTO(String nombreTienda, String direccionTienda, String codigopostalTienda,
-			List<PedidoDTO> misPedidos, long idUsuario_Tie) {
+
+	public TiendaDTO(String nombreTienda, String direccionTienda, String codigopostalTienda, List<PedidoDTO> misPedidos,
+			long idTienda_Usu) {
 		super();
 		this.nombreTienda = nombreTienda;
 		this.direccionTienda = direccionTienda;
 		this.codigopostalTienda = codigopostalTienda;
 		this.misPedidos = misPedidos;
-		this.idUsuario_Tie = idUsuario_Tie;
+		this.idTienda_Usu = idTienda_Usu;
 	}
+
 
 	//getter y setters
 
@@ -71,23 +73,25 @@ public class TiendaDTO {
 	
 
 
-	public long getIdUsuario_Tie() {
-		return idUsuario_Tie;
+	public long getIdTienda_Usu() {
+		return idTienda_Usu;
 	}
 
-	public void setIdUsuario_Tie(long idUsuario_Tie) {
-		this.idUsuario_Tie = idUsuario_Tie;
+
+	public void setIdTienda_Usu(long idTienda_Usu) {
+		this.idTienda_Usu = idTienda_Usu;
 	}
+
 
 	public void setCodigopostalTienda(String codigopostalTienda) {
 		this.codigopostalTienda = codigopostalTienda;
 	}
 
-	public List<PedidoDTO> getmisPedidos() {
+	public List<PedidoDTO> getMisPedidos() {
 		return misPedidos;
 	}
 
-	public void setmisPedidos(List<PedidoDTO> misPedidos) {
+	public void setMisPedidos(List<PedidoDTO> misPedidos) {
 		this.misPedidos = misPedidos;
 	}
 	

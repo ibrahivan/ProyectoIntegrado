@@ -6,6 +6,9 @@ import FarmaSupply.daos.CatalogoProducto;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 
 
+/**
+ * Interface donde se declaran los metodos necesarios para el paso de un CatalogoProductoDTO a DAO
+ */
 public interface ICatalogoProductoToDao {
 	/**
 	 * Metodo que convierte campo a campo un objeto catalogoProductoDTO a DAO

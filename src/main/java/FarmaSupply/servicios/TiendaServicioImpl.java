@@ -40,7 +40,7 @@ public class TiendaServicioImpl implements ITiendaServicio {
 	public TiendaDTO registrarTienda(TiendaDTO tiendaDTO) {
 		// TODO Auto-generated method stub
 		try {
-		Optional<Usuario> usuarioPropietario = usuarioRepositorio.findById(tiendaDTO.getIdUsuario_Tie());
+		Optional<Usuario> usuarioPropietario = usuarioRepositorio.findById(tiendaDTO.getIdTienda_Usu());
 		// Comprueba si ya existe una tienda con el nombre que quiere registrar
 		Tienda tiendaDaoNombre = repositorio.findByNombreTienda(tiendaDTO.getNombreTienda());
 	
@@ -64,7 +64,7 @@ public class TiendaServicioImpl implements ITiendaServicio {
 	
 		Tienda tiendaDao = toDao.tiendaToDao(tiendaDTO);
 		if(usuarioPropietario.isPresent()) {
-			tiendaDao.setIdUsuario_Tie(usuarioPropietario.get());
+			tiendaDao.setIdTienda_Usu(usuarioPropietario.get());
 		
 
 		}

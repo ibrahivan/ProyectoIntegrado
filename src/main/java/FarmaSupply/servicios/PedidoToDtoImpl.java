@@ -3,20 +3,58 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import FarmaSupply.daos.Pedido;
+
 import FarmaSupply.dtos.PedidoDTO;
 
-
+/**
+ * Servicio que implementa los metodos de la interface {@link IPedidoToDto} 
+ * y en esta clase es donde se entra al detalle de la logica de dichos métodos
+ * para el paso de la entidad pedido (DAO) a pedidoDTO
+ */
 public class PedidoToDtoImpl implements IPedidoToDto {
 
+	@Autowired
+	private ICatalogoProductoToDto catalogoToDto;
+	
+	@Autowired
+	private IMotoToDto motoToDto;
+	@Autowired
+	private ICubetaToDto cubetaToDto;
+	
 	@Override
 	public PedidoDTO pedidoToDto(Pedido p) {
 		
 		try {
 			PedidoDTO dto = new PedidoDTO();
+			
+			
 			dto.setIdPedido(p.getIdPedido());
 			dto.setPrecioPedido(p.getPrecioPedido());
 			dto.setIdPedido_Tie(p.getIdPedido_Tie());
+			dto.setEstadoPedido(p.getEstado_pedido());
+			
+			
+			if (p.getList_Ped_Cat().size()>0)
+			{
+				dto.setMisCatalogoProducto(catalogoToDto.listaCatalogoProductoToDto(p.getList_Ped_Cat()));
+			}
+	
+
+			if (p.getList_Ped_Cub().size()>0)
+			{
+				dto.setMisCubetas(cubetaToDto.listaCubetaToDto(p.getList_Ped_Cub()));
+			}
+	
+			
+
+			if (p.getList_Ped_Moto().size()>0)
+			{
+				dto.setMisMotos(motoToDto.listaMotoToDto(p.getList_Ped_Moto()));
+			}
+	
 			
 			return dto;
 		} catch (Exception e) {

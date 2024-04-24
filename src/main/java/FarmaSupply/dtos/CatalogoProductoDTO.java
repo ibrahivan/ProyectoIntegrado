@@ -3,7 +3,7 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
-import FarmaSupply.daos.Pedido;
+
 
 
 /**
@@ -19,7 +19,7 @@ public class CatalogoProductoDTO {
 	private String descripcion;
 	private String nombreProducto;
 	private int precioUnitario;
-	private List<Pedido> list_Cat_Ped = new ArrayList<>();
+	private List<PedidoDTO> misPedidos = new ArrayList<>();
 	
 	//Constructores
 	
@@ -28,13 +28,13 @@ public class CatalogoProductoDTO {
 	}
 
 	public CatalogoProductoDTO(int cantidad, String descripcion, String nombreProducto, int precioUnitario,
-			List<Pedido> list_Cat_Ped) {
+			List<PedidoDTO> misPedidos) {
 		super();
 		this.cantidad = cantidad;
 		this.descripcion = descripcion;
 		this.nombreProducto = nombreProducto;
 		this.precioUnitario = precioUnitario;
-		this.list_Cat_Ped = list_Cat_Ped;
+		this.misPedidos = misPedidos;
 	}
 
 	//getters y setters
@@ -78,12 +78,12 @@ public class CatalogoProductoDTO {
 		this.precioUnitario = precioUnitario;
 	}
 
-	public List<Pedido> getList_Cat_Ped() {
-		return list_Cat_Ped;
+	public List<PedidoDTO> getmisPedidos() {
+		return misPedidos;
 	}
 
-	public void setList_Cat_Ped(List<Pedido> list_Cat_Ped) {
-		this.list_Cat_Ped = list_Cat_Ped;
+	public void setmisPedidos(List<PedidoDTO> misPedidos) {
+		this.misPedidos = misPedidos;
 	}
 
 	

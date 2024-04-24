@@ -3,7 +3,6 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
-import FarmaSupply.daos.CatalogoProducto;
 import FarmaSupply.daos.Tienda;
 
 
@@ -16,21 +15,29 @@ public class PedidoDTO {
 	private long idPedido;
 	private int precioPedido;
 	private Tienda idPedido_Tie;
-	private List<CatalogoProducto> list_Ped_Cat = new ArrayList<>();
-	
+	private int estadoPedido;
+	private List<CatalogoProductoDTO> misCatalogoProducto = new ArrayList<>();
+	private List<MotoDTO>misMotos = new ArrayList<>();
+	private List<CubetaDTO>misCubetas = new ArrayList<>();
 	//Constructores
 	
 	public PedidoDTO() {
 		super();
 	}
+
 	
 
-	public PedidoDTO(int precioPedido, Tienda idPedido_Tie, List<CatalogoProducto> list_Ped_Cat) {
+	public PedidoDTO(int precioPedido, Tienda idPedido_Tie, int estadoPedido,
+			List<CatalogoProductoDTO> misCatalogoProducto, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
-		this.list_Ped_Cat = list_Ped_Cat;
+		this.estadoPedido = estadoPedido;
+		this.misCatalogoProducto = misCatalogoProducto;
+		this.misMotos = misMotos;
+		this.misCubetas = misCubetas;
 	}
+
 
 
 	//getters y setters
@@ -40,32 +47,49 @@ public class PedidoDTO {
 	public void setIdPedido(long idPedido) {
 		this.idPedido = idPedido;
 	}
-	
 	public int getPrecioPedido() {
 		return precioPedido;
 	}
-
 	public void setPrecioPedido(int precioPedido) {
 		this.precioPedido = precioPedido;
 	}
-
-
 	public Tienda getIdPedido_Tie() {
 		return idPedido_Tie;
 	}
 	public void setIdPedido_Tie(Tienda idPedido_Tie) {
 		this.idPedido_Tie = idPedido_Tie;
 	}
-
-
-	public List<CatalogoProducto> getList_Ped_Cat() {
-		return list_Ped_Cat;
+	public List<CatalogoProductoDTO> getMisCatalogoProducto() {
+		return misCatalogoProducto;
+	}
+	public void setMisCatalogoProducto(List<CatalogoProductoDTO> misCatalogoProducto) {
+		this.misCatalogoProducto = misCatalogoProducto;
+	}
+	public List<MotoDTO> getMisMotos() {
+		return misMotos;
+	}
+	public void setMisMotos(List<MotoDTO> misMotos) {
+		this.misMotos = misMotos;
+	}
+	public List<CubetaDTO> getMisCubetas() {
+		return misCubetas;
+	}
+	public void setMisCubetas(List<CubetaDTO> misCubetas) {
+		this.misCubetas = misCubetas;
 	}
 
-
-	public void setList_Ped_Cat(List<CatalogoProducto> list_Ped_Cat) {
-		this.list_Ped_Cat = list_Ped_Cat;
+	public int getEstadoPedido() {
+		return estadoPedido;
 	}
+
+	public void setEstadoPedido(int estadoPedido) {
+		this.estadoPedido = estadoPedido;
+	}
+	
+
+	
+
+
 	
 }
 

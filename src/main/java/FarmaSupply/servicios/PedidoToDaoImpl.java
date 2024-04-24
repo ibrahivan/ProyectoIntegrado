@@ -6,7 +6,11 @@ import java.util.List;
 import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.PedidoDTO;
 
-
+/**
+ * Servicio que implementa los metodos de la interface {@link IUPedidoToDao} 
+ * y en esta clase es donde se entra al detalle de la logica de dichos métodos
+ * para el paso de pedidoDTO a DAO
+ */
 public class PedidoToDaoImpl implements IPedidoToDao {
 
 	@Override
@@ -17,6 +21,7 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 			Pedido pedidoDao = new Pedido();
 			pedidoDao.setIdPedido(pedidoDTO.getIdPedido());
 			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
+			pedidoDao.setEstado_pedido(pedidoDTO.getEstadoPedido());
 			
 			return pedidoDao;
 

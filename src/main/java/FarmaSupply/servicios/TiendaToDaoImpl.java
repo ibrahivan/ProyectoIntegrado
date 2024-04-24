@@ -3,6 +3,7 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -18,6 +19,9 @@ import FarmaSupply.dtos.TiendaDTO;
 @Service
 public class TiendaToDaoImpl implements ITiendaToDao {
 
+	@Autowired
+	private IPedidoToDao pedidoToDao;
+	@Override
 	public Tienda tiendaToDao(TiendaDTO tiendaDTO) {
 
 		
@@ -28,6 +32,10 @@ public class TiendaToDaoImpl implements ITiendaToDao {
 			tiendaDao.setDireccionTienda(tiendaDTO.getDireccionTienda());
 			tiendaDao.setCodigopostalTienda(tiendaDTO.getCodigopostalTienda());
 			
+			if(tiendaDTO.getMisPedidos().size()>0)
+			{
+				tiendaDao.setList_Tie_Ped(pedidoToDao.listPedidoToDao(tiendaDTO.getMisPedidos()));
+			}
 			return tiendaDao;
 
 		} catch (Exception e) {

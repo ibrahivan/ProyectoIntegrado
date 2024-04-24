@@ -26,5 +26,5 @@ public interface TiendaRepositorio  extends JpaRepository<Tienda, Long> {
 	 * @return true si existe una tienda con la direccion de tienda especificado, false en caso contrario.
 	 */
 	public boolean existsByDireccionTienda(String direccionTienda);
-;
+
 }

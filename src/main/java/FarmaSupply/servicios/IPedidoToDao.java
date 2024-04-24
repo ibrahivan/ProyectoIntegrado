@@ -6,12 +6,14 @@ import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.PedidoDTO;
 
 
-
+/**
+ * Interface donde se declaran los metodos necesarios para el paso de un pedidoDTO a DAO
+ */
 public interface IPedidoToDao {
 
 	/**
 	 * Metodo que convierte campo a campo un objeto UsuarioDTO a DAO
-	 * @param ausuarioDTO el objeto usuarioDTO
+	 * @param pedidoDTO objeto a convertir a Dao
 	 * @return Usuario convertido a DAO
 	 */
 	public Pedido pedidoToDao(PedidoDTO pedidoDTO);

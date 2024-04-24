@@ -7,7 +7,11 @@ import FarmaSupply.daos.CatalogoProducto;
 
 import FarmaSupply.dtos.CatalogoProductoDTO;
 
-
+/**
+ * Servicio que implementa los metodos de la interface {@link ICatalogoProductoToDto} 
+ * y en esta clase es donde se entra al detalle de la logica de dichos métodos
+ * para el paso de la entidad CatalogoProducto (DAO) a CatalogoProductoDTO
+ */
 public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
 
 	@Override

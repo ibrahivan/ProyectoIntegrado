@@ -3,23 +3,38 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Tienda;
+
 import FarmaSupply.dtos.TiendaDTO;
 
+/**
+ * Servicio que implementa los metodos de la interface {@link ITiendaToDto} 
+ * y en esta clase es donde se entra al detalle de la logica de dichos métodos
+ * para el paso de la entidad tienda (DAO) a tiendaDTO
+ */
 @Service
 public class TiendaToDtoImpl implements ITiendaToDto {
 
+	@Autowired
+	private IPedidoToDto pedidoToDto;
 	@Override
 	public TiendaDTO tiendaToDto(Tienda t) {
 		try {
 			TiendaDTO dto = new TiendaDTO();
+		
 			dto.setId(t.getIdTienda());
 			dto.setNombreTienda(t.getNombreTienda());
 			dto.setDireccionTienda(t.getDireccionTienda());
 			dto.setCodigopostalTienda(t.getCodigopostalTienda());
+		
 			
+			if(t.getList_Tie_Ped().size()>0)
+			{
+				dto.setMisPedidos(pedidoToDto.listaPedidoToDto(t.getList_Tie_Ped()));
+			}
 			
 			
 			return dto;
