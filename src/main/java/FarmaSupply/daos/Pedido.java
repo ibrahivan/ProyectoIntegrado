@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 /**
  * Clase DAO (Data Access Object) que representa la tabla pedidos de la BBDD,
  * ejerce como modelo virtual de la tabla en la aplicación.
@@ -29,40 +30,33 @@ public class Pedido {
 	private long idPedido;
 
 	@ManyToMany
-	@JoinTable(name = "rel_ped_cat", schema="fs_logica",
-			   joinColumns = @JoinColumn(name = "id_pedido"), 
-			   inverseJoinColumns = @JoinColumn(name = "id_catalogo_producto"))
+	@JoinTable(name = "rel_ped_cat", schema = "fs_logica", joinColumns = @JoinColumn(name = "id_pedido"), inverseJoinColumns = @JoinColumn(name = "id_catalogo_producto"))
 	private List<CatalogoProducto> list_Ped_Cat = new ArrayList<>();
-	
+
 	@Column(name = "precio_pedido", nullable = false)
 	private int precioPedido;
 
 	@Column(name = "estado_pedido", nullable = false)
 	private int estado_pedido;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_tienda")
 	private Tienda idPedido_Tie;
-	
+
 	@OneToMany(mappedBy = "idMoto_Ped")
-	private List<Tienda> list_Ped_Moto = new ArrayList<>();
-	
+	private List<Moto> list_Ped_Moto = new ArrayList<>();
+
 	@OneToMany(mappedBy = "idCubeta_Ped")
-	private List<Tienda> list_Ped_Cub = new ArrayList<>();
-	
-	
+	private List<Cubeta> list_Ped_Cub = new ArrayList<>();
 
 	// Constructores
-
 
 	public Pedido() {
 		super();
 	}
 
-	
-	
 	public Pedido(List<CatalogoProducto> list_Ped_Cat, int precioPedido, int estado_pedido, Tienda idPedido_Tie,
-			List<Tienda> list_Ped_Moto, List<Tienda> list_Ped_Cub) {
+			List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
 		super();
 		this.list_Ped_Cat = list_Ped_Cat;
 		this.precioPedido = precioPedido;
@@ -72,12 +66,11 @@ public class Pedido {
 		this.list_Ped_Cub = list_Ped_Cub;
 	}
 
-	//getters y setter
+	// getters y setter
 
-
-	public Pedido( Tienda idPedido_Tie) {
+	public Pedido(Tienda idPedido_Tie) {
 		super();
-		
+
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
@@ -113,19 +106,19 @@ public class Pedido {
 		this.precioPedido = precioPedido;
 	}
 
-	public List<Tienda> getList_Ped_Moto() {
+	public List<Moto> getList_Ped_Moto() {
 		return list_Ped_Moto;
 	}
 
-	public void setList_Ped_Moto(List<Tienda> list_Ped_Moto) {
+	public void setList_Ped_Moto(List<Moto> list_Ped_Moto) {
 		this.list_Ped_Moto = list_Ped_Moto;
 	}
 
-	public List<Tienda> getList_Ped_Cub() {
+	public List<Cubeta> getList_Ped_Cub() {
 		return list_Ped_Cub;
 	}
 
-	public void setList_Ped_Cub(List<Tienda> list_Ped_Cub) {
+	public void setList_Ped_Cub(List<Cubeta> list_Ped_Cub) {
 		this.list_Ped_Cub = list_Ped_Cub;
 	}
 
@@ -137,5 +130,4 @@ public class Pedido {
 		this.estado_pedido = estado_pedido;
 	}
 
-	
 }

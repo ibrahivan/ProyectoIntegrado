@@ -6,14 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.TiendaDTO;
 
 /**
- * Servicio que implementa los metodos de la interface {@link ITiendaServicio}
- * y en esta clase es donde se entra al detalle de la logica de dichos métodos
+ * Servicio que implementa los metodos de la interface {@link ITiendaServicio} y
+ * en esta clase es donde se entra al detalle de la logica de dichos métodos
  * para la gestión de las tiendas.
  */
 @Service
@@ -21,19 +19,18 @@ public class TiendaToDaoImpl implements ITiendaToDao {
 
 	@Autowired
 	private IPedidoToDao pedidoToDao;
+
 	@Override
 	public Tienda tiendaToDao(TiendaDTO tiendaDTO) {
 
-		
 		try {
 			Tienda tiendaDao = new Tienda();
 			tiendaDao.setIdTienda(tiendaDTO.getId());
 			tiendaDao.setNombreTienda(tiendaDTO.getNombreTienda());
 			tiendaDao.setDireccionTienda(tiendaDTO.getDireccionTienda());
 			tiendaDao.setCodigopostalTienda(tiendaDTO.getCodigopostalTienda());
-			
-			if(tiendaDTO.getMisPedidos().size()>0)
-			{
+
+			if (tiendaDTO.getMisPedidos().size() > 0) {
 				tiendaDao.setList_Tie_Ped(pedidoToDao.listPedidoToDao(tiendaDTO.getMisPedidos()));
 			}
 			return tiendaDao;
@@ -46,11 +43,9 @@ public class TiendaToDaoImpl implements ITiendaToDao {
 		}
 
 	}
-	
+
 	@Override
 	public List<Tienda> listTiendaToDao(List<TiendaDTO> listaTiendaDTO) {
-
-		
 
 		try {
 			List<Tienda> listaTiendaDao = new ArrayList<>();

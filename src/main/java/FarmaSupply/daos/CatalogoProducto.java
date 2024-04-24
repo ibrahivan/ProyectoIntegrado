@@ -12,8 +12,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
- * Clase DAO (Data Access Object) que representa la tabla catalogoProductos de la BBDD,
- * ejerce como modelo virtual de la tabla en la aplicación.
+ * Clase DAO (Data Access Object) que representa la tabla catalogoProductos de
+ * la BBDD, ejerce como modelo virtual de la tabla en la aplicación.
  */
 @Entity
 @Table(name = "catalogoProductos", schema = "fs_logica")
@@ -27,10 +27,9 @@ public class CatalogoProducto {
 
 	@Column(name = "nombre_producto ", nullable = false)
 	private String nombreProducto;
-	
+
 	@Column(name = "precio_unitario_producto ", nullable = false)
 	private int precioUnitario;
-
 
 	@Column(name = "cantidad_producto", nullable = false)
 	private int cantidad;
@@ -40,8 +39,6 @@ public class CatalogoProducto {
 
 	@ManyToMany(mappedBy = "list_Ped_Cat")
 	private List<Pedido> list_Cat_Ped = new ArrayList<>();
-	
-	
 
 	public CatalogoProducto() {
 		super();
@@ -85,8 +82,7 @@ public class CatalogoProducto {
 	public void setList_Cat_Ped(List<Pedido> list_Cat_Ped) {
 		this.list_Cat_Ped = list_Cat_Ped;
 	};
-	
-	
+
 	public String getNombreProducto() {
 		return nombreProducto;
 	}

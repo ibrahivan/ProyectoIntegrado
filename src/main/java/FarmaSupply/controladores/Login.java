@@ -66,15 +66,14 @@ public class Login {
 			UsuarioDTO nuevoUsuario = usuarioServicio.registrar(usuarioDTO);
 
 			String rolDelUsuario = "";
-	        if (authentication != null && authentication.isAuthenticated()) {
-	            rolDelUsuario = authentication.getAuthorities().iterator().next().getAuthority();
-	        }
-			if(nuevoUsuario != null && rolDelUsuario.equals("ROLE_ADMIN")) {
+			if (authentication != null && authentication.isAuthenticated()) {
+				rolDelUsuario = authentication.getAuthorities().iterator().next().getAuthority();
+			}
+			if (nuevoUsuario != null && rolDelUsuario.equals("ROLE_ADMIN")) {
 				model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");
 				model.addAttribute("usuarios", usuarioServicio.obtenerTodos());
 				return "listado";
-			}
-			else if (nuevoUsuario != null && nuevoUsuario.getDniUsuario() != null) {
+			} else if (nuevoUsuario != null && nuevoUsuario.getDniUsuario() != null) {
 				// Si el usuario y el DNI no son null es que el registro se completo
 				// correctamente
 				model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo usuario OK");

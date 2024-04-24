@@ -1,28 +1,31 @@
 package FarmaSupply.dtos;
 
+import FarmaSupply.daos.Pedido;
 
-
+/**
+ * Clase DTO (Data Transfer Object) para pasar información entre capas para la
+ * gestión de pedidos
+ */
 public class MotoDTO {
 
 	private long idMoto;
 	private String matriculaMoto;
-	private long idMoto_Ped;
-	
-	//Constructores
+	private String marcaMoto;
+	private Pedido idMoto_Ped;
+
+	// Constructores
 	public MotoDTO() {
 		super();
 	}
 
-
-
-	public MotoDTO(String matriculaMoto, long idMoto_Ped) {
+	public MotoDTO(String matriculaMoto, String marcaMoto, Pedido idMoto_Ped) {
 		super();
 		this.matriculaMoto = matriculaMoto;
+		this.marcaMoto = marcaMoto;
 		this.idMoto_Ped = idMoto_Ped;
 	}
 
-
-	//Getters y setters
+	// Getters y setters
 	public long getIdMoto() {
 		return idMoto;
 	}
@@ -39,21 +42,20 @@ public class MotoDTO {
 		this.matriculaMoto = matriculaMoto;
 	}
 
-
-
-	public long getIdMoto_Ped() {
+	public Pedido getIdMoto_Ped() {
 		return idMoto_Ped;
 	}
 
-
-
-	public void setIdMoto_Ped(long idMoto_Ped) {
+	public void setIdMoto_Ped(Pedido idMoto_Ped) {
 		this.idMoto_Ped = idMoto_Ped;
 	}
 
+	public String getMarcaMoto() {
+		return marcaMoto;
+	}
 
-
-
-
+	public void setMarcaMoto(String marcaMoto) {
+		this.marcaMoto = marcaMoto;
+	}
 
 }

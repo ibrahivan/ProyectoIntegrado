@@ -238,21 +238,22 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 	@Override
 	public UsuarioDTO buscarPorEmail(String email) {
 		try {
-			
+
 			UsuarioDTO uDto = new UsuarioDTO();
 			Usuario usuario = repositorio.findFirstByEmailUsuario(email);
-			
+
 			uDto = toDto.usuarioToDto(usuario);
-			
-			
+
 			if (usuario != null) {
 				return uDto;
 			}
 		} catch (Exception e) {
-			System.out.println("[Error UsuarioServicioImpl - buscarPorEmail()] Al buscar el usuario por su email " + e.getMessage());
-		}	
+			System.out.println("[Error UsuarioServicioImpl - buscarPorEmail()] Al buscar el usuario por su email "
+					+ e.getMessage());
+		}
 		return null;
 	}
+
 	@Override
 	public void eliminar(long id) {
 		try {
@@ -285,21 +286,20 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 		}
 
 	}
-	
-	public   String convertToBase64(byte[] data) {
-        if (data != null && data.length > 0) {
-            return Base64.getEncoder().encodeToString(data);
-        }
-        return null;
-    }
-	
 
-    public byte[] convertToByteArray(String base64String) {
-        if (base64String != null && !base64String.isEmpty()) {
-            return Base64.getDecoder().decode(base64String);
-        }
-        return null;
-    }
+	public String convertToBase64(byte[] data) {
+		if (data != null && data.length > 0) {
+			return Base64.getEncoder().encodeToString(data);
+		}
+		return null;
+	}
+
+	public byte[] convertToByteArray(String base64String) {
+		if (base64String != null && !base64String.isEmpty()) {
+			return Base64.getDecoder().decode(base64String);
+		}
+		return null;
+	}
 
 	public UsuarioDTO buscarPorId(long id) {
 		try {

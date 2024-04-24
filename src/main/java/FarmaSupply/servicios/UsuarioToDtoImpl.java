@@ -10,8 +10,8 @@ import FarmaSupply.daos.Usuario;
 import FarmaSupply.dtos.UsuarioDTO;
 
 /**
- * Servicio que implementa los metodos de la interface {@link IUsuarioToDto} 
- * y en esta clase es donde se entra al detalle de la logica de dichos métodos
+ * Servicio que implementa los metodos de la interface {@link IUsuarioToDto} y
+ * en esta clase es donde se entra al detalle de la logica de dichos métodos
  * para el paso de la entidad usuario (DAO) a usuarioDTO
  */
 @Service
@@ -19,11 +19,12 @@ public class UsuarioToDtoImpl implements IUsuarioToDto {
 
 	@Autowired
 	private ITiendaToDto tiendaToDto;
+
 	@Override
 	public UsuarioDTO usuarioToDto(Usuario u) {
-		
+
 		try {
-			UsuarioServicioImpl impU= new UsuarioServicioImpl();
+			UsuarioServicioImpl impU = new UsuarioServicioImpl();
 			UsuarioDTO dto = new UsuarioDTO();
 			dto.setNombreUsuario(u.getNombreUsuario());
 			dto.setApellidosUsuario(u.getApellidosUsuario());
@@ -36,11 +37,11 @@ public class UsuarioToDtoImpl implements IUsuarioToDto {
 			dto.setId(u.getIdUsuario());
 			dto.setRol(u.getRol());
 			dto.setFoto(impU.convertToBase64(u.getFoto()));
-			if(u.getList_Usu_Tie().size() > 0) {
+			if (u.getList_Usu_Tie().size() > 0) {
 				dto.setMisTiendas(tiendaToDto.listaTiendaToDto(u.getList_Usu_Tie()));
-				
+
 			}
-			
+
 			return dto;
 		} catch (Exception e) {
 			System.out.println(
@@ -49,11 +50,11 @@ public class UsuarioToDtoImpl implements IUsuarioToDto {
 			return null;
 		}
 	}
-	
+
 	@Override
-	public List<UsuarioDTO> listaUsuarioToDto(List<Usuario> listaUsuario){
+	public List<UsuarioDTO> listaUsuarioToDto(List<Usuario> listaUsuario) {
 		try {
-				
+
 			List<UsuarioDTO> listaDto = new ArrayList<>();
 			for (Usuario u : listaUsuario) {
 				listaDto.add(this.usuarioToDto(u));

@@ -3,6 +3,9 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import FarmaSupply.daos.CatalogoProducto;
 
 import FarmaSupply.dtos.CatalogoProductoDTO;
@@ -12,8 +15,10 @@ import FarmaSupply.dtos.CatalogoProductoDTO;
  * y en esta clase es donde se entra al detalle de la logica de dichos métodos
  * para el paso de la entidad CatalogoProducto (DAO) a CatalogoProductoDTO
  */
+@Service
 public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
-
+	@Autowired
+	private IPedidoToDto pedidoToDto;
 	@Override
 	public CatalogoProductoDTO catalogoProductoToDto(CatalogoProducto cP) {
 		try {
@@ -22,6 +27,10 @@ public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
 			dto.setNombreProducto(cP.getNombreProducto());
 			dto.setCantidad(cP.getCantidad());
 			dto.setDescripcion(cP.getDescripcion());
+			if(cP.getList_Cat_Ped().size()>0)
+			{
+				dto.setmisPedidos(pedidoToDto.listaPedidoToDto(cP.getList_Cat_Ped()));
+			}
 			
 			return dto;
 		} catch (Exception e) {

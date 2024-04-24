@@ -3,9 +3,6 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
  * gestión del catalogo producto
@@ -13,16 +10,15 @@ import java.util.List;
 
 public class CatalogoProductoDTO {
 
-
 	private long idCatalogoProducto;
 	private int cantidad;
 	private String descripcion;
 	private String nombreProducto;
 	private int precioUnitario;
 	private List<PedidoDTO> misPedidos = new ArrayList<>();
-	
-	//Constructores
-	
+
+	// Constructores
+
 	public CatalogoProductoDTO() {
 		super();
 	}
@@ -37,7 +33,7 @@ public class CatalogoProductoDTO {
 		this.misPedidos = misPedidos;
 	}
 
-	//getters y setters
+	// getters y setters
 	public long getIdCatalogoProducto() {
 		return idCatalogoProducto;
 	}
@@ -86,7 +82,4 @@ public class CatalogoProductoDTO {
 		this.misPedidos = misPedidos;
 	}
 
-	
-
-	
 }

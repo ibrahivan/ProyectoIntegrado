@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 /**
  * Clase DAO (Data Access Object) que representa la tabla tiendas de la BBDD,
  * ejerce como modelo virtual de la tabla en la aplicación.
@@ -48,8 +49,6 @@ public class Tienda {
 	public Tienda() {
 		super();
 	}
-	
-	
 
 	public Tienda(String nombreTienda, String direccionTienda, String codigopostalTienda, Usuario idTienda_Usu,
 			List<Pedido> list_Tie_Ped) {
@@ -60,8 +59,6 @@ public class Tienda {
 		this.idTienda_Usu = idTienda_Usu;
 		this.list_Tie_Ped = list_Tie_Ped;
 	}
-
-
 
 	// getters y setters
 
@@ -105,18 +102,12 @@ public class Tienda {
 		this.idTienda_Usu = idTienda_Usu;
 	}
 
-
-
 	public List<Pedido> getList_Tie_Ped() {
 		return list_Tie_Ped;
 	}
 
-
-
 	public void setList_Tie_Ped(List<Pedido> list_Tie_Ped) {
 		this.list_Tie_Ped = list_Tie_Ped;
 	}
-
-
 
 }

@@ -21,61 +21,62 @@ public class Moto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_moto", nullable = false)
 	private long idMoto;
-	
+
+	@Column(name = "marca_moto", nullable = false)
+	private String marcaMoto;
+
 	@Column(name = "matricula_moto", nullable = false)
 	private String matriculaMoto;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
 	private Pedido idMoto_Ped;
 
-	
-	//Constructores
-	
+	// Constructores
 
 	public Moto() {
 		super();
 	}
 
-
-	public Moto(String matriculaMoto, Pedido idPedido_Moto) {
+	public Moto(String marcaMoto, String matriculaMoto, Pedido idMoto_Ped) {
 		super();
+		this.marcaMoto = marcaMoto;
 		this.matriculaMoto = matriculaMoto;
-		this.idMoto_Ped = idPedido_Moto;
+		this.idMoto_Ped = idMoto_Ped;
 	}
 
+	// getters y setters
 
 	public long getIdMoto() {
 		return idMoto;
 	}
 
-
 	public void setIdMoto(long idMoto) {
 		this.idMoto = idMoto;
 	}
-
 
 	public String getMatriculaMoto() {
 		return matriculaMoto;
 	}
 
-
 	public void setMatriculaMoto(String matriculaMoto) {
 		this.matriculaMoto = matriculaMoto;
 	}
-
 
 	public Pedido getIdMoto_Ped() {
 		return idMoto_Ped;
 	}
 
-
 	public void setIdMoto_Ped(Pedido idMoto_Ped) {
 		this.idMoto_Ped = idMoto_Ped;
 	}
 
-	//getters y setters
+	public String getMarcaMoto() {
+		return marcaMoto;
+	}
 
-	
-	
+	public void setMarcaMoto(String marcaMoto) {
+		this.marcaMoto = marcaMoto;
+	}
+
 }

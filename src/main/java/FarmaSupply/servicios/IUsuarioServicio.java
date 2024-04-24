@@ -2,7 +2,6 @@ package FarmaSupply.servicios;
 
 import java.util.List;
 
-
 import FarmaSupply.dtos.UsuarioDTO;
 
 /**
@@ -113,6 +112,7 @@ public interface IUsuarioServicio {
 
 	/**
 	 * Convierte una imagen en un string
+	 * 
 	 * @param data
 	 * @return Un string que representa la imagen convertida
 	 */
@@ -120,6 +120,7 @@ public interface IUsuarioServicio {
 
 	/**
 	 * Convierte un string de base64 en un array de bytes, representando la imagen.
+	 * 
 	 * @param base64String
 	 * @return Un array de bytes que representa la imagen convertida.
 	 */

@@ -21,15 +21,15 @@ public class Cubeta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cubeta", nullable = false)
 	private long idCubeta;
-	
+
 	@Column(name = "numero_cubeta", nullable = false)
 	private String numeroCubeta;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
 	private Pedido idCubeta_Ped;
 
-	//Constructores
+	// Constructores
 	public Cubeta() {
 		super();
 	}
@@ -41,7 +41,7 @@ public class Cubeta {
 		this.idCubeta_Ped = idCubeta_Ped;
 	}
 
-	//Getters y setters
+	// Getters y setters
 	public long getIdCubeta() {
 		return idCubeta;
 	}
@@ -66,6 +66,4 @@ public class Cubeta {
 		this.idCubeta_Ped = idCubeta_Ped;
 	}
 
-	
-	
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import FarmaSupply.daos.Tienda;
 
-
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
  * gestión de pedidos
@@ -17,15 +16,13 @@ public class PedidoDTO {
 	private Tienda idPedido_Tie;
 	private int estadoPedido;
 	private List<CatalogoProductoDTO> misCatalogoProducto = new ArrayList<>();
-	private List<MotoDTO>misMotos = new ArrayList<>();
-	private List<CubetaDTO>misCubetas = new ArrayList<>();
-	//Constructores
-	
+	private List<MotoDTO> misMotos = new ArrayList<>();
+	private List<CubetaDTO> misCubetas = new ArrayList<>();
+	// Constructores
+
 	public PedidoDTO() {
 		super();
 	}
-
-	
 
 	public PedidoDTO(int precioPedido, Tienda idPedido_Tie, int estadoPedido,
 			List<CatalogoProductoDTO> misCatalogoProducto, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
@@ -38,42 +35,51 @@ public class PedidoDTO {
 		this.misCubetas = misCubetas;
 	}
 
-
-
-	//getters y setters
+	// getters y setters
 	public long getIdPedido() {
 		return idPedido;
 	}
+
 	public void setIdPedido(long idPedido) {
 		this.idPedido = idPedido;
 	}
+
 	public int getPrecioPedido() {
 		return precioPedido;
 	}
+
 	public void setPrecioPedido(int precioPedido) {
 		this.precioPedido = precioPedido;
 	}
+
 	public Tienda getIdPedido_Tie() {
 		return idPedido_Tie;
 	}
+
 	public void setIdPedido_Tie(Tienda idPedido_Tie) {
 		this.idPedido_Tie = idPedido_Tie;
 	}
+
 	public List<CatalogoProductoDTO> getMisCatalogoProducto() {
 		return misCatalogoProducto;
 	}
+
 	public void setMisCatalogoProducto(List<CatalogoProductoDTO> misCatalogoProducto) {
 		this.misCatalogoProducto = misCatalogoProducto;
 	}
+
 	public List<MotoDTO> getMisMotos() {
 		return misMotos;
 	}
+
 	public void setMisMotos(List<MotoDTO> misMotos) {
 		this.misMotos = misMotos;
 	}
+
 	public List<CubetaDTO> getMisCubetas() {
 		return misCubetas;
 	}
+
 	public void setMisCubetas(List<CubetaDTO> misCubetas) {
 		this.misCubetas = misCubetas;
 	}
@@ -85,15 +91,5 @@ public class PedidoDTO {
 	public void setEstadoPedido(int estadoPedido) {
 		this.estadoPedido = estadoPedido;
 	}
-	
 
-	
-
-
-	
 }
-
-
-
-
-

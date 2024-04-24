@@ -36,7 +36,7 @@ public class Usuario {
 	@Column(name = "dni_usuario", nullable = false, unique = true)
 	private String dniUsuario;
 
-	@Column(name = "tlf_usuario", nullable = true )
+	@Column(name = "tlf_usuario", nullable = true)
 	private String tlfUsuario;
 
 	@Column(name = "email_usuario", nullable = false, unique = true, length = 100)
@@ -56,14 +56,13 @@ public class Usuario {
 
 	@Column(name = "cuenta_confirmada", nullable = false, columnDefinition = "boolean default false")
 	private boolean cuentaConfirmada;
-	
-	
+
 	@Column(name = "foto_usuario")
 	private byte[] foto;
 
-;
+	;
 
-	@OneToMany(mappedBy = "idUsuario_Tie")
+	@OneToMany(mappedBy = "idTienda_Usu")
 	private List<Tienda> list_Usu_Tie = new ArrayList<>();
 
 	// CONSTRUCTORES
@@ -71,8 +70,6 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
-	
-	
 
 	public Usuario(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario, String token, Calendar expiracionToken, String rol,
@@ -89,11 +86,9 @@ public class Usuario {
 		this.rol = rol;
 		this.cuentaConfirmada = cuentaConfirmada;
 		this.foto = foto;
-	
+
 		this.list_Usu_Tie = list_Usu_Tie;
 	}
-
-
 
 	// GETTERS Y SETTERS
 	public long getIdUsuario() {
@@ -106,20 +101,16 @@ public class Usuario {
 
 	public void setRol(String rol) {
 		this.rol = rol;
-		
+
 	}
 
 	public byte[] getFoto() {
 		return foto;
 	}
 
-
-
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
-
-
 
 	public void setIdUsuario(long idUsuario) {
 		this.idUsuario = idUsuario;
@@ -197,9 +188,6 @@ public class Usuario {
 		this.cuentaConfirmada = cuentaConfirmada;
 	}
 
-
-
-
 	public List<Tienda> getList_Usu_Tie() {
 		return list_Usu_Tie;
 	}
@@ -207,7 +195,5 @@ public class Usuario {
 	public void setList_Usu_Tie(List<Tienda> list_Usu_Tie) {
 		this.list_Usu_Tie = list_Usu_Tie;
 	}
-
-
 
 }

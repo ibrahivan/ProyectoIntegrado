@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-
-
 /**
- * Clase DTO (Data Transfer Object) para pasar información entre capas 
- * para la gestión de usuarios
+ * Clase DTO (Data Transfer Object) para pasar información entre capas para la
+ * gestión de usuarios
  */
 public class UsuarioDTO {
 
-	//ATRIBUTOS
+	// ATRIBUTOS
 	private long id;
 	private String nombreUsuario;
 	private String apellidosUsuario;
@@ -30,10 +28,9 @@ public class UsuarioDTO {
 
 	private List<TiendaDTO> misTiendas = new ArrayList<>();
 
-	//CONSTRUCTORES
+	// CONSTRUCTORES
 	public UsuarioDTO() {
 	}
-
 
 	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario, String foto, String rol) {
@@ -48,11 +45,9 @@ public class UsuarioDTO {
 		this.rol = rol;
 	}
 
-
 	public UsuarioDTO(String nombreUsuario, String apellidosUsuario, String dniUsuario, String tlfUsuario,
 			String emailUsuario, String claveUsuario, String token, String password, String password2,
-			Calendar expiracionToken, boolean cuentaConfirmada, String foto, String rol, 
-			List<TiendaDTO> misTiendas) {
+			Calendar expiracionToken, boolean cuentaConfirmada, String foto, String rol, List<TiendaDTO> misTiendas) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidosUsuario = apellidosUsuario;
@@ -67,19 +62,19 @@ public class UsuarioDTO {
 		this.cuentaConfirmada = cuentaConfirmada;
 		this.foto = foto;
 		this.rol = rol;
-	
+
 		this.misTiendas = misTiendas;
 	}
 
-
-
-	//GETTERS Y SETTERS
+	// GETTERS Y SETTERS
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
+
 	public String getDniUsuario() {
 		return dniUsuario;
 	}
@@ -96,25 +91,17 @@ public class UsuarioDTO {
 		return cuentaConfirmada;
 	}
 
-
-
 	public String getRol() {
 		return rol;
 	}
-
-
 
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
 
-
-
 	public void setCuentaConfirmada(boolean cuentaConfirmada) {
 		this.cuentaConfirmada = cuentaConfirmada;
 	}
-
-
 
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
@@ -175,7 +162,7 @@ public class UsuarioDTO {
 	public void setPassword2(String password2) {
 		this.password2 = password2;
 	}
-	
+
 	public Calendar getExpiracionToken() {
 		return expiracionToken;
 	}
@@ -184,38 +171,23 @@ public class UsuarioDTO {
 		this.expiracionToken = expiracionToken;
 	}
 
-
-
 	public String getFoto() {
 		return foto;
 	}
-
-
 
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
-
-
-
-
 	public List<TiendaDTO> getMisTiendas() {
 		return misTiendas;
 	}
 
-
-
 	public void setMisTiendas(List<TiendaDTO> misTiendas) {
 		this.misTiendas = misTiendas;
 	}
-	
-	
-		
 
-	//tostring
-
-
+	// tostring
 
 	@Override
 	public String toString() {
@@ -224,6 +196,5 @@ public class UsuarioDTO {
 				+ claveUsuario + ", token=" + token + ", password=" + password + ", password2=" + password2
 				+ ", expiracionToken=" + expiracionToken + "]";
 	}
-    
-	
+
 }
