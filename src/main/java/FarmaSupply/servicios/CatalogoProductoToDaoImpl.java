@@ -26,6 +26,7 @@ public class CatalogoProductoToDaoImpl implements ICatalogoProductoToDao {
 
 		try {
 			CatalogoProducto catalogoProductoDao = new CatalogoProducto();
+			catalogoProductoDao.setIdCatalogoProducto(catalogoProductoDTO.getIdCatalogoProducto());
 			catalogoProductoDao.setNombreProducto(catalogoProductoDTO.getNombreProducto());
 			catalogoProductoDao.setPrecioUnitario(catalogoProductoDTO.getPrecioUnitario());
 			catalogoProductoDao.setCantidad(catalogoProductoDTO.getCantidad());

@@ -14,8 +14,8 @@ import FarmaSupply.dtos.MotoDTO;
 import FarmaSupply.servicios.IMotoServicio;
 
 /**
- * Clase que ejerce de controlador de la vista de registro y listado para
- * gestionar las solicitudes relacionadas registro y listado de motos.
+ * Clase que ejerce de controlador de la vista de registroMoto para
+ * gestionar las solicitudes relacionadas registro de motos.
  */
 @Controller
 @RequestMapping("/privada")
@@ -34,7 +34,7 @@ public class MotoRegistro {
 		try {
 
 			MotoDTO nuevaMoto = new MotoDTO();
-			model.addAttribute("tiendaDTO", nuevaMoto);
+			model.addAttribute("motoDTO", nuevaMoto);
 			return "registroMoto";
 
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class MotoRegistro {
 	/**
 	 * Procesa la solicitud HTTP POST para registro de una nueva mot.
 	 * 
-	 * @param tiendaDTO El objeto MotoDTO que recibe en el modelo y contiene los
+	 * @param motoDTO El objeto MotoDTO que recibe en el modelo y contiene los
 	 *                  datos de la nueva moto.
 	 * @param model     Modelo que se utiliza para enviar un motoDTO vacio a la
 	 *                  vista.

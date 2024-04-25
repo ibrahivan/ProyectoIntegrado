@@ -28,10 +28,8 @@ public class MotoListado {
 	 * Gestiona la solicitud HTTP GET para la url /privada/listadoMotos y muestra la
 	 * página de administración motos
 	 *
-	 * @param model          Modelo que se utiliza para enviar el listado de motos a
-	 *                       la vista.
-	 * @param authentication Objeto Authentication que contiene el nombre de
-	 *                       usuario.
+	 * @param model Modelo que se utiliza para enviar el listado de motos a la
+	 *              vista.
 	 * @return La vista de listado de motos (listadoMotos.html)
 	 */
 	@GetMapping("/listadoMotos")

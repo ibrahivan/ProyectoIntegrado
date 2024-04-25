@@ -10,6 +10,13 @@ import FarmaSupply.dtos.CatalogoProductoDTO;
  */
 public interface ICatalogoProductoServicio {
 	/**
+	 * Se registra a uproducto
+	 * 
+	 * @param productoDTO La producto a registrar
+	 * @return El producto registrado
+	 */
+	public CatalogoProductoDTO registrarProducto(CatalogoProductoDTO productoDTO);
+	/**
 	 * Busca a un producto por su identificador asignado en la bbdd
 	 * 
 	 * @param id del productoDTO a buscar
@@ -22,7 +29,7 @@ public interface ICatalogoProductoServicio {
 	 * 
 	 * @param id El ID del producto a eliminar
 	 */
-	public void eliminarCatalogoProducto(long id);
+	public void eliminarProducto(long id);
 
 	/**
 	 * Obtiene la lista de todos los CatalogoProductos registradas

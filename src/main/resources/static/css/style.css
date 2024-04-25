@@ -12,6 +12,7 @@
 
 /** Typography
   --------------------------------------------------------------*/
+  
 body {
 	font-family: "Roboto";
 	font-weight: 400;
@@ -210,12 +211,29 @@ section#hero {
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
-
+.logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
 a.icon-link {
 	color: var(--body-text-color);
 	text-decoration: none;
 	display: inline-table;
 }
+
+.btn-volver2 {
+    position: absolute;
+    top: 20px; /* Ajusta la posición superior según sea necesario */
+    right:150px; /* Ajusta la posición derecha según sea necesario */
+}
+
+.btn-volver {
+    position: absolute;
+    top: 20px; /* Ajusta la posición superior según sea necesario */
+    right: 20px; /* Ajusta la posición derecha según sea necesario */
+}
+
 
 a.icon-link:after {
 	content: "";
@@ -228,27 +246,32 @@ a.icon-link:after {
 a.icon-link:hover:after {
 	width: 20%;
 }
-
 .mi-recuadro {
-	width: 300px; /* Ancho del recuadro */
-	height: 75px; /* Altura del recuadro */
-	border: 2px solid #ff9900; /* Borde s�lido de 2 p�xeles, color #333 */
-	padding: 20px; /* Espaciado interno de 20 p�xeles */
-	margin: 3px auto;
-	/* Margen superior e inferior de 50 p�xeles, centrado horizontalmente */
-	text-align: center; /* Alineaci�n del texto al centro */
-	background-color: white; /* Color de fondo */
-	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	line-height: 25px; /* Ajusta esto a la altura del recuadro */
+    width: 300px;
+    height: 75px;
+    border: 2px solid #4CAF50; /* Cambiando el color del borde a verde */
+    padding: 20px;
+    margin: 3px auto;
+    text-align: center;
+    background-color: #F9F9F9; /* Cambiando el color de fondo a un tono más claro */
+    border-radius: 15px; /* Aumentando el radio del borde */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agregando una sombra para darle más profundidad */
 }
 
 .mi-recuadro div {
-	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-	font-size: 14px;
-	font-weight: 700;
-	color: #192255;
+    font-family: Arial, sans-serif; /* Cambiando la fuente a Arial */
+    font-size: 16px; /* Aumentando ligeramente el tamaño de la fuente */
+    font-weight: 600; /* Reduciendo ligeramente el peso de la fuente */
+    color: #333; /* Cambiando el color del texto a un gris más oscuro */
+}
+.titulo {
+    font-family: Arial, sans-serif; /* Cambiando la fuente a Arial */
+    font-size: 24px; /* Aumentando ligeramente el tamaño de la fuente */
+    font-weight: 700; /* Aumentando el peso de la fuente para hacerla más negrita */
+    color: #192255; /* Cambiando el color del texto a un tono más oscuro */
+    margin-bottom: 20px; /* Agregando un margen inferior para separar el elemento */
 }

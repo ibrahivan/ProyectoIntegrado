@@ -23,7 +23,7 @@ public class CubetaServicioImpl implements ICubetaServicio {
 	public CubetaDTO registrarCubeta(CubetaDTO cubetaDTO) {
 
 		// TODO Auto-generated method stub
-		// Comprueba si ya existe una matricula con el numero que quiere registrar
+		// Comprueba si ya existe una cubeta con el numero que quiere registrar
 		try {
 			Cubeta cubetaDaoNumero = repositorio.findByNumeroCubeta(cubetaDTO.getNumeroCubeta());
 
@@ -31,7 +31,7 @@ public class CubetaServicioImpl implements ICubetaServicio {
 				return null; // Si no es null es que ya está registrada
 			}
 			Cubeta cubetaDao = toDao.cubetaToDao(cubetaDTO);
-			// Guardar la moto en la base de datos
+			// Guardar la cubeta en la base de datos
 			repositorio.save(cubetaDao);
 			cubetaDTO.setIdCubeta(cubetaDao.getIdCubeta());
 			return cubetaDTO;

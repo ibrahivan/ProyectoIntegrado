@@ -29,7 +29,7 @@ public class MotoServicioImpl implements IMotoServicio {
 			Moto motoDaoMatricula = repositorio.findByMatriculaMoto(motoDTO.getMatriculaMoto());
 
 			if (motoDaoMatricula != null) {
-				motoDTO.setMatriculaMoto(null); //seteamos la direccion para el mensaje de error
+				motoDTO.setMatriculaMoto(null); //seteamos la matricula para el mensaje de error
 				return null; // Si no es null es que ya está registrada
 			}
 			Moto motoDao = toDao.motoToDao(motoDTO);

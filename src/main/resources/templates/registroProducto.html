@@ -46,14 +46,12 @@
 						<h2>FarmaSupply</h2>
 					</a>
 				</div>
-
 				<div class="offcanvas-body ">
 					<ul class="navbar-nav  flex-grow-1">
-						<li class="btn btn-outline-dark mx-2"><a
-							th:href="@{/privada/home}"> Volver </a></li>
+						<li class="btn btn-outline-dark mx-2 btn-volver"><a
+							th:href="@{/privada/home}">Volver</a></li>
 					</ul>
 				</div>
-			</div>
 			</div>
 		</nav>
 	</section>
@@ -83,19 +81,19 @@
 						</div>
 						
 						<div class="form-input col-lg-12 my-4">
+							<label for="precioUnitario"
+								class="form-label fs-6 text-uppercase fw-bold text-black">Precio unitario producto (€)</label>
+							<input type="text" id="precioUnitario" name="precioUnitario"
+								class="form-control ps-3" required th:value="${precioUnitario}">
+						</div>
+						
+						<div class="form-input col-lg-12 my-4">
 							<label for="cantidad"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Cantidad (cajas)</label>
 							<input type="text" id="cantidad" name="cantidad"
 								class="form-control ps-3" required th:value="${cantidad}">
 						</div>
 						
-						<div class="form-input col-lg-12 my-4">
-							<label for="precioUnitario"
-								class="form-label fs-6 text-uppercase fw-bold text-black">Precio del producto (€)</label>
-							<input type="text" id="precioUnitario" name="precioUnitario"
-								class="form-control ps-3" required th:value="${precioUnitario}">
-						</div>
-
 						<div class="form-input col-lg-12 my-4">
 							<label for="descripcion"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Descripcion

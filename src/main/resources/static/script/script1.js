@@ -74,7 +74,34 @@ function confirmarEliminarTienda(event) {
 			window.location.href = 'http://localhost:8080/privada/eliminar-tienda/' + idTienda;
 		}
 	});
-
 }
+
+function confirmarEliminarMoto(event) {
+	const idMoto = event.currentTarget.getAttribute("data-id");
+	confirmar().then(function(confirmado) {
+		if (confirmado) {
+			window.location.href = 'http://localhost:8080/privada/eliminar-moto/' + idMoto;
+		}
+	});
+}
+function confirmarEliminarCubeta(event) {
+	const idCubeta = event.currentTarget.getAttribute("data-id");
+	confirmar().then(function(confirmado) {
+		if (confirmado) {
+			window.location.href = 'http://localhost:8080/privada/eliminar-cubeta/' + idCubeta;
+		}
+	});
+}
+
+function confirmarEliminarProducto(event) {
+	const idCatalogoProducto = event.currentTarget.getAttribute("data-id");
+	confirmar().then(function(confirmado) {
+		if (confirmado) {
+			window.location.href = 'http://localhost:8080/privada/eliminar-producto/' + idCatalogoProducto;
+		}
+	});
+}
+
+
 
 
