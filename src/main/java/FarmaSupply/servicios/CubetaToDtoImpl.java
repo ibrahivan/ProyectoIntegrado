@@ -20,7 +20,7 @@ public class CubetaToDtoImpl implements ICubetaToDto {
 			dto.setIdCubeta(c.getIdCubeta());
 			dto.setNumeroCubeta(c.getNumeroCubeta());
 			dto.setIdCubeta_Ped(c.getIdCubeta_Ped());
-
+			dto.setEstaDisponible(c.isEstaDisponible());
 			return dto;
 		} catch (Exception e) {
 			System.out.println(

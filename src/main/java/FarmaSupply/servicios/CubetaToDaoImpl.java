@@ -20,6 +20,7 @@ public class CubetaToDaoImpl implements ICubetaToDao {
 			cubetaDao.setIdCubeta(cubetaDTO.getIdCubeta());
 			cubetaDao.setNumeroCubeta(cubetaDTO.getNumeroCubeta());
 			cubetaDao.setIdCubeta_Ped(cubetaDTO.getIdCubeta_Ped());
+			cubetaDao.setEstaDisponible(cubetaDTO.isEstaDisponible());
 
 			return cubetaDao;
 		} catch (Exception e) {

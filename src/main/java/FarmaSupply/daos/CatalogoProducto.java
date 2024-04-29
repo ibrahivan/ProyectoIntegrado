@@ -29,11 +29,9 @@ public class CatalogoProducto {
 	private String nombreProducto;
 
 	@Column(name = "precio_unitario_producto ", nullable = false)
-	private int precioUnitario;
+	private double precioUnitario;
 
-	@Column(name = "cantidad_producto", nullable = false)
-	private int cantidad;
-
+	
 	@Column(name = "descripcion_producto ", nullable = false)
 	private String descripcion;
 
@@ -44,9 +42,8 @@ public class CatalogoProducto {
 		super();
 	}
 
-	public CatalogoProducto(int cantidad, String descripcion, List<Pedido> list_Cat_Ped) {
+	public CatalogoProducto( String descripcion, List<Pedido> list_Cat_Ped) {
 		super();
-		this.cantidad = cantidad;
 		this.descripcion = descripcion;
 		this.list_Cat_Ped = list_Cat_Ped;
 	}
@@ -59,13 +56,6 @@ public class CatalogoProducto {
 		this.idCatalogoProducto = idCatalogoProducto;
 	}
 
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -91,11 +81,11 @@ public class CatalogoProducto {
 		this.nombreProducto = nombreProducto;
 	}
 
-	public int getPrecioUnitario() {
+	public double getPrecioUnitario() {
 		return precioUnitario;
 	}
 
-	public void setPrecioUnitario(int precioUnitario) {
-		this.precioUnitario = precioUnitario;
+	public void setPrecioUnitario(double d) {
+		this.precioUnitario = d;
 	}
 }

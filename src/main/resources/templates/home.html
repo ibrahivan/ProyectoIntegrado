@@ -2,134 +2,170 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Home</title>
+<title>Home</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;700&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script th:src="@{/script/script1.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script th:src="@{/script/script1.js}"></script>
 
-    <style>
-        .hero {
-            text-align: center;
-        }
+<style>
+.card {
+    width: calc(33.33% - 20px); /* Calcula el ancho para que haya dos tarjetas en una fila */
+    margin: 10px; /* Ajusta el margen alrededor de cada tarjeta */
+    margin-bottom: 20px; /* Ajusta el margen inferior */
+    text-align: center;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
 
-        .btn-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px; /* Espacio entre las tarjetas */
+}
 
-        .btn-container .card {
-            width: 250px;
-            margin: 10px;
-            text-align: center;
-        }
 
-        .logout-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-    </style>
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+</style>
 </head>
 
 <body>
 
-    <!-- Navigation Section Starts -->
-    <section id="navigation-bar" class="navigation position-fixed">
+	<!-- Navigation Section Starts -->
+	<section id="navigation-bar" class="navigation position-fixed">
 
-        <nav id="navbar-example2" class="navbar navbar-expand-lg ">
+		<nav id="navbar-example2" class="navbar navbar-expand-lg ">
 
-            <div class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
+			<div
+				class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
 
-                <div class="col-md-3 brand-logo">
-                    <a th:href="@{/}" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <h2>FarmaSupply</h2>
-                    </a>
-                </div>
-                <div class="offcanvas-body d-flex justify-content-end align-items-center">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li>
-                            <form th:action="@{/auth/logout}" method="post" id="logoutForm">
-                                <button type="button" class="btn btn-outline-dark mx-2 logout-btn"
-                                    onclick="confirmarLogout()">Cerrar sesion</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </section>
+				<div class="col-md-3 brand-logo">
+					<a th:href="@{/}"
+						class="d-inline-flex link-body-emphasis text-decoration-none">
+						<h2>FarmaSupply</h2>
+					</a>
+				</div>
+				<div
+					class="offcanvas-body d-flex justify-content-end align-items-center">
+					<ul class="navbar-nav flex-grow-1">
+						<li>
+							<form th:action="@{/auth/logout}" method="post" id="logoutForm">
+								<button type="button"
+									class="btn btn-outline-dark mx-2 logout-btn"
+									onclick="confirmarLogout()">Cerrar sesion</button>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</section>
 
-    <!-- Hero Section Starts -->
-    <section id="hero" class="hero">
-        <div class="hero container py-5 my-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 mt-2 py-5">
-                <div class="col-10 col-sm-8 col-lg-6 py-md-5 my-md-5">
-                    <img th:src="@{/css/assets/scooter.png}" class="d-block mx-lg-auto img-fluid"
-                        alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-                </div>
-                <div class="col-lg-6 py-md-5 my-md-5">
-                    <h3 class="text-dark text-center mt-5">
-                        Bienvenido <span th:text="${nombreUsuario}">usuario</span>
-                    </h3>
-                    <div class="btn-container">
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/listado}"
-                                class="btn btn-outline-dark btn-lg" role="button">Listado usuarios</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/registrarMoto}"
-                                class="btn btn-outline-dark btn-lg" role="button">Registrar moto</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/listadoMotos}"
-                                class="btn btn-outline-dark btn-lg" role="button">Listado motos</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/registrarCubeta}"
-                                class="btn btn-outline-dark btn-lg" role="button">Registrar cubeta</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/listadoCubetas}"
-                                class="btn btn-outline-dark btn-lg" role="button">Listado cubetas</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/registrarProducto}"
-                                class="btn btn-outline-dark btn-lg" role="button">Registrar producto</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_ADMIN')">
-                            <a  th:href="@{/privada/listadoProductos}"
-                                class="btn btn-outline-dark btn-lg" role="button">Listado productos</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_USER')">
-                            <a  th:href="@{/privada/registrarTienda}"
-                                class="btn btn-outline-dark btn-lg" role="button">Registrar tienda</a>
-                        </div>
-                        <div class="card" sec:authorize="hasRole('ROLE_USER')">
-                            <a  th:href="@{/privada/listadoTiendas}"
-                                class="btn btn-outline-dark btn-lg" role="button">Mis tiendas</a>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	<!-- Hero Section Starts -->
+	<section id="hero" class="hero">
+		<div class="hero container py-5 my-5">
+			<div class="row flex-lg-row-reverse align-items-center g-5 mt-2 py-5">
+				<div class="col-10 col-sm-8 col-lg-6 py-md-5 my-md-5">
+					<img th:src="@{/css/assets/scooter.png}"
+						class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+						width="700" height="500" loading="lazy">
+				</div>
+				<div class="col-lg-6 py-md-5 my-md-5">
+					<h3 class="text-dark text-center mt-5">
+						Bienvenido <span th:text="${nombreUsuario}">usuario</span>
+					</h3>
+					<div class="btn-container">
+					
+						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
+								<div class="card-body">
+									<h5 class="card-title">Usuarios</h5>
+									<p class="card-text">Acceda para: </p>
+									<a th:href="@{/privada/listado}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Gestionar usuarios</i></a>
+								</div>
+							</div>
+						</div>		
+						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
+								<div class="card-body">
+									<h5 class="card-title">Productos</h5>
+									<p class="card-text">Acceda para: </p>
+									<a th:href="@{/privada/registrarProducto}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Registrar producto</i></a>
+									<a th:href="@{/privada/listadoProductos}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Gestionar productos</i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
+								<div class="card-body">
+									<h5 class="card-title">Cubetas</h5>
+									<p class="card-text">Acceda para: </p>
+									<a th:href="@{/privada/registrarCubeta}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Registrar cubeta</i></a>
+									<a th:href="@{/privada/listadoCubetas}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Gestionar cubetas</i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
+								<div class="card-body">
+									<h5 class="card-title">Motos</h5>
+									<p class="card-text">Acceda para: </p>
+									<a th:href="@{/privada/registrarMoto}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Registrar moto</i></a>
+									<a th:href="@{/privada/listadoMotos}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Gestionar motos</i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4" sec:authorize="hasRole('ROLE_USER')">
+							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
+								<div class="card-body">
+									<h5 class="card-title">Tiendas</h5>
+									<p class="card-text">Acceda para: </p>
+									<a th:href="@{/privada/registrarTienda}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Registrar tienda</i></a>
+									<a th:href="@{/privada/listadoTiendas}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Gestionar tiendas</i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <script th:if="${not #strings.isEmpty(noAdmin)}">
-        mostrarNotificacion("¡Prohibido!", "No tiene permisos para acceder a este recurso", 'error');
-    </script>
+	<script th:if="${not #strings.isEmpty(noAdmin)}">
+		mostrarNotificacion("¡Prohibido!",
+				"No tiene permisos para acceder a este recurso", 'error');
+	</script>
 
 </body>
 

@@ -30,7 +30,7 @@ public class TiendaToDtoImpl implements ITiendaToDto {
 			dto.setNombreTienda(t.getNombreTienda());
 			dto.setDireccionTienda(t.getDireccionTienda());
 			dto.setCodigopostalTienda(t.getCodigopostalTienda());
-
+			
 			if (t.getList_Tie_Ped().size() > 0) {
 				dto.setMisPedidos(pedidoToDto.listaPedidoToDto(t.getList_Tie_Ped()));
 			}

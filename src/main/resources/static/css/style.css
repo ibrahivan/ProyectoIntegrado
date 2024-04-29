@@ -242,6 +242,76 @@ a.icon-link:after {
 	width: 100%;
 	transition: width 0.2s ease-out;
 }
+.hero {
+	text-align: center;
+}
+
+.card .btn {
+    width: 100%; /* Los botones ocuparán todo el ancho disponible dentro de la tarjeta */
+    margin-bottom: 10px; /* Agrega margen inferior entre los botones */
+}
+ .custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .custom-button:hover {
+    background-color: #45a049;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .custom-button:active {
+    transform: translateY(2px);
+  }
+
+  .custom-button .icon {
+    margin-right: 5px;
+  }
+  
+ /* Estilos para las tarjetas */
+
+.dashboardCard {
+    width: 250px; /* Ancho fijo para todas las tarjetas */
+    background-color: #f8f9fa; /* Color de fondo */
+    border: 1px solid #dee2e6; /* Borde */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    transition: box-shadow 0.3s ease; /* Transición suave */
+    margin: 10px; /* Margen entre las tarjetas */
+}
+
+
+
+.dashboardCard:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+.dashboardCard .card-body {
+    padding: 20px; /* Espaciado interno */
+}
+  
+
+.btn-container .card {
+	width: 250px;
+	margin: 10px;
+	text-align: center;
+}
+
+.logout-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
 
 a.icon-link:hover:after {
 	width: 20%;

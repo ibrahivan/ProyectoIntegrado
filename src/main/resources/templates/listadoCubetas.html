@@ -33,7 +33,7 @@
 <body>
 
 	<!-- Navigation Section Starts -->
-<section id="navigation-bar" class="navigation position-fixed">
+	<section id="navigation-bar" class="navigation position-fixed">
 
 		<nav id="navbar-example2" class="navbar navbar-expand-lg ">
 
@@ -75,25 +75,32 @@
 						<thead class="thead-inverse">
 							<tr>
 								<th class="tableCustom">Numero de cubeta</th>
-								
+								<th class="tableCustom">Estado</th>
 								<th class="tableCustom"></th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="cubeta : ${misCubetas}">
 								<td th:text="${cubeta.numeroCubeta}"></td>
-								<td><a class="btn btn-danger" th:attr="data-id=${cubeta.idCubeta}"
+								<td><span th:if="${cubeta.estaDisponible == true}"
+									style="color: green;">Disponible</span> <span
+									th:if="${cubeta.estaDisponible == false}" style="color: red;">Ocupada</span>
+								</td>
+								<td><a class="btn btn-danger"
+									th:attr="data-id=${cubeta.idCubeta}"
 									onclick="confirmarEliminarCubeta(event)"> <i
 										class="bi bi-trash">Eliminar</i>
 								</a></td>
 							</tr>
 						</tbody>
+
 					</table>
 				</th:block>
 
 				<h5 class="card-title text-center text-danger"
-					th:if="${#lists.isEmpty(misCubetas)}">No hay cubetas registradas</h5>
+					th:if="${#lists.isEmpty(misCubetas)}">No hay cubetas
+					registradas</h5>
 			</div>
 		</div>
 	</div>

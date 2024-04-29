@@ -50,6 +50,10 @@
 						<li class="btn btn-outline-dark mx-2 btn-volver"><a
 							th:href="@{/}">Volver</a></li>
 					</ul>
+					<ul class="navbar-nav  flex-grow-1"  sec:authorize="hasRole('ROLE_ADMIN')">
+						<li class="btn btn-outline-dark mx-2 btn-volver"><a
+							th:href="@{/privada/home}">Volver</a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>

@@ -30,6 +30,7 @@ public class CubetaServicioImpl implements ICubetaServicio {
 			if (cubetaDaoNumero != null) {
 				return null; // Si no es null es que ya está registrada
 			}
+			cubetaDTO.setEstaDisponible(true);
 			Cubeta cubetaDao = toDao.cubetaToDao(cubetaDTO);
 			// Guardar la cubeta en la base de datos
 			repositorio.save(cubetaDao);

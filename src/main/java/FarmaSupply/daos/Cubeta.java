@@ -25,6 +25,9 @@ public class Cubeta {
 	@Column(name = "numero_cubeta", nullable = false)
 	private String numeroCubeta;
 
+	@Column(name = "esta_disponible_cubeta", nullable = false)
+	private boolean estaDisponible;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
 	private Pedido idCubeta_Ped;
@@ -34,10 +37,10 @@ public class Cubeta {
 		super();
 	}
 
-	public Cubeta(long idCubeta, String numeroCubeta, Pedido idCubeta_Ped) {
+	public Cubeta(String numeroCubeta, boolean estaDisponible, Pedido idCubeta_Ped) {
 		super();
-		this.idCubeta = idCubeta;
 		this.numeroCubeta = numeroCubeta;
+		this.estaDisponible = estaDisponible;
 		this.idCubeta_Ped = idCubeta_Ped;
 	}
 
@@ -64,6 +67,14 @@ public class Cubeta {
 
 	public void setIdCubeta_Ped(Pedido idCubeta_Ped) {
 		this.idCubeta_Ped = idCubeta_Ped;
+	}
+
+	public boolean isEstaDisponible() {
+		return estaDisponible;
+	}
+
+	public void setEstaDisponible(boolean estaDisponible) {
+		this.estaDisponible = estaDisponible;
 	}
 
 }

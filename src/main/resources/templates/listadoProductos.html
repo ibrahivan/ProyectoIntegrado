@@ -75,7 +75,6 @@
 							<tr>
 								<th class="tableCustom">Nombre producto</th>
 								<th class="tableCustom">Precio unitario (€)</th>
-								<th class="tableCustom">Cantidad (cajas)</th>
 								<th class="tableCustom">Descripcion</th>
 								<th class="tableCustom"></th>
 
@@ -85,7 +84,6 @@
 							<tr th:each="producto : ${misProductos}">
 								<td th:text="${producto.nombreProducto}"></td>
 								<td th:text="${producto.precioUnitario}"></td>
-								<td th:text="${producto.cantidad}"></td>
 								<td th:text="${producto.descripcion}"></td>
 
 								<td><a class="btn btn-danger"

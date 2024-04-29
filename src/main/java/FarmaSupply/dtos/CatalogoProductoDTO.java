@@ -11,10 +11,10 @@ import java.util.List;
 public class CatalogoProductoDTO {
 
 	private long idCatalogoProducto;
-	private int cantidad;
+
 	private String descripcion;
 	private String nombreProducto;
-	private int precioUnitario;
+	private double precioUnitario;
 	private List<PedidoDTO> misPedidos = new ArrayList<>();
 
 	// Constructores
@@ -23,10 +23,10 @@ public class CatalogoProductoDTO {
 		super();
 	}
 
-	public CatalogoProductoDTO(int cantidad, String descripcion, String nombreProducto, int precioUnitario,
+	public CatalogoProductoDTO( String descripcion, String nombreProducto, int precioUnitario,
 			List<PedidoDTO> misPedidos) {
 		super();
-		this.cantidad = cantidad;
+
 		this.descripcion = descripcion;
 		this.nombreProducto = nombreProducto;
 		this.precioUnitario = precioUnitario;
@@ -42,13 +42,7 @@ public class CatalogoProductoDTO {
 		this.idCatalogoProducto = idCatalogoProducto;
 	}
 
-	public int getCantidad() {
-		return cantidad;
-	}
 
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -66,12 +60,12 @@ public class CatalogoProductoDTO {
 		this.nombreProducto = nombreProducto;
 	}
 
-	public int getPrecioUnitario() {
+	public double getPrecioUnitario() {
 		return precioUnitario;
 	}
 
-	public void setPrecioUnitario(int precioUnitario) {
-		this.precioUnitario = precioUnitario;
+	public void setPrecioUnitario(double d) {
+		this.precioUnitario = d;
 	}
 
 	public List<PedidoDTO> getmisPedidos() {

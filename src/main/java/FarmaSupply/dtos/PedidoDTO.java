@@ -12,9 +12,10 @@ import FarmaSupply.daos.Tienda;
 public class PedidoDTO {
 
 	private long idPedido;
-	private int precioPedido;
+	private double precioPedido;
 	private Tienda idPedido_Tie;
 	private int estadoPedido;
+	private double cantidad;
 	private List<CatalogoProductoDTO> misCatalogoProducto = new ArrayList<>();
 	private List<MotoDTO> misMotos = new ArrayList<>();
 	private List<CubetaDTO> misCubetas = new ArrayList<>();
@@ -24,16 +25,19 @@ public class PedidoDTO {
 		super();
 	}
 
-	public PedidoDTO(int precioPedido, Tienda idPedido_Tie, int estadoPedido,
+
+	public PedidoDTO(double precioPedido, Tienda idPedido_Tie, int estadoPedido, double cantidad,
 			List<CatalogoProductoDTO> misCatalogoProducto, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.estadoPedido = estadoPedido;
+		this.cantidad = cantidad;
 		this.misCatalogoProducto = misCatalogoProducto;
 		this.misMotos = misMotos;
 		this.misCubetas = misCubetas;
 	}
+
 
 	// getters y setters
 	public long getIdPedido() {
@@ -44,11 +48,11 @@ public class PedidoDTO {
 		this.idPedido = idPedido;
 	}
 
-	public int getPrecioPedido() {
+	public double getPrecioPedido() {
 		return precioPedido;
 	}
 
-	public void setPrecioPedido(int precioPedido) {
+	public void setPrecioPedido(double precioPedido) {
 		this.precioPedido = precioPedido;
 	}
 
@@ -91,5 +95,16 @@ public class PedidoDTO {
 	public void setEstadoPedido(int estadoPedido) {
 		this.estadoPedido = estadoPedido;
 	}
+
+
+	public double getCantidad() {
+		return cantidad;
+	}
+
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+	
 
 }

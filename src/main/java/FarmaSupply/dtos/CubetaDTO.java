@@ -11,17 +11,20 @@ public class CubetaDTO {
 	private long idCubeta;
 	private String numeroCubeta;
 	private Pedido idCubeta_Ped;
-
+	private boolean estaDisponible;
 	// Constructores
 	public CubetaDTO() {
 		super();
 	}
 
-	public CubetaDTO(String numeroCubeta, Pedido idCubeta_Ped) {
+	
+	public CubetaDTO(String numeroCubeta, Pedido idCubeta_Ped, boolean estaDisponible) {
 		super();
 		this.numeroCubeta = numeroCubeta;
 		this.idCubeta_Ped = idCubeta_Ped;
+		this.estaDisponible = estaDisponible;
 	}
+
 
 	// getters y setters
 	public long getIdCubeta() {
@@ -47,5 +50,18 @@ public class CubetaDTO {
 	public void setIdCubeta_Ped(Pedido idCubeta_Ped) {
 		this.idCubeta_Ped = idCubeta_Ped;
 	}
+
+
+	public boolean isEstaDisponible() {
+		return estaDisponible;
+	}
+
+
+	public void setEstaDisponible(boolean estaDisponible) {
+		this.estaDisponible = estaDisponible;
+	}
+
+
+	
 
 }
