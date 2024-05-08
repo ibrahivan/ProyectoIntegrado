@@ -11,7 +11,7 @@ import java.util.List;
 public class CatalogoProductoDTO {
 
 	private long idCatalogoProducto;
-
+	private double cantidad;
 	private String descripcion;
 	private String nombreProducto;
 	private double precioUnitario;
@@ -23,15 +23,19 @@ public class CatalogoProductoDTO {
 		super();
 	}
 
-	public CatalogoProductoDTO( String descripcion, String nombreProducto, int precioUnitario,
+	
+
+	public CatalogoProductoDTO(double cantidad, String descripcion, String nombreProducto, double precioUnitario,
 			List<PedidoDTO> misPedidos) {
 		super();
-
+		this.cantidad = cantidad;
 		this.descripcion = descripcion;
 		this.nombreProducto = nombreProducto;
 		this.precioUnitario = precioUnitario;
 		this.misPedidos = misPedidos;
 	}
+
+
 
 	// getters y setters
 	public long getIdCatalogoProducto() {
@@ -73,6 +77,30 @@ public class CatalogoProductoDTO {
 	}
 
 	public void setmisPedidos(List<PedidoDTO> misPedidos) {
+		this.misPedidos = misPedidos;
+	}
+
+
+
+	public double getCantidad() {
+		return cantidad;
+	}
+
+
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+
+
+
+	public List<PedidoDTO> getMisPedidos() {
+		return misPedidos;
+	}
+
+
+
+	public void setMisPedidos(List<PedidoDTO> misPedidos) {
 		this.misPedidos = misPedidos;
 	}
 

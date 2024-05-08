@@ -24,17 +24,14 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 	private IMotoToDao motoToDao;
 	@Autowired
 	private ICubetaToDao cubetaToDao;
-
 	@Override
 	public Pedido pedidoToDao(PedidoDTO pedidoDTO) {
 
 		try {
 			Pedido pedidoDao = new Pedido();
 			pedidoDao.setIdPedido(pedidoDTO.getIdPedido());
-			pedidoDao.setCantidad(pedidoDTO.getCantidad());
 			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
 			pedidoDao.setEstado_pedido(pedidoDTO.getEstadoPedido());
-			pedidoDao.setIdPedido_Tie(pedidoDTO.getIdPedido_Tie());
 
 			if (pedidoDTO.getMisCatalogoProducto().size() > 0) {
 				pedidoDao

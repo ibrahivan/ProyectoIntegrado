@@ -3,7 +3,6 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
-import FarmaSupply.daos.Tienda;
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
@@ -13,9 +12,9 @@ public class PedidoDTO {
 
 	private long idPedido;
 	private double precioPedido;
-	private Tienda idPedido_Tie;
+	private long idPedido_Tie;
 	private int estadoPedido;
-	private double cantidad;
+	
 	private List<CatalogoProductoDTO> misCatalogoProducto = new ArrayList<>();
 	private List<MotoDTO> misMotos = new ArrayList<>();
 	private List<CubetaDTO> misCubetas = new ArrayList<>();
@@ -26,13 +25,12 @@ public class PedidoDTO {
 	}
 
 
-	public PedidoDTO(double precioPedido, Tienda idPedido_Tie, int estadoPedido, double cantidad,
+	public PedidoDTO(double precioPedido, long idPedido_Tie, int estadoPedido,
 			List<CatalogoProductoDTO> misCatalogoProducto, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.estadoPedido = estadoPedido;
-		this.cantidad = cantidad;
 		this.misCatalogoProducto = misCatalogoProducto;
 		this.misMotos = misMotos;
 		this.misCubetas = misCubetas;
@@ -56,11 +54,11 @@ public class PedidoDTO {
 		this.precioPedido = precioPedido;
 	}
 
-	public Tienda getIdPedido_Tie() {
+	public long getIdPedido_Tie() {
 		return idPedido_Tie;
 	}
 
-	public void setIdPedido_Tie(Tienda idPedido_Tie) {
+	public void setIdPedido_Tie(long idPedido_Tie) {
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
@@ -97,14 +95,5 @@ public class PedidoDTO {
 	}
 
 
-	public double getCantidad() {
-		return cantidad;
-	}
-
-
-	public void setCantidad(double cantidad) {
-		this.cantidad = cantidad;
-	}
-	
 
 }

@@ -29,7 +29,7 @@ public class TiendaToDaoImpl implements ITiendaToDao {
 			tiendaDao.setNombreTienda(tiendaDTO.getNombreTienda());
 			tiendaDao.setDireccionTienda(tiendaDTO.getDireccionTienda());
 			tiendaDao.setCodigopostalTienda(tiendaDTO.getCodigopostalTienda());
-
+			
 			if (tiendaDTO.getMisPedidos().size() > 0) {
 				tiendaDao.setList_Tie_Ped(pedidoToDao.listPedidoToDao(tiendaDTO.getMisPedidos()));
 			}

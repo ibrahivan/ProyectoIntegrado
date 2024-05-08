@@ -1,5 +1,8 @@
 package FarmaSupply.servicios;
 
+import java.util.List;
+
+import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.PedidoDTO;
 
 /**
@@ -11,9 +14,8 @@ public interface IPedidoServicio {
 	 * Se registra a un pedido 
 	 * El pedido registrado
 	 * 
-	 * @param pedidoDTO El pedido a realizar
 	 * @return El pedido realizado
 	 */
-	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO);
+	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO, List<CatalogoProductoDTO> productos);
 
 }

@@ -34,7 +34,8 @@ public class CatalogoProducto {
 	
 	@Column(name = "descripcion_producto ", nullable = false)
 	private String descripcion;
-
+	@Column(name = "cantidad_pedido", nullable = false)
+	private double cantidad;
 	@ManyToMany(mappedBy = "list_Ped_Cat")
 	private List<Pedido> list_Cat_Ped = new ArrayList<>();
 
@@ -42,11 +43,34 @@ public class CatalogoProducto {
 		super();
 	}
 
-	public CatalogoProducto( String descripcion, List<Pedido> list_Cat_Ped) {
+	
+
+	public CatalogoProducto(String nombreProducto, double precioUnitario, String descripcion, double cantidad,
+			List<Pedido> list_Cat_Ped) {
 		super();
+		this.nombreProducto = nombreProducto;
+		this.precioUnitario = precioUnitario;
 		this.descripcion = descripcion;
+		this.cantidad = cantidad;
 		this.list_Cat_Ped = list_Cat_Ped;
 	}
+
+
+
+	public double getCantidad() {
+		return cantidad;
+	}
+
+
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+
+
+
+
+
 
 	public long getIdCatalogoProducto() {
 		return idCatalogoProducto;

@@ -36,8 +36,7 @@ public class Pedido {
 	@Column(name = "precio_pedido", nullable = false)
 	private double precioPedido;
 
-	@Column(name = "cantidad_pedido", nullable = false)
-	private double cantidad;
+
 	
 	@Column(name = "estado_pedido", nullable = false)
 	private int estado_pedido;
@@ -58,12 +57,11 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido(List<CatalogoProducto> list_Ped_Cat, double precioPedido, double cantidad, int estado_pedido,
+	public Pedido(List<CatalogoProducto> list_Ped_Cat, double precioPedido,  int estado_pedido,
 			Tienda idPedido_Tie, List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
 		super();
 		this.list_Ped_Cat = list_Ped_Cat;
 		this.precioPedido = precioPedido;
-		this.cantidad = cantidad;
 		this.estado_pedido = estado_pedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.list_Ped_Moto = list_Ped_Moto;
@@ -134,13 +132,7 @@ public class Pedido {
 		this.estado_pedido = estado_pedido;
 	}
 
-	public double getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(double d) {
-		this.cantidad = d;
-	}
+	
 	
 	
 
