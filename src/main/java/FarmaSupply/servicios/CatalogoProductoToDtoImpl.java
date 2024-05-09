@@ -27,7 +27,6 @@ public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
 			dto.setPrecioUnitario(cP.getPrecioUnitario());
 			dto.setNombreProducto(cP.getNombreProducto());
 			dto.setDescripcion(cP.getDescripcion());
-			dto.setCantidad(cP.getCantidad());
 			if(cP.getList_Cat_Ped().size()>0)
 			{
 				dto.setmisPedidos(pedidoToDto.listaPedidoToDto(cP.getList_Cat_Ped()));

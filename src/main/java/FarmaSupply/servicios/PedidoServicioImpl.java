@@ -1,13 +1,11 @@
 package FarmaSupply.servicios;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Pedido;
-import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.PedidoDTO;
 import FarmaSupply.repositorios.PedidoRepositorio;
@@ -16,7 +14,7 @@ import FarmaSupply.repositorios.PedidoRepositorio;
 public class PedidoServicioImpl implements IPedidoServicio {
 
     @Autowired
-    private PedidoRepositorio pedidoRepositorio;
+    private PedidoRepositorio repositorio;
 
     @Autowired
 	private IPedidoToDao toDao;
@@ -34,7 +32,7 @@ public class PedidoServicioImpl implements IPedidoServicio {
             for (CatalogoProductoDTO productoDTO : productos) {
                 if (pedidoDTO.getMisCatalogoProducto().contains(productoDTO)) {
                     // Obtener la cantidad del producto seleccionado por el usuario
-                    double cantidad = productoDTO.getCantidad();
+                    double cantidad = pedidoDTO.getCantidadPedido();
                     // Verificar que la cantidad sea mayor que cero antes de agregar el producto al pedido
                     if (cantidad <= 0) {
                         throw new IllegalArgumentException("La cantidad debe ser mayor que cero para el producto con ID: " + productoDTO.getIdCatalogoProducto());
@@ -46,8 +44,11 @@ public class PedidoServicioImpl implements IPedidoServicio {
             }
             //seteo el precio total
             pedidoDTO.setPrecioPedido(precioTotal);
+            pedidoDTO.setMisCatalogoProducto(productos);
+            
 
             Pedido pedidoDao = toDao.pedidoToDao(pedidoDTO);
+            repositorio.save(pedidoDao);
         	pedidoDTO.setIdPedido(pedidoDao.getIdPedido());
             // Devolver el pedido con la información actualizada
             return pedidoDTO;

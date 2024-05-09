@@ -36,9 +36,10 @@ public class Pedido {
 	@Column(name = "precio_pedido", nullable = false)
 	private double precioPedido;
 
-
+	@Column(name = "cantidad_pedido")
+	private Double cantidadPedido;
 	
-	@Column(name = "estado_pedido", nullable = false)
+	@Column(name = "estado_pedido")
 	private int estado_pedido;
 
 	@ManyToOne
@@ -57,16 +58,21 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido(List<CatalogoProducto> list_Ped_Cat, double precioPedido,  int estado_pedido,
+
+
+	public Pedido(List<CatalogoProducto> list_Ped_Cat, double precioPedido, Double cantidadPedido, int estado_pedido,
 			Tienda idPedido_Tie, List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
 		super();
 		this.list_Ped_Cat = list_Ped_Cat;
 		this.precioPedido = precioPedido;
+		this.cantidadPedido = cantidadPedido;
 		this.estado_pedido = estado_pedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.list_Ped_Moto = list_Ped_Moto;
 		this.list_Ped_Cub = list_Ped_Cub;
 	}
+
+
 
 	// getters y setter
 
@@ -131,6 +137,25 @@ public class Pedido {
 	public void setEstado_pedido(int estado_pedido) {
 		this.estado_pedido = estado_pedido;
 	}
+
+
+
+	public Double getCantidadPedido() {
+		return cantidadPedido;
+	}
+
+
+
+	public void setCantidadPedido(Double cantidadPedido) {
+		this.cantidadPedido = cantidadPedido;
+	}
+
+
+
+	
+
+
+	
 
 	
 	

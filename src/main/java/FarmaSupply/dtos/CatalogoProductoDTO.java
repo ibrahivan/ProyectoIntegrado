@@ -11,7 +11,6 @@ import java.util.List;
 public class CatalogoProductoDTO {
 
 	private long idCatalogoProducto;
-	private double cantidad;
 	private String descripcion;
 	private String nombreProducto;
 	private double precioUnitario;
@@ -25,10 +24,9 @@ public class CatalogoProductoDTO {
 
 	
 
-	public CatalogoProductoDTO(double cantidad, String descripcion, String nombreProducto, double precioUnitario,
+	public CatalogoProductoDTO(Double cantidad, String descripcion, String nombreProducto, double precioUnitario,
 			List<PedidoDTO> misPedidos) {
 		super();
-		this.cantidad = cantidad;
 		this.descripcion = descripcion;
 		this.nombreProducto = nombreProducto;
 		this.precioUnitario = precioUnitario;
@@ -82,15 +80,6 @@ public class CatalogoProductoDTO {
 
 
 
-	public double getCantidad() {
-		return cantidad;
-	}
-
-
-
-	public void setCantidad(double cantidad) {
-		this.cantidad = cantidad;
-	}
 
 
 

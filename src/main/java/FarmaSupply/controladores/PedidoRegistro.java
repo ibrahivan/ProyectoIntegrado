@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.PedidoDTO;
@@ -70,24 +71,30 @@ public class PedidoRegistro {
 	 *         (registroPedido.html).
 	 */
 	@PostMapping("/realizarPedido/{id}")
-	public String registrarPedidoPost(@PathVariable Long id,@ModelAttribute PedidoDTO pedidoDTO, Model model) {
-		try {
-			//obtengo la tienda actual		
-			TiendaDTO tiendaActual = tiendaServicio.buscarPorId(id);
-			//obtengo todos los productos de bbdd
-			List<CatalogoProductoDTO> productos = productoServicio.obtenerTodas();
-			//realizo el pedido para ellevarlo al listado
-			List<PedidoDTO> listaPedidos = tiendaActual.getMisPedidos();
-			PedidoDTO nuevoPedido = pedidoServicio.realizarPedido(pedidoDTO, productos);
-			//añado el pedido a la lista
-			listaPedidos.add(nuevoPedido);
-			tiendaActual.setMisPedidos(listaPedidos);	
-			model.addAttribute("mensajePedidoRealizadoExitoso", "Pedido realizado con éxito");
-			return "listadoPedidos";
-		} catch (Exception e) {
-			model.addAttribute("error", "Error al procesar el pedido");
-			return "registroPedido";
-		}
+	public String registrarPedidoPost(@PathVariable Long id, @ModelAttribute PedidoDTO pedidoDTO, Model model) {
+	    try {
+	        // Obtener la tienda actual
+	        TiendaDTO tiendaActual = tiendaServicio.buscarPorId(id);
+	        // Obtener todos los productos de la base de datos
+	        List<CatalogoProductoDTO> productos = productoServicio.obtenerTodas();
+	        //Establezco el id de la tienda al pedidoDTO
+	        pedidoDTO.setIdPedido_Tie(id);
+	        // Realizar el pedido
+	        PedidoDTO nuevoPedido = pedidoServicio.realizarPedido(pedidoDTO, productos);
+	        // Añadir el pedido a la lista de pedidos de la tienda
+	        List<PedidoDTO> listaPedidos = tiendaActual.getMisPedidos();
+	        listaPedidos.add(nuevoPedido);
+	        tiendaActual.setMisPedidos(listaPedidos);
+	        // Actualizar el modelo con los pedidos de la tienda
+	        model.addAttribute("mensajePedidoRealizadoExitoso", "Pedido realizado con éxito");
+	        model.addAttribute("misPedidos", tiendaActual.getMisPedidos());
+	       
+	        return "listadoPedidos";
+	    } catch (Exception e) {
+	        model.addAttribute("error", "Error al procesar el pedido");
+	        return "registroPedido";
+	    }
 	}
+
 
 }

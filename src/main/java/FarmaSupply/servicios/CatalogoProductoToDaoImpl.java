@@ -30,7 +30,6 @@ public class CatalogoProductoToDaoImpl implements ICatalogoProductoToDao {
 			catalogoProductoDao.setNombreProducto(catalogoProductoDTO.getNombreProducto());
 			catalogoProductoDao.setPrecioUnitario(catalogoProductoDTO.getPrecioUnitario());
 			catalogoProductoDao.setDescripcion(catalogoProductoDTO.getDescripcion());
-			catalogoProductoDao.setCantidad(catalogoProductoDTO.getCantidad());
 			if (catalogoProductoDao.getList_Cat_Ped().size() > 0) {
 				catalogoProductoDao.setList_Cat_Ped(pedidoToDao.listPedidoToDao(catalogoProductoDTO.getmisPedidos()));
 			}

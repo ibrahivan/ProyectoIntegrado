@@ -32,6 +32,7 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 			pedidoDao.setIdPedido(pedidoDTO.getIdPedido());
 			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
 			pedidoDao.setEstado_pedido(pedidoDTO.getEstadoPedido());
+			pedidoDao.setCantidadPedido(pedidoDTO.getCantidadPedido());
 
 			if (pedidoDTO.getMisCatalogoProducto().size() > 0) {
 				pedidoDao

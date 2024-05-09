@@ -74,7 +74,12 @@
 									th:href="@{/privada/realizarPedido/} + ${tienda.id}"
 									class="btn btn-primary"> <i class="bi bi-cart-plus"></i>
 										Realizar Pedido
-								</a> <a class="btn btn-danger" th:attr="data-id=${tienda.id}"
+								</a> 
+								<a
+									th:href="@{/privada/listadoPedidos/} + ${tienda.id}"
+									class="btn btn-primary"> <i class="bi bi-cart-plus"></i>
+										Listado de pedidos
+								</a><a class="btn btn-danger" th:attr="data-id=${tienda.id}"
 									onclick="confirmarEliminarTienda(event)"> <i
 										class="bi bi-trash"></i> Eliminar
 								</a></td>
