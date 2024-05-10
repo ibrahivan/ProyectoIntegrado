@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.PedidoDTO;
 import FarmaSupply.dtos.TiendaDTO;
@@ -79,6 +80,7 @@ public class PedidoRegistro {
 	        List<CatalogoProductoDTO> productos = productoServicio.obtenerTodas();
 	        //Establezco el id de la tienda al pedidoDTO
 	        pedidoDTO.setIdPedido_Tie(id);
+	       
 	        // Realizar el pedido
 	        PedidoDTO nuevoPedido = pedidoServicio.realizarPedido(pedidoDTO, productos);
 	        // Añadir el pedido a la lista de pedidos de la tienda

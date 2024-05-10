@@ -1,5 +1,6 @@
 package FarmaSupply.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,13 @@ public class PedidoServicioImpl implements IPedidoServicio {
             // Crear una nueva instancia de Pedido y asignar los valores del PedidoDTO
             
             
-            
             // Calcular el precio total del pedido
             double precioTotal = 0.0;
+            List<CatalogoProductoDTO>listAux = new ArrayList<CatalogoProductoDTO>();
             for (CatalogoProductoDTO productoDTO : productos) {
+            	listAux.add(productoDTO);
+                pedidoDTO.setMisCatalogoProducto(listAux);
+
                 if (pedidoDTO.getMisCatalogoProducto().contains(productoDTO)) {
                     // Obtener la cantidad del producto seleccionado por el usuario
                     double cantidad = pedidoDTO.getCantidadPedido();
@@ -44,7 +48,6 @@ public class PedidoServicioImpl implements IPedidoServicio {
             }
             //seteo el precio total
             pedidoDTO.setPrecioPedido(precioTotal);
-            pedidoDTO.setMisCatalogoProducto(productos);
             
 
             Pedido pedidoDao = toDao.pedidoToDao(pedidoDTO);
