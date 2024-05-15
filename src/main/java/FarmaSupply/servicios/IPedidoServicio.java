@@ -16,6 +16,6 @@ public interface IPedidoServicio {
 	 * 
 	 * @return El pedido realizado
 	 */
-	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO, List<CatalogoProductoDTO> productos);
+	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO);
 
 }

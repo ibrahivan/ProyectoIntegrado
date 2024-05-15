@@ -103,5 +103,49 @@ function confirmarEliminarProducto(event) {
 }
 
 
+	window.onload = function() {
+		// Obtener el botón de realizar pedido
+		var btnRealizarPedido = document.getElementById("btnRealizarPedido");
+
+		// Obtener los elementos de los checkbox de productos
+		var checkboxes = document.querySelectorAll("input[type='checkbox']");
+
+		// Obtener los inputs de cantidad
+		var cantidadInputs = document.querySelectorAll("input[type='number']");
+
+		// Función para verificar si al menos un producto está seleccionado y la cantidad es mayor que 0
+		function verificarPedido() {
+			var alMenosUnProductoSeleccionado = Array.from(checkboxes).some(
+					function(checkbox) {
+						return checkbox.checked;
+					});
+
+			var cantidadValida = Array.from(cantidadInputs).some(
+					function(input) {
+						return parseInt(input.value) > 0
+								&& input.disabled === false;
+					});
+
+			if (alMenosUnProductoSeleccionado && cantidadValida) {
+				btnRealizarPedido.disabled = false;
+			} else {
+				btnRealizarPedido.disabled = true;
+			}
+		}
+
+		// Escuchar cambios en los checkbox de productos
+		checkboxes.forEach(function(checkbox) {
+			checkbox.addEventListener("change", function() {
+				verificarPedido();
+			});
+		});
+
+		// Escuchar cambios en los inputs de cantidad
+		cantidadInputs.forEach(function(input) {
+			input.addEventListener("input", function() {
+				verificarPedido();
+			});
+		});
+	}
 
 

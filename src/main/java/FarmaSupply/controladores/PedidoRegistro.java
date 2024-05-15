@@ -1,5 +1,6 @@
 package FarmaSupply.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class PedidoRegistro {
 		nuevoPedido.setIdPedido_Tie(tiendaActual.getId());
 		//los llevo al model
 		model.addAttribute("misProductos", productos);
+		model.addAttribute("tiendaDTO", tiendaActual);
 		model.addAttribute("idTienda", tiendaActual.getId());
 		model.addAttribute("pedidoDTO", nuevoPedido);
 		return "registroPedido";
@@ -72,23 +74,35 @@ public class PedidoRegistro {
 	 *         (registroPedido.html).
 	 */
 	@PostMapping("/realizarPedido/{id}")
-	public String registrarPedidoPost(@PathVariable Long id, @ModelAttribute PedidoDTO pedidoDTO, Model model) {
+	public String registrarPedidoPost(@PathVariable Long id, @ModelAttribute PedidoDTO pedidoDTO, @RequestParam List<Long> productosSeleccionadosIds ,Model model) {
 	    try {
 	        // Obtener la tienda actual
 	        TiendaDTO tiendaActual = tiendaServicio.buscarPorId(id);
-	        // Obtener todos los productos de la base de datos
-	        List<CatalogoProductoDTO> productos = productoServicio.obtenerTodas();
+	        
+	        // Convertir los IDs de productos seleccionados a objetos CatalogoProductoDTO
+	        List<CatalogoProductoDTO> productosSeleccionados = new ArrayList<>();
+	        for(Long productoId : productosSeleccionadosIds) {
+	            CatalogoProductoDTO producto = productoServicio.buscarPorId(productoId); // Método para obtener el producto por su ID
+	            productosSeleccionados.add(producto);
+	        }
+	        
+	        // Establecer los productos seleccionados en el pedidoDTO
+	        pedidoDTO.setMisCatalogoProducto(productosSeleccionados);
+	        
 	        //Establezco el id de la tienda al pedidoDTO
 	        pedidoDTO.setIdPedido_Tie(id);
 	       
 	        // Realizar el pedido
-	        PedidoDTO nuevoPedido = pedidoServicio.realizarPedido(pedidoDTO, productos);
+	        PedidoDTO nuevoPedido = pedidoServicio.realizarPedido(pedidoDTO);
+	        
 	        // Añadir el pedido a la lista de pedidos de la tienda
 	        List<PedidoDTO> listaPedidos = tiendaActual.getMisPedidos();
 	        listaPedidos.add(nuevoPedido);
 	        tiendaActual.setMisPedidos(listaPedidos);
+	        
 	        // Actualizar el modelo con los pedidos de la tienda
 	        model.addAttribute("mensajePedidoRealizadoExitoso", "Pedido realizado con éxito");
+	        model.addAttribute("misProductos", pedidoDTO.getMisCatalogoProducto());
 	        model.addAttribute("misPedidos", tiendaActual.getMisPedidos());
 	       
 	        return "listadoPedidos";
@@ -97,6 +111,7 @@ public class PedidoRegistro {
 	        return "registroPedido";
 	    }
 	}
+
 
 
 }

@@ -37,4 +37,6 @@ public interface ICatalogoProductoServicio {
 	 * @return la lista de todos las CatalogoProductos DTOS
 	 */
 	public List<CatalogoProductoDTO> obtenerTodas();
+	
+	
 }
