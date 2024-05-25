@@ -4,6 +4,7 @@ import java.util.List;
 
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.PedidoDTO;
+import FarmaSupply.dtos.TiendaDTO;
 
 /**
  * Interfaz del servicio para la gestión de pedidos, donde se declaran los
@@ -16,6 +17,6 @@ public interface IPedidoServicio {
 	 * 
 	 * @return El pedido realizado
 	 */
-	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO);
+	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO,  TiendaDTO tiendaActual);
 
 }

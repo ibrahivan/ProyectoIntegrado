@@ -76,6 +76,7 @@
 								<td>
 									<th:block th:each="producto: ${pedido.misCatalogoProducto}">
 										<span th:text="${producto.precioUnitario}">€</span><br/>
+										
 									</th:block>
 								</td>
 								<td th:text="${pedido.cantidadPedido}"></td>

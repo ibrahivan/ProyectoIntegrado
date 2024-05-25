@@ -53,8 +53,8 @@
             </div>
             <div class="offcanvas-body ">
                 <ul class="navbar-nav  flex-grow-1">
-                    <li class="btn btn-outline-dark mx-2 btn-volver"><a
-                            th:href="@{/privada/listadoTiendas}">Volver</a></li>
+                    <li class="btn btn-outline-dark mx-2 btn-volver">
+                    <a th:href="@{/privada/listadoTiendas}">Volver</a></li>
                 </ul>
             </div>
         </div>
@@ -77,7 +77,7 @@
                 <form id="form4" class="form-group flex-wrap p-3"
                       th:action="@{/privada/realizarPedido/{idTienda}(idTienda=${idTienda})}"
                       enctype="multipart/form-data" method="post"
-                      th:object="${pedidoDTO}">
+                      th:object="${detallePedidoDTO}">
                     <input type="hidden" id="idTienda" name="idTienda"
                            value="${tiendaDTO.id}">
 
@@ -101,7 +101,7 @@
                                         <div class="form-group">
                                             <input type="number" class="form-control"
                                                    th:id="'cantidad-' + ${producto.idCatalogoProducto}"
-                                                   name="cantidadPedido" th:value="*{cantidadPedido}"
+                                                   name="cantidadDetalle" th:value="*{cantidadDetalle}"
                                                    placeholder="Cantidad" disabled>
                                         </div>
 

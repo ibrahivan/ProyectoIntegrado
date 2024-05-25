@@ -40,7 +40,10 @@ public class TiendaListado {
 	@GetMapping("/listadoTiendas")
 	public String mostrarMisTiendas(Authentication authentication, Model model) {
 		try {
-			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			String name= authentication.getName();
+			System.out.println(name);
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(name);
+			
 			if (usuario != null) {
 				List<TiendaDTO> misTiendas = usuario.getMisTiendas();
 				if (misTiendas != null) {

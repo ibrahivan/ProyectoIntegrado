@@ -24,6 +24,7 @@ public interface IPedidoToDto {
 	 * Metodo que convierte todos los objetos entidad Pedido a una lista PedidoDTO
 	 * 
 	 * @param listaPedido
+	 * @param b 
 	 * @return
 	 */
 	public List<PedidoDTO> listaPedidoToDto(List<Pedido> listaPedido);

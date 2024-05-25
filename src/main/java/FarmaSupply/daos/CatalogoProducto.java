@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -35,27 +35,21 @@ public class CatalogoProducto {
 	private String descripcion;
 	
 	
-	
-	@ManyToMany(mappedBy = "list_Ped_Cat")
-	private List<Pedido> list_Cat_Ped = new ArrayList<>();
+	@OneToMany(mappedBy = "idDet_Cat")
+	private List<DetallePedido> list_Cat_Det = new ArrayList<>();
 
 	public CatalogoProducto() {
 		super();
 	}
 
-	
-
-	public CatalogoProducto(String nombreProducto, double precioUnitario, String descripcion, 
-			List<Pedido> list_Cat_Ped) {
+	public CatalogoProducto(String nombreProducto, double precioUnitario, String descripcion,
+			List<DetallePedido> list_Cat_Det) {
 		super();
 		this.nombreProducto = nombreProducto;
 		this.precioUnitario = precioUnitario;
 		this.descripcion = descripcion;
-		this.list_Cat_Ped = list_Cat_Ped;
+		this.list_Cat_Det = list_Cat_Det;
 	}
-
-
-
 
 	public long getIdCatalogoProducto() {
 		return idCatalogoProducto;
@@ -64,23 +58,6 @@ public class CatalogoProducto {
 	public void setIdCatalogoProducto(long idCatalogoProducto) {
 		this.idCatalogoProducto = idCatalogoProducto;
 	}
-
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public List<Pedido> getList_Cat_Ped() {
-		return list_Cat_Ped;
-	}
-
-	public void setList_Cat_Ped(List<Pedido> list_Cat_Ped) {
-		this.list_Cat_Ped = list_Cat_Ped;
-	};
 
 	public String getNombreProducto() {
 		return nombreProducto;
@@ -94,7 +71,26 @@ public class CatalogoProducto {
 		return precioUnitario;
 	}
 
-	public void setPrecioUnitario(double d) {
-		this.precioUnitario = d;
+	public void setPrecioUnitario(double precioUnitario) {
+		this.precioUnitario = precioUnitario;
 	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public List<DetallePedido> getList_Cat_Det() {
+		return list_Cat_Det;
+	}
+
+	public void setList_Cat_Det(List<DetallePedido> list_Cat_Det) {
+		this.list_Cat_Det = list_Cat_Det;
+	}
+
+	
+
 }

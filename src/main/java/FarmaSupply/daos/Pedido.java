@@ -9,8 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -29,15 +27,12 @@ public class Pedido {
 	@Column(name = "id_pedido", nullable = false)
 	private long idPedido;
 
-	@ManyToMany
-	@JoinTable(name = "rel_ped_cat", schema = "fs_logica", joinColumns = @JoinColumn(name = "id_pedido"), inverseJoinColumns = @JoinColumn(name = "id_catalogo_producto"))
-	private List<CatalogoProducto> list_Ped_Cat = new ArrayList<>();
+
+	@OneToMany(mappedBy = "idDet_Ped")
+	private List<DetallePedido> list_Ped_Det = new ArrayList<>();
 
 	@Column(name = "precio_pedido", nullable = false)
 	private double precioPedido;
-
-	@Column(name = "cantidad_pedido")
-	private Double cantidadPedido;
 	
 	@Column(name = "estado_pedido")
 	private int estado_pedido;
@@ -60,17 +55,18 @@ public class Pedido {
 
 
 
-	public Pedido(List<CatalogoProducto> list_Ped_Cat, double precioPedido, Double cantidadPedido, int estado_pedido,
-			Tienda idPedido_Tie, List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
+
+	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, int estado_pedido, Tienda idPedido_Tie,
+			List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
 		super();
-		this.list_Ped_Cat = list_Ped_Cat;
+		this.list_Ped_Det = list_Ped_Det;
 		this.precioPedido = precioPedido;
-		this.cantidadPedido = cantidadPedido;
 		this.estado_pedido = estado_pedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.list_Ped_Moto = list_Ped_Moto;
 		this.list_Ped_Cub = list_Ped_Cub;
 	}
+
 
 
 
@@ -98,13 +94,6 @@ public class Pedido {
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
-	public List<CatalogoProducto> getList_Ped_Cat() {
-		return list_Ped_Cat;
-	}
-
-	public void setList_Ped_Cat(List<CatalogoProducto> list_Ped_Cat) {
-		this.list_Ped_Cat = list_Ped_Cat;
-	}
 
 	public double getPrecioPedido() {
 		return precioPedido;
@@ -140,25 +129,17 @@ public class Pedido {
 
 
 
-	public Double getCantidadPedido() {
-		return cantidadPedido;
+	public List<DetallePedido> getList_Ped_Det() {
+		return list_Ped_Det;
 	}
 
 
 
-	public void setCantidadPedido(Double cantidadPedido) {
-		this.cantidadPedido = cantidadPedido;
+
+	public void setList_Ped_Det(List<DetallePedido> list_Ped_Det) {
+		this.list_Ped_Det = list_Ped_Det;
 	}
 
-
-
-	
-
-
-	
-
-	
-	
 	
 
 }

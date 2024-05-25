@@ -15,7 +15,7 @@ public class PedidoDTO {
 	private long idPedido_Tie;
 	private int estadoPedido;
 	private Double cantidadPedido;
-	private List<CatalogoProductoDTO> misCatalogoProducto = new ArrayList<>();
+	private List<DetallePedidoDTO> misDetallesPedidos = new ArrayList<>();
 	private List<MotoDTO> misMotos = new ArrayList<>();
 	private List<CubetaDTO> misCubetas = new ArrayList<>();
 	// Constructores
@@ -25,19 +25,23 @@ public class PedidoDTO {
 	}
 
 
-	
+
+
+
 
 	public PedidoDTO(double precioPedido, long idPedido_Tie, int estadoPedido, Double cantidadPedido,
-			List<CatalogoProductoDTO> misCatalogoProducto, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
+			List<DetallePedidoDTO> misDetallesPedidos, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.estadoPedido = estadoPedido;
 		this.cantidadPedido = cantidadPedido;
-		this.misCatalogoProducto = misCatalogoProducto;
+		this.misDetallesPedidos = misDetallesPedidos;
 		this.misMotos = misMotos;
 		this.misCubetas = misCubetas;
 	}
+
+
 
 
 
@@ -67,12 +71,13 @@ public class PedidoDTO {
 		this.idPedido_Tie = idPedido_Tie;
 	}
 
-	public List<CatalogoProductoDTO> getMisCatalogoProducto() {
-		return misCatalogoProducto;
+	public List<DetallePedidoDTO> getMisDetallesPedidos() {
+		return misDetallesPedidos;
 	}
 
-	public void setMisCatalogoProducto(List<CatalogoProductoDTO> misCatalogoProducto) {
-		this.misCatalogoProducto = misCatalogoProducto;
+
+	public void setMisDetallesPedidos(List<DetallePedidoDTO> misDetallesPedidos) {
+		this.misDetallesPedidos = misDetallesPedidos;
 	}
 
 	public List<MotoDTO> getMisMotos() {

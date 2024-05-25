@@ -18,7 +18,7 @@ import FarmaSupply.dtos.PedidoDTO;
 public class PedidoToDaoImpl implements IPedidoToDao {
 
 	@Autowired
-	private ICatalogoProductoToDao catalogoToDao;
+	private IDetallePedidoToDao detallePedidoToDao;
 
 	@Autowired
 	private IMotoToDao motoToDao;
@@ -32,11 +32,9 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 			pedidoDao.setIdPedido(pedidoDTO.getIdPedido());
 			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
 			pedidoDao.setEstado_pedido(pedidoDTO.getEstadoPedido());
-			pedidoDao.setCantidadPedido(pedidoDTO.getCantidadPedido());
 
-			if (pedidoDTO.getMisCatalogoProducto().size() > 0) {
-				pedidoDao
-						.setList_Ped_Cat((catalogoToDao.listCatalogoProductoToDao(pedidoDTO.getMisCatalogoProducto())));
+			if (pedidoDTO.getMisDetallesPedidos().size() > 0) {
+				pedidoDao.setList_Ped_Det((detallePedidoToDao.listdetallePedidoToDao(pedidoDTO.getMisDetallesPedidos())));
 
 			}
 

@@ -1,50 +1,28 @@
 package FarmaSupply.servicios;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Pedido;
+import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.PedidoDTO;
+import FarmaSupply.dtos.TiendaDTO;
 import FarmaSupply.repositorios.PedidoRepositorio;
+import FarmaSupply.repositorios.TiendaRepositorio;
 
 @Service
 public class PedidoServicioImpl implements IPedidoServicio {
 
-    @Autowired
-    private PedidoRepositorio repositorio;
+	@Override
+	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO, TiendaDTO tiendaActual) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Autowired
-    private IPedidoToDao toDao;
-    
-    @Override
-    public PedidoDTO realizarPedido(PedidoDTO pedidoDTO) {
-        try {
-            // Calcular el precio total del pedido
-            double precioTotal = 0.0;
-            List<CatalogoProductoDTO> productosIncluidos = pedidoDTO.getMisCatalogoProducto();
-            for (CatalogoProductoDTO producto : productosIncluidos) {
-                // Calcular el precio parcial del producto y agregarlo al precio total
-                double precioParcial = producto.getPrecioUnitario() * pedidoDTO.getCantidadPedido();
-                precioTotal += precioParcial;
-            }
-            
-            // Establecer el precio total en el pedidoDTO
-            pedidoDTO.setPrecioPedido(precioTotal);
-
-            // Convertir el pedidoDTO a la entidad Pedido y guardarlo en la base de datos
-            Pedido pedidoDao = toDao.pedidoToDao(pedidoDTO);
-            repositorio.save(pedidoDao);
-            
-            // Devolver el pedidoDTO con la información actualizada
-            return pedidoDTO;
-        } catch (Exception e) {
-            // Manejar cualquier excepción y relanzarla como RuntimeException
-            throw new RuntimeException("Error al procesar el pedido: " + e.getMessage(), e);
-        }
-    }
 }
 
 

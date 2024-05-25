@@ -14,7 +14,7 @@ public class CatalogoProductoDTO {
 	private String descripcion;
 	private String nombreProducto;
 	private double precioUnitario;
-	private List<PedidoDTO> misPedidos = new ArrayList<>();
+	private List<DetallePedidoDTO> misDetallesPedidos = new ArrayList<>();
 
 	// Constructores
 
@@ -24,14 +24,18 @@ public class CatalogoProductoDTO {
 
 	
 
-	public CatalogoProductoDTO(Double cantidad, String descripcion, String nombreProducto, double precioUnitario,
-			List<PedidoDTO> misPedidos) {
+
+
+	public CatalogoProductoDTO(String descripcion, String nombreProducto, double precioUnitario,
+			List<DetallePedidoDTO> misDetallesPedidos) {
 		super();
 		this.descripcion = descripcion;
 		this.nombreProducto = nombreProducto;
 		this.precioUnitario = precioUnitario;
-		this.misPedidos = misPedidos;
+		this.misDetallesPedidos = misDetallesPedidos;
 	}
+
+
 
 
 
@@ -70,27 +74,21 @@ public class CatalogoProductoDTO {
 		this.precioUnitario = d;
 	}
 
-	public List<PedidoDTO> getmisPedidos() {
-		return misPedidos;
-	}
-
-	public void setmisPedidos(List<PedidoDTO> misPedidos) {
-		this.misPedidos = misPedidos;
-	}
 
 
 
 
-
-
-	public List<PedidoDTO> getMisPedidos() {
-		return misPedidos;
+	public List<DetallePedidoDTO> getMisDetallesPedidos() {
+		return misDetallesPedidos;
 	}
 
 
 
-	public void setMisPedidos(List<PedidoDTO> misPedidos) {
-		this.misPedidos = misPedidos;
+
+
+	public void setMisDetallesPedidos(List<DetallePedidoDTO> misDetallesPedidos) {
+		this.misDetallesPedidos = misDetallesPedidos;
 	}
+
 
 }

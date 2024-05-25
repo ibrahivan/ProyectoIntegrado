@@ -19,7 +19,7 @@ import FarmaSupply.dtos.CatalogoProductoDTO;
 public class CatalogoProductoToDaoImpl implements ICatalogoProductoToDao {
 
 	@Autowired
-	private IPedidoToDao pedidoToDao;
+	private IDetallePedidoToDao detallePedidoToDao;
 
 	@Override
 	public CatalogoProducto catalogoProductoToDao(CatalogoProductoDTO catalogoProductoDTO) {
@@ -30,8 +30,8 @@ public class CatalogoProductoToDaoImpl implements ICatalogoProductoToDao {
 			catalogoProductoDao.setNombreProducto(catalogoProductoDTO.getNombreProducto());
 			catalogoProductoDao.setPrecioUnitario(catalogoProductoDTO.getPrecioUnitario());
 			catalogoProductoDao.setDescripcion(catalogoProductoDTO.getDescripcion());
-			if (catalogoProductoDao.getList_Cat_Ped().size() > 0) {
-				catalogoProductoDao.setList_Cat_Ped(pedidoToDao.listPedidoToDao(catalogoProductoDTO.getmisPedidos()));
+			if (catalogoProductoDao.getList_Cat_Det().size() > 0) {
+				catalogoProductoDao.setList_Cat_Det(detallePedidoToDao.listdetallePedidoToDao(catalogoProductoDTO.getMisDetallesPedidos()));
 			}
 
 			return catalogoProductoDao;

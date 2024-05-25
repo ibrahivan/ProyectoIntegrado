@@ -18,7 +18,7 @@ import FarmaSupply.dtos.CatalogoProductoDTO;
 @Service
 public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
 	@Autowired
-	private IPedidoToDto pedidoToDto;
+	private IDetallePedidoToDto detallePedidoToDto;
 	@Override
 	public CatalogoProductoDTO catalogoProductoToDto(CatalogoProducto cP) {
 		try {
@@ -27,9 +27,9 @@ public class CatalogoProductoToDtoImpl implements ICatalogoProductoToDto {
 			dto.setPrecioUnitario(cP.getPrecioUnitario());
 			dto.setNombreProducto(cP.getNombreProducto());
 			dto.setDescripcion(cP.getDescripcion());
-			if(cP.getList_Cat_Ped().size()>0)
+			if(cP.getList_Cat_Det().size()>0)
 			{
-				dto.setmisPedidos(pedidoToDto.listaPedidoToDto(cP.getList_Cat_Ped()));
+				dto.setMisDetallesPedidos(detallePedidoToDto.listaDetallePedidoToDto(cP.getList_Cat_Det()));
 			}
 			
 			return dto;
