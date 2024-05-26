@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.DetallePedidoDTO;
@@ -57,17 +58,30 @@ public class PedidoRegistro {
     }
 
     @PostMapping("/realizarPedido/{id}")
-    public String registrarPedidoPost(@PathVariable Long id, @ModelAttribute DetallePedidoDTO detallePedidoDTO, Model model) {
-        try {
-            // Obtener la tienda actual
+    public String registrarPedidoPost(@PathVariable Long id, @ModelAttribute DetallePedidoDTO detallePedidoDTO, @RequestParam List<Long> productosSeleccionadosIds ,Model model) {
+    	try {
+    		// Obtener la tienda actual
             TiendaDTO tiendaActual = tiendaServicio.buscarPorId(id);
-
-            // Realizar el pedido
-            PedidoDTO nuevoPedido = pedidoServicio.realizarPedido(detallePedidoDTO, tiendaActual);
-
+            //genero objeto pedidoDTO
+            PedidoDTO pedidoDTO = new PedidoDTO();
+            // Convertir los IDs de productos seleccionados a objetos CatalogoProductoDTO
+	        List<CatalogoProductoDTO> productosSeleccionados = new ArrayList<>();
+	        for(Long productoId : productosSeleccionadosIds) {
+	            CatalogoProductoDTO producto = productoServicio.buscarPorId(productoId); // Método para obtener el producto por su ID
+	            productosSeleccionados.add(producto);
+	        }
+	        
+	        detallePedidoDTO.setProductosSeleccionados(productosSeleccionados);
+            // Realizar el pedido que guardaremos los detalles y los asociaremos con el pedido
+            DetallePedidoDTO nuevoPedido = pedidoServicio.realizarPedido(detallePedidoDTO, tiendaActual);
+            //Añadir los detalles al pedido
+            List<DetallePedidoDTO> listaDetallesPedidos = pedidoDTO.getMisDetallesPedidos();
+            listaDetallesPedidos.add(nuevoPedido);
+            pedidoDTO.setMisDetallesPedidos(listaDetallesPedidos);
+            
             // Añadir el pedido a la lista de pedidos de la tienda
             List<PedidoDTO> listaPedidos = tiendaActual.getMisPedidos();
-            listaPedidos.add(nuevoPedido);
+            listaPedidos.add(pedidoDTO);
             tiendaActual.setMisPedidos(listaPedidos);
 
             // Actualizar el modelo con los pedidos de la tienda
