@@ -1,9 +1,6 @@
 package FarmaSupply.servicios;
 
-import java.util.List;
-
-import FarmaSupply.dtos.CatalogoProductoDTO;
-import FarmaSupply.dtos.PedidoDTO;
+import FarmaSupply.dtos.DetallePedidoDTO;
 import FarmaSupply.dtos.TiendaDTO;
 
 /**
@@ -17,6 +14,6 @@ public interface IPedidoServicio {
 	 * 
 	 * @return El pedido realizado
 	 */
-	public PedidoDTO realizarPedido(PedidoDTO pedidoDTO,  TiendaDTO tiendaActual);
+	public DetallePedidoDTO realizarPedido(DetallePedidoDTO detallePedidoDTO, TiendaDTO tiendaDTO);
 
 }

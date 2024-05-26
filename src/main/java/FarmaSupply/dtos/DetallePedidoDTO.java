@@ -1,5 +1,6 @@
 package FarmaSupply.dtos;
 
+import java.util.List;
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
@@ -12,7 +13,11 @@ public class DetallePedidoDTO {
 	private double precioDetalle;
 	private long idDet_Ped;
 	private long idDet_Cat;
-	
+
+    private List<Long> productosSeleccionadosIds;
+    private List<Double> cantidades;
+
+
 	public DetallePedidoDTO() {
 		super();
 	}
@@ -24,6 +29,23 @@ public class DetallePedidoDTO {
 		this.idDet_Cat = idDet_Cat;
 		
 	}
+	
+    // Getters and setters
+    public List<Long> getProductosSeleccionadosIds() {
+        return productosSeleccionadosIds;
+    }
+
+    public void setProductosSeleccionadosIds(List<Long> productosSeleccionadosIds) {
+        this.productosSeleccionadosIds = productosSeleccionadosIds;
+    }
+
+    public List<Double> getCantidades() {
+        return cantidades;
+    }
+
+    public void setCantidades(List<Double> cantidades) {
+        this.cantidades = cantidades;
+    }
 	public long getIdDetallePedido() {
 		return idDetallePedido;
 	}
