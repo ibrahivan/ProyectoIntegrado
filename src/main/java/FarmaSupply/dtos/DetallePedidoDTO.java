@@ -14,7 +14,7 @@ public class DetallePedidoDTO {
 	private long idDet_Ped;
 	private long idDet_Cat;
 
-    private List<CatalogoProductoDTO> productosSeleccionados;
+    private List<Long> productosSeleccionadosIds;
     private List<Double> cantidades;
 
 
@@ -31,19 +31,19 @@ public class DetallePedidoDTO {
 	}
 	
     // Getters and setters
+    public List<Long> getProductosSeleccionadosIds() {
+        return productosSeleccionadosIds;
+    }
 
+    public void setProductosSeleccionadosIds(List<Long> productosSeleccionadosIds) {
+        this.productosSeleccionadosIds = productosSeleccionadosIds;
+    }
 
     public List<Double> getCantidades() {
         return cantidades;
     }
 
-    public List<CatalogoProductoDTO> getProductosSeleccionados() {
-		return productosSeleccionados;
-	}
-	public void setProductosSeleccionados(List<CatalogoProductoDTO> productosSeleccionados) {
-		this.productosSeleccionados = productosSeleccionados;
-	}
-	public void setCantidades(List<Double> cantidades) {
+    public void setCantidades(List<Double> cantidades) {
         this.cantidades = cantidades;
     }
 	public long getIdDetallePedido() {
