@@ -15,7 +15,7 @@ public class DetallePedidoDTO {
 	private long idDet_Ped;
 	private long idDet_Cat;
 
-    private List<CatalogoProductoDTO> productosSeleccionados;
+    private List<Long> productosSeleccionadosIds;
     private List<Double> cantidades;
 
     
@@ -31,11 +31,14 @@ public class DetallePedidoDTO {
 		this.precioDetalle = precioDetalle;
 		this.idDet_Ped = idDet_Ped;
 		this.idDet_Cat = idDet_Cat;
+
 		this.productosSeleccionados = productosSeleccionados;
 		this.cantidades = new ArrayList<>();	
 				}
 
 	// Getters and setters
+
+
 
 
     public List<CatalogoProductoDTO> getProductosSeleccionados() {

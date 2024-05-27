@@ -1,8 +1,9 @@
 package FarmaSupply.servicios;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,21 +25,23 @@ import FarmaSupply.repositorios.TiendaRepositorio;
 @Service
 public class PedidoServicioImpl implements IPedidoServicio {
 
-  
     @Autowired
-    private CatalogoProductoRepositorio productoRepositorio;
+    private PedidoRepositorio pedidoRepositorio;
+
     @Autowired
     private DetallePedidoRepositorio detallePedidoRepositorio;
     @Autowired
     private TiendaRepositorio repositorioTienda;
     @Autowired
-    private PedidoRepositorio pedidoRepositorio;
+    private CatalogoProductoRepositorio productoRepositorio;
     @Autowired
-    private IPedidoToDao pedidoToDao;
+    private ICatalogoProductoServicio productoServicio;
+    
     @Autowired
-    private IDetallePedidoToDao detalleToDao;
+    private IDetallePedidoToDao toDao;
 
     @Transactional
+
     public DetallePedidoDTO realizarPedido(DetallePedidoDTO detallePedidoDTO, TiendaDTO tiendaActual,  List<Double> cantidades) {
     	  try {
             //busco la tienda
@@ -113,7 +116,30 @@ public class PedidoServicioImpl implements IPedidoServicio {
           }
       }
 
+            //recojo los dtos y cambio a dao
+            detallePedidoDTO.setCantidadDetalle(cantidad);
+            double precioDetalle = cantidad * producto.getPrecioUnitario();
+            detallePedidoDTO.setPrecioDetalle(precioDetalle);
+            detallePedidoDao = toDao.detallePedidoToDao(detallePedidoDTO);
+            //asigno los id de pedido y catalogo al detalle
+            detallePedidoDao.setIdDet_Cat(productoRe.get());
+            detallePedidoDao.setIdDet_Ped(pedidoRe.get());
+            //guardo el detalledao en la bbdd
+            detallePedidoRepositorio.save(detallePedidoDao);
+            //calculo precio total pedido
+            precioTotalPedido += precioDetalle;
+        }
+        //asigno precio total
+        pedidoDao.setPrecioPedido(precioTotalPedido);
+        //vuelvo a guardar el pedido
+        pedidoRepositorio.save(pedidoDao);
 
+        return detallePedidoDTO;
+        
+    } catch (Exception e) {
+        throw new RuntimeException("Error al procesar el pedido: " + e.getMessage(), e);
+    }
+    }
 }
 
 
