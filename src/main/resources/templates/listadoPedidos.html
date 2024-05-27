@@ -47,6 +47,15 @@
 			</div>
 		</nav>
 	</section>
+	<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Encabezado omitido por brevedad -->
+</head>
+
+<body>
+	<!-- Navegación omitida por brevedad -->
 
 	<div class="container py-4 mt-5">
 		<div class="card bg-light">
@@ -59,30 +68,46 @@
 						<thead class="thead-inverse">
 							<tr>
 								<th>Número de Pedido</th>
-								<th>Nombre del producto</th>
-								<th>Precio unitario</th>
+								<th>Nombre del Producto</th>
+								<th>Precio Unitario</th>
 								<th>Cantidad</th>
-								<th>Precio total del pedido</th>
+								<th>Precio Detalle</th>
+								<th>Precio Total del Pedido</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="pedido, i : ${misPedidos}">
 								<td th:text="${i.index + 1}"></td>
-								<td>
-									<th:block th:each="producto: ${pedido.misCatalogoProducto}">
-										<span th:text="${producto.nombreProducto}"></span><br/>
-									</th:block>
-								</td>
-								<td>
-									<th:block th:each="producto: ${pedido.misCatalogoProducto}">
-										<span th:text="${producto.precioUnitario}">€</span><br/>
-										
-									</th:block>
-								</td>
-								<td th:text="${pedido.cantidadPedido}"></td>
+								<td><th:block
+										th:each="detalle: ${pedido.misDetallesPedidos}">
+										<th:block th:each="producto: ${detalle.productosSeleccionados}">
+											<span th:text="${producto.nombreProducto}"></span>
+											<br />
+										</th:block>
+									</th:block></td>
+								<td><th:block
+										th:each="detalle: ${pedido.misDetallesPedidos}">
+										<th:block th:each="producto: ${detalle.productosSeleccionados}">
+											<span th:text="${producto.precioUnitario}">€</span>
+											<br />
+										</th:block>
+									</td><td>
+                                    <th:block th:each="detalle: ${pedido.misDetallesPedidos}">
+                                        <span th:text="${detalle.cantidadDetalle}"></span><br />
+                                    </th:block>
+                                </td>
+                             
+                                <td>
+                                    <th:block th:each="detalle: ${pedido.misDetallesPedidos}">
+                                        <!-- Acceder al precio detallado -->
+                                        <span th:text="${detalle.precioDetalle}">€</span><br />
+                                    </th:block>
+                                </td>
 								<td th:text="${pedido.precioPedido}">€</td>
 							</tr>
 						</tbody>
+
+
 					</table>
 				</th:block>
 
@@ -93,10 +118,15 @@
 		</div>
 	</div>
 
-	<script th:if="${not #strings.isEmpty(mensajePedidoRealizadoExitoso)}">
-		mostrarNotificacion("¡Pedido realizado correctamente!",
-				"El pedido ha sido realizado correctamente", 'success');
-	</script>
+</body>
+
+</html>
+
+
+<script th:if="${not #strings.isEmpty(mensajePedidoRealizadoExitoso)}">
+	mostrarNotificacion("¡Pedido realizado correctamente!",
+			"El pedido ha sido realizado correctamente", 'success');
+</script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 package FarmaSupply.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,35 +18,41 @@ public class DetallePedidoDTO {
     private List<CatalogoProductoDTO> productosSeleccionados;
     private List<Double> cantidades;
 
+    
 
 	public DetallePedidoDTO() {
 		super();
 	}
-	public DetallePedidoDTO(Double cantidadDetalle, double precioDetalle, long idDet_Ped, long idDet_Cat) {
+
+    public DetallePedidoDTO(Double cantidadDetalle, double precioDetalle, long idDet_Ped, long idDet_Cat,
+			List<CatalogoProductoDTO> productosSeleccionados, List<Double> cantidades) {
 		super();
 		this.cantidadDetalle = cantidadDetalle;
 		this.precioDetalle = precioDetalle;
 		this.idDet_Ped = idDet_Ped;
 		this.idDet_Cat = idDet_Cat;
-		
-	}
-	
-    // Getters and setters
+		this.productosSeleccionados = productosSeleccionados;
+		this.cantidades = new ArrayList<>();	
+				}
 
+	// Getters and setters
 
-    public List<Double> getCantidades() {
-        return cantidades;
-    }
 
     public List<CatalogoProductoDTO> getProductosSeleccionados() {
 		return productosSeleccionados;
 	}
+	public List<Double> getCantidades() {
+		return cantidades;
+	}
+
+	public void setCantidades(List<Double> cantidades) {
+		this.cantidades = cantidades;
+	}
+
 	public void setProductosSeleccionados(List<CatalogoProductoDTO> productosSeleccionados) {
 		this.productosSeleccionados = productosSeleccionados;
 	}
-	public void setCantidades(List<Double> cantidades) {
-        this.cantidades = cantidades;
-    }
+
 	public long getIdDetallePedido() {
 		return idDetallePedido;
 	}

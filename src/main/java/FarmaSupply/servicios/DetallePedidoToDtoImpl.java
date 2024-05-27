@@ -3,9 +3,12 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import FarmaSupply.daos.DetallePedido;
 import FarmaSupply.dtos.DetallePedidoDTO;
 
+@Service
 public class DetallePedidoToDtoImpl implements IDetallePedidoToDto{
 
 	@Override
