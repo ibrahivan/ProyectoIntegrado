@@ -15,7 +15,7 @@ public class DetallePedidoDTO {
 	private long idDet_Ped;
 	private long idDet_Cat;
 
-    private List<Long> productosSeleccionadosIds;
+    private List<CatalogoProductoDTO> productosSeleccionados;
     private List<Double> cantidades;
 
     

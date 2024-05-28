@@ -2,7 +2,6 @@ package FarmaSupply.controladores;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import FarmaSupply.daos.CatalogoProducto;
-import FarmaSupply.daos.DetallePedido;
-import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.DetallePedidoDTO;
 import FarmaSupply.dtos.PedidoDTO;
