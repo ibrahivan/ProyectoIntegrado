@@ -37,7 +37,8 @@ public class PedidoServicioImpl implements IPedidoServicio {
     private ICatalogoProductoServicio productoServicio;
     
     @Autowired
-    private IDetallePedidoToDao detalleToDao;
+    private IDetallePedidoToDao detalleToDao
+    ;
 
     @Transactional
 
