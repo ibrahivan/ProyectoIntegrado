@@ -70,16 +70,16 @@ public class MotoRegistro {
 
 				model.addAttribute("mensajeRegistroExitoso", "Registro de la nueva moto OK");
 				model.addAttribute("misMotos", misMotos);
-				return "listadoMotos";
-			} else if  (motoDTO.getMatriculaMoto() == null) 
+				
+			} else if  (motoDTO.getMatriculaMoto() == null) {
 				// Se verifica si el numero de matricula ya existe para mostrar error
 				// personalizado en la vista
 				
 					model.addAttribute("mensajeErrorMatricula", "Ya existe una moto con esa matricula");
 					model.addAttribute("misMotos", misMotos);
 					return "registroMoto";
-				
-			
+			}
+			return "listadoMotos";
 		} catch (
 
 		Exception e) {

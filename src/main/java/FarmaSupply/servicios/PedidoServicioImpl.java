@@ -4,6 +4,7 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,14 +12,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import FarmaSupply.daos.CatalogoProducto;
 import FarmaSupply.daos.DetallePedido;
+import FarmaSupply.daos.EstadoMoto;
+import FarmaSupply.daos.EstadoPedido;
+import FarmaSupply.daos.Moto;
 import FarmaSupply.daos.Pedido;
 import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.CatalogoProductoDTO;
 import FarmaSupply.dtos.DetallePedidoDTO;
+import FarmaSupply.dtos.MotoDTO;
 import FarmaSupply.dtos.PedidoDTO;
 import FarmaSupply.dtos.TiendaDTO;
 import FarmaSupply.repositorios.CatalogoProductoRepositorio;
 import FarmaSupply.repositorios.DetallePedidoRepositorio;
+import FarmaSupply.repositorios.MotoRepositorio;
 import FarmaSupply.repositorios.PedidoRepositorio;
 import FarmaSupply.repositorios.TiendaRepositorio;
 
@@ -27,15 +33,22 @@ public class PedidoServicioImpl implements IPedidoServicio {
 
     @Autowired
     private PedidoRepositorio pedidoRepositorio;
-
+    @Autowired
+    private MotoRepositorio motoRepositorio;
     @Autowired
     private DetallePedidoRepositorio detallePedidoRepositorio;
     @Autowired
     private TiendaRepositorio repositorioTienda;
     @Autowired
     private CatalogoProductoRepositorio productoRepositorio;
-    @Autowired
-    private ICatalogoProductoServicio productoServicio;
+   @Autowired
+   private IPedidoToDto pedidoToDto;
+   @Autowired
+   private IMotoToDto motoToDto;
+   @Autowired
+   private IPedidoToDao pedidoToDao;
+   @Autowired
+   private IMotoToDao motoToDao;
     
     @Autowired
     private IDetallePedidoToDao detalleToDao;
@@ -96,9 +109,7 @@ public class PedidoServicioImpl implements IPedidoServicio {
                   
                   //paso el pedido a dao
                   detallePedidoDao = detalleToDao.detallePedidoToDao(detallePedidoDTO);
-                  //añado los los objetos al dao
-                  detallePedidoDao.setIdDet_Cat(productoRe.get());
-                  detallePedidoDao.setIdDet_Ped(pedidoRe.get());
+                  
 
                 //guardo el detalle en la bd
                   detallePedidoRepositorio.save(detallePedidoDao);
@@ -108,9 +119,11 @@ public class PedidoServicioImpl implements IPedidoServicio {
               
               // Establecer el precio total en el pedidoDTO
               pedidoDTO.setPrecioPedido(precioTotal);
-          
+              pedidoDTO.setEstadoPedido(EstadoPedido.PENDIENTE);
+              
               // Convertir el pedidoDTO a la entidad Pedido y guardarlo en la base de datos
               pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
+              pedidoDao.setEstadoPedido(pedidoDTO.getEstadoPedido());
               pedidoRepositorio.save(pedidoDao);
             
               
@@ -126,6 +139,50 @@ public class PedidoServicioImpl implements IPedidoServicio {
           }
       }
 
+    public List<Pedido> obtenerPedidosPendientes() {
+        return pedidoRepositorio.findAll()
+                               .stream()
+                               .filter(pedido -> pedido.getEstadoPedido() == EstadoPedido.PENDIENTE)
+                               .collect(Collectors.toList());
+    }
+
+	@Override
+	public void asignarPedidoAMoto(Long idPedido, Long idMoto) {
+		// Obtener el pedido y la moto por sus respectivos IDs
+		Optional<Pedido> pedidoRe = pedidoRepositorio.findById(idPedido);
+		Optional<Moto> motoRe = motoRepositorio.findById(idPedido);
+		
+		//Creo los dtos y los daos
+		MotoDTO motoDTO = new MotoDTO();
+		Moto motoDao = new Moto();
+		PedidoDTO pedidoDTO = new PedidoDTO();
+		Pedido pedidoDao = new Pedido();
+		List<MotoDTO> listaMotoDTO = new ArrayList<MotoDTO>();
+		
+		//Transformo los optional a dtos
+		motoDTO = motoToDto.motoToDto(motoRe.get());
+		pedidoDTO = pedidoToDto.pedidoToDto(pedidoRe.get());
+		
+		//añado la motoDTo a una lista
+		listaMotoDTO.add(motoDTO);
+		//añado la lista en la de pedidos
+		pedidoDTO.setMisMotos(listaMotoDTO);
+		//asigno el id de pedido en la moto
+		motoDTO.setIdMoto_Ped(pedidoRe.get());
+		//cambio los estados
+		motoDTO.setEstadoMoto(EstadoMoto.OCUPADA);
+		pedidoDTO.setEstadoPedido(EstadoPedido.CAMINO);
+		//paso a dao todo los datos
+		pedidoDao = pedidoToDao.pedidoToDao(pedidoDTO);
+		motoDao = motoToDao.motoToDao(motoDTO);
+		
+		//actualizamos la bbdd
+		
+		pedidoRepositorio.save(pedidoDao);
+		motoRepositorio.save(motoDao);
+		
+		
+	}
       
   }
 

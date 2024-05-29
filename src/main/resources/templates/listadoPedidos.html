@@ -46,16 +46,8 @@
 				</div>
 			</div>
 		</nav>
-	</section>
-	<!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	</section>>
 
-<head>
-<!-- Encabezado omitido por brevedad -->
-</head>
-
-<body>
-	<!-- Navegación omitida por brevedad -->
 
 	<div class="container py-4 mt-5">
 		<div class="card bg-light">
@@ -67,12 +59,14 @@
 					<table class="table table-striped table-bordered tableCustom">
 						<thead class="thead-inverse">
 							<tr>
-								<th>Número de Pedido</th>
-								<th>Nombre del Producto</th>
-								<th>Precio Unitario</th>
-								<th>Cantidad</th>
-								<th>Precio Detalle</th>
-								<th>Precio Total del Pedido</th>
+								<th>Número de pedido</th>
+								<th>Nombre del producto</th>
+								<th>Precio unitario</th>
+								<th>Cantidad (cajas)</th>
+								<th>Precio detalle</th>
+								<th>Precio total del Pedido</th>
+								<th>Estado del pedido</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -104,6 +98,7 @@
                                     </th:block>
                                 </td>
 								<td th:text="${pedido.precioPedido}">€</td>
+								<td th:text="${pedido.estadoPedido}"></td>
 							</tr>
 						</tbody>
 
@@ -123,10 +118,3 @@
 </html>
 
 
-<script th:if="${not #strings.isEmpty(mensajePedidoRealizadoExitoso)}">
-	mostrarNotificacion("¡Pedido realizado correctamente!",
-			"El pedido ha sido realizado correctamente", 'success');
-</script>
-</body>
-
-</html>

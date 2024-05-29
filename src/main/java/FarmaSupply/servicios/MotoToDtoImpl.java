@@ -21,7 +21,7 @@ public class MotoToDtoImpl implements IMotoToDto {
 			dto.setMatriculaMoto(m.getMatriculaMoto());
 			dto.setIdMoto_Ped(m.getIdMoto_Ped());
 			dto.setMarcaMoto(m.getMarcaMoto());
-		
+			dto.setEstadoMoto(m.getEstadoMoto());
 			return dto;
 		} catch (Exception e) {
 			System.out.println(

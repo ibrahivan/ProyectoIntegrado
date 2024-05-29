@@ -3,6 +3,9 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
+import FarmaSupply.daos.EstadoPedido;
+
+
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
@@ -13,10 +16,11 @@ public class PedidoDTO {
 	private long idPedido;
 	private double precioPedido;
 	private long idPedido_Tie;
-	private int estadoPedido;
 	private List<DetallePedidoDTO> misDetallesPedidos = new ArrayList<>();
 	private List<MotoDTO> misMotos = new ArrayList<>();
 	private List<CubetaDTO> misCubetas = new ArrayList<>();
+	private EstadoPedido estadoPedido;
+
 	// Constructores
 
 	public PedidoDTO() {
@@ -24,24 +28,16 @@ public class PedidoDTO {
 	}
 
 
-
-
-
-
-	public PedidoDTO(double precioPedido, long idPedido_Tie, int estadoPedido, 
-			List<DetallePedidoDTO> misDetallesPedidos, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
+	public PedidoDTO(double precioPedido, long idPedido_Tie, List<DetallePedidoDTO> misDetallesPedidos,
+			List<MotoDTO> misMotos, List<CubetaDTO> misCubetas, EstadoPedido estadoPedido) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
-		this.estadoPedido = estadoPedido;
 		this.misDetallesPedidos = misDetallesPedidos;
 		this.misMotos = misMotos;
 		this.misCubetas = misCubetas;
+		this.estadoPedido = estadoPedido;
 	}
-
-
-
-
 
 
 	// getters y setters
@@ -94,13 +90,16 @@ public class PedidoDTO {
 		this.misCubetas = misCubetas;
 	}
 
-	public int getEstadoPedido() {
+
+	public EstadoPedido getEstadoPedido() {
 		return estadoPedido;
 	}
 
-	public void setEstadoPedido(int estadoPedido) {
+
+	public void setEstadoPedido(EstadoPedido estadoPedido) {
 		this.estadoPedido = estadoPedido;
 	}
+
 
 
 

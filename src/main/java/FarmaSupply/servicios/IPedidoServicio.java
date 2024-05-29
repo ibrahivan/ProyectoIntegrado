@@ -2,6 +2,7 @@ package FarmaSupply.servicios;
 
 import java.util.List;
 
+import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.DetallePedidoDTO;
 import FarmaSupply.dtos.TiendaDTO;
 
@@ -18,5 +19,16 @@ public interface IPedidoServicio {
 	 * @return El pedido realizado
 	 */
 	public List<DetallePedidoDTO> realizarPedido(DetallePedidoDTO detallePedidoDTO, TiendaDTO tiendaDTO, List<Double> cantidades);
+	/**
+	 * Obtiene la lista de todos los pedidos que estan en el estado Pendiente
+	 * 
+	 * @return la lista de todos los pedidos DTOS
+	 */
+	 public List<Pedido> obtenerPedidosPendientes() ;
+	 
+	 /**
+	 *  Asigna el pedido seleccionado a la moto seleccionada
+	 */
+	 public void asignarPedidoAMoto(Long idPedido, Long idMoto);
 
 }

@@ -111,6 +111,16 @@
 						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
 							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
 								<div class="card-body">
+									<h5 class="card-title">Pedidos</h5>
+									<p class="card-text">Acceda para: </p>
+									<a th:href="@{/privada/listadoGestionPedidos}" class="btn btn-outline-dark btn-lg custom-button" role="button">
+									<i class="bi bi-arrow-right-circle"> Gestionar pedidos</i></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
+								<div class="card-body">
 									<h5 class="card-title">Productos</h5>
 									<p class="card-text">Acceda para: </p>
 									<a th:href="@{/privada/registrarProducto}" class="btn btn-outline-dark btn-lg custom-button" role="button">
@@ -120,18 +130,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
-							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
-								<div class="card-body">
-									<h5 class="card-title">Cubetas</h5>
-									<p class="card-text">Acceda para: </p>
-									<a th:href="@{/privada/registrarCubeta}" class="btn btn-outline-dark btn-lg custom-button" role="button">
-									<i class="bi bi-arrow-right-circle"> Registrar cubeta</i></a>
-									<a th:href="@{/privada/listadoCubetas}" class="btn btn-outline-dark btn-lg custom-button" role="button">
-									<i class="bi bi-arrow-right-circle"> Gestionar cubetas</i></a>
-								</div>
-							</div>
-						</div>
+						
 						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
 							<div class="card mb-4 dashboardCard border border-dark cardPrincipal">								
 								<div class="card-body">
@@ -166,7 +165,14 @@
 		mostrarNotificacion("¡Prohibido!",
 				"No tiene permisos para acceder a este recurso", 'error');
 	</script>
-
+<script th:if="${not #strings.isEmpty(mensajePedidoRealizadoExitoso)}">
+	mostrarNotificacion("¡Pedido realizado correctamente!",
+			"El pedido ha sido realizado correctamente", 'success');
+	</script>
+	<script th:if="${not #strings.isEmpty(mensajeAsignacionRealizadaExito)}">
+	mostrarNotificacion("¡Asignacion realizada correctamente!",
+			"La asignacion ha sido realizada correctamente", 'success');
+	</script>
 </body>
 
 </html>

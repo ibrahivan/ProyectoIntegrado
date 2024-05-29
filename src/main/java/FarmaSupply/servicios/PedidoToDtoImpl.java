@@ -34,7 +34,7 @@ public class PedidoToDtoImpl implements IPedidoToDto {
 
 			dto.setIdPedido(p.getIdPedido());
 			dto.setPrecioPedido(p.getPrecioPedido());
-			dto.setEstadoPedido(p.getEstado_pedido());
+			dto.setEstadoPedido(p.getEstadoPedido());
 			dto.setIdPedido_Tie(p.getIdPedido_Tie().getIdTienda());
 			if (p.getList_Ped_Det().size() > 0) {
 				dto.setMisDetallesPedidos(detallePedidoToDto.listaDetallePedidoToDto(p.getList_Ped_Det()));

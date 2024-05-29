@@ -3,7 +3,6 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
-import FarmaSupply.daos.Usuario;
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la

@@ -33,9 +33,6 @@ public class Pedido {
 
 	@Column(name = "precio_pedido", nullable = false)
 	private double precioPedido;
-	
-	@Column(name = "estado_pedido")
-	private int estado_pedido;
 
 	@ManyToOne
 	@JoinColumn(name = "id_tienda")
@@ -47,6 +44,7 @@ public class Pedido {
 	@OneToMany(mappedBy = "idCubeta_Ped")
 	private List<Cubeta> list_Ped_Cub = new ArrayList<>();
 
+	private EstadoPedido estadoPedido;
 	// Constructores
 
 	public Pedido() {
@@ -56,21 +54,21 @@ public class Pedido {
 
 
 
-	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, int estado_pedido, Tienda idPedido_Tie,
-			List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
+	// getters y setter
+
+	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, Tienda idPedido_Tie, List<Moto> list_Ped_Moto,
+			List<Cubeta> list_Ped_Cub, EstadoPedido estadoPedido) {
 		super();
 		this.list_Ped_Det = list_Ped_Det;
 		this.precioPedido = precioPedido;
-		this.estado_pedido = estado_pedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.list_Ped_Moto = list_Ped_Moto;
 		this.list_Ped_Cub = list_Ped_Cub;
+		this.estadoPedido = estadoPedido;
 	}
 
 
 
-
-	// getters y setter
 
 	public Pedido(Tienda idPedido_Tie) {
 		super();
@@ -119,13 +117,19 @@ public class Pedido {
 		this.list_Ped_Cub = list_Ped_Cub;
 	}
 
-	public int getEstado_pedido() {
-		return estado_pedido;
+
+
+	public EstadoPedido getEstadoPedido() {
+		return estadoPedido;
 	}
 
-	public void setEstado_pedido(int estado_pedido) {
-		this.estado_pedido = estado_pedido;
+
+
+
+	public void setEstadoPedido(EstadoPedido estadoPedido) {
+		this.estadoPedido = estadoPedido;
 	}
+
 
 
 

@@ -2,15 +2,12 @@ package FarmaSupply.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Tienda;
-import FarmaSupply.daos.Usuario;
 import FarmaSupply.dtos.TiendaDTO;
-import FarmaSupply.repositorios.UsuarioRepositorio;
 
 /**
  * Servicio que implementa los metodos de la interface {@link ITiendaToDto} y en
@@ -22,8 +19,6 @@ public class TiendaToDtoImpl implements ITiendaToDto {
 
 	@Autowired
 	private IPedidoToDto pedidoToDto;
-	@Autowired
-	private UsuarioRepositorio usuarioRepositorio;
 	@Override
 	public TiendaDTO tiendaToDto(Tienda t) {
 		try {

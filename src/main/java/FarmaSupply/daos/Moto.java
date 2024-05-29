@@ -31,6 +31,8 @@ public class Moto {
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
 	private Pedido idMoto_Ped;
+	
+	private EstadoMoto estadoMoto;
 
 	// Constructores
 
@@ -38,12 +40,17 @@ public class Moto {
 		super();
 	}
 
-	public Moto(String marcaMoto, String matriculaMoto, Pedido idMoto_Ped) {
+	
+
+	public Moto(String marcaMoto, String matriculaMoto, Pedido idMoto_Ped, EstadoMoto estadoMoto) {
 		super();
 		this.marcaMoto = marcaMoto;
 		this.matriculaMoto = matriculaMoto;
 		this.idMoto_Ped = idMoto_Ped;
+		this.estadoMoto = estadoMoto;
 	}
+
+
 
 	// getters y setters
 
@@ -77,6 +84,18 @@ public class Moto {
 
 	public void setMarcaMoto(String marcaMoto) {
 		this.marcaMoto = marcaMoto;
+	}
+
+
+
+	public EstadoMoto getEstadoMoto() {
+		return estadoMoto;
+	}
+
+
+
+	public void setEstadoMoto(EstadoMoto estadoMoto) {
+		this.estadoMoto = estadoMoto;
 	}
 
 }

@@ -1,10 +1,12 @@
 package FarmaSupply.servicios;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import FarmaSupply.daos.EstadoMoto;
 import FarmaSupply.daos.Moto;
 import FarmaSupply.dtos.MotoDTO;
 import FarmaSupply.repositorios.MotoRepositorio;
@@ -32,6 +34,8 @@ public class MotoServicioImpl implements IMotoServicio {
 				motoDTO.setMatriculaMoto(null); //seteamos la matricula para el mensaje de error
 				return null; // Si no es null es que ya está registrada
 			}
+			motoDTO.setEstadoMoto(EstadoMoto.LIBRE);
+			
 			Moto motoDao = toDao.motoToDao(motoDTO);
 			// Guardar la moto en la base de datos
 			
@@ -82,5 +86,13 @@ public class MotoServicioImpl implements IMotoServicio {
 		// TODO Auto-generated method stub
 		return toDto.listaMotoToDto(repositorio.findAll());
 	}
+	
+	@Override
+	public List<Moto> obtenerMotosLibres() {
+        return repositorio.findAll()
+                             .stream()
+                             .filter(moto -> moto.getEstadoMoto() == EstadoMoto.LIBRE)
+                             .collect(Collectors.toList());
+    }
 
 }

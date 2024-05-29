@@ -19,9 +19,13 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../static/css/style.css"
 	th:href="@{/css/style.css}">
+	<!-- script ================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script th:src="@{/script/script1.js}"></script>
 </head>
 
 <body>
+<br>
 	<section id="navigation-bar" class="navigation position-fixed">
 		<nav id="navbar-example2" class="navbar navbar-expand-lg ">
 			<div
@@ -94,7 +98,7 @@
 			</div>
 		</div>
 	</div>
-
+</body>
 	<script th:if="${not #strings.isEmpty(eliminacionCorrecta)}">
 		mostrarNotificacion("¡Tienda eliminada!",
 				"La tienda ha sido eliminada correctamente", 'success');
@@ -103,6 +107,6 @@
 		mostrarNotificacion("¡Tienda creada correctamente!",
 				"La tienda ha sido registrada correctamente", 'success');
 	</script>
-</body>
+	
 
 </html>
