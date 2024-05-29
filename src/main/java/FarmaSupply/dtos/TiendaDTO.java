@@ -3,6 +3,8 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
+import FarmaSupply.daos.Usuario;
+
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
  * gestión de tiendas
@@ -16,12 +18,15 @@ public class TiendaDTO {
 	private String codigopostalTienda;
 	private List<PedidoDTO> misPedidos = new ArrayList<>();
 	private long idTienda_Usu;
-
 	// Constructores
 
 	public TiendaDTO() {
 		super();
 	}
+
+	
+
+	// getter y setters
 
 	public TiendaDTO(String nombreTienda, String direccionTienda, String codigopostalTienda, List<PedidoDTO> misPedidos,
 			long idTienda_Usu) {
@@ -33,7 +38,7 @@ public class TiendaDTO {
 		this.idTienda_Usu = idTienda_Usu;
 	}
 
-	// getter y setters
+
 
 	public long getId() {
 		return id;
@@ -82,5 +87,9 @@ public class TiendaDTO {
 	public void setMisPedidos(List<PedidoDTO> misPedidos) {
 		this.misPedidos = misPedidos;
 	}
+
+
+
+	
 
 }

@@ -14,7 +14,6 @@ public class PedidoDTO {
 	private double precioPedido;
 	private long idPedido_Tie;
 	private int estadoPedido;
-	private Double cantidadPedido;
 	private List<DetallePedidoDTO> misDetallesPedidos = new ArrayList<>();
 	private List<MotoDTO> misMotos = new ArrayList<>();
 	private List<CubetaDTO> misCubetas = new ArrayList<>();
@@ -29,13 +28,12 @@ public class PedidoDTO {
 
 
 
-	public PedidoDTO(double precioPedido, long idPedido_Tie, int estadoPedido, Double cantidadPedido,
+	public PedidoDTO(double precioPedido, long idPedido_Tie, int estadoPedido, 
 			List<DetallePedidoDTO> misDetallesPedidos, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.estadoPedido = estadoPedido;
-		this.cantidadPedido = cantidadPedido;
 		this.misDetallesPedidos = misDetallesPedidos;
 		this.misMotos = misMotos;
 		this.misCubetas = misCubetas;
@@ -102,20 +100,6 @@ public class PedidoDTO {
 
 	public void setEstadoPedido(int estadoPedido) {
 		this.estadoPedido = estadoPedido;
-	}
-
-
-
-
-	public Double getCantidadPedido() {
-		return cantidadPedido;
-	}
-
-
-
-
-	public void setCantidadPedido(Double cantidadPedido) {
-		this.cantidadPedido = cantidadPedido;
 	}
 
 

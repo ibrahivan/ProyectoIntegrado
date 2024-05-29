@@ -84,11 +84,9 @@ public class PedidoRegistro {
 
 			// Realizar el pedido que guardaremos los detalles y los asociaremos con el
 			// pedido
-			DetallePedidoDTO nuevoPedido = pedidoServicio.realizarPedido(detallePedidoDTO, tiendaActual, cantidades);
-			// Añadir los detalles al pedido
-			List<DetallePedidoDTO> listaDetallesPedidos = pedidoDTO.getMisDetallesPedidos();
-			listaDetallesPedidos.add(nuevoPedido);
-			pedidoDTO.setMisDetallesPedidos(listaDetallesPedidos);
+			List<DetallePedidoDTO> listaDetallesDTO = pedidoServicio.realizarPedido(detallePedidoDTO, tiendaActual, cantidades);
+			// Añadir los detalles a la lista			
+			pedidoDTO.setMisDetallesPedidos(listaDetallesDTO);
 
 			// Añadir el pedido a la lista de pedidos de la tienda
 			List<PedidoDTO> listaPedidos = tiendaActual.getMisPedidos();
@@ -99,7 +97,7 @@ public class PedidoRegistro {
 			model.addAttribute("mensajePedidoRealizadoExitoso", "Pedido realizado con éxito");
 			model.addAttribute("misPedidos", tiendaActual.getMisPedidos());
 
-			return "listadoTiendas";
+			return "listadoPedidos";
 		} catch (Exception e) {
 			model.addAttribute("error", "Error al procesar el pedido");
 			return "registroPedido";

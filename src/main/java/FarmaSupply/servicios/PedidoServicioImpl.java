@@ -1,6 +1,7 @@
 package FarmaSupply.servicios;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,12 +38,12 @@ public class PedidoServicioImpl implements IPedidoServicio {
     private ICatalogoProductoServicio productoServicio;
     
     @Autowired
-    private IDetallePedidoToDao detalleToDao
-    ;
+    private IDetallePedidoToDao detalleToDao;
+    
 
     @Transactional
 
-    public DetallePedidoDTO realizarPedido(DetallePedidoDTO detallePedidoDTO, TiendaDTO tiendaActual,  List<Double> cantidades) {
+    public List<DetallePedidoDTO> realizarPedido(DetallePedidoDTO detallePedidoDTO, TiendaDTO tiendaActual,  List<Double> cantidades) {
     	  try {
             //busco la tienda
           	Optional<Tienda> tiendaPropietaria = repositorioTienda.findById(tiendaActual.getId());
@@ -50,7 +51,8 @@ public class PedidoServicioImpl implements IPedidoServicio {
                  throw new RuntimeException("Tienda no encontrada");
              }
           	
- 
+          	 //lista de detalles
+          	 List<DetallePedidoDTO>listaDetallesDTO = new ArrayList<DetallePedidoDTO>();
           	//genero objeto pedidoDTO y dao
           	PedidoDTO pedidoDTO = new PedidoDTO();
           
@@ -76,20 +78,28 @@ public class PedidoServicioImpl implements IPedidoServicio {
             	  
             	  //me servira para asignar el producto al detalle
             	  Optional<CatalogoProducto> productoRe = productoRepositorio.findById(producto.getIdCatalogoProducto());
-            	  
+            	   //me sirve para asignar el pedido con el detalle
+                  Optional<Pedido> pedidoRe = pedidoRepositorio.findById(pedidoDao.getIdPedido());
             	
                   // Calcular el precio parcial del producto 
             	  double precioParcial = producto.getPrecioUnitario() * cantidad;
             	   detallePedidoDTO.setPrecioDetalle(precioParcial);
                   //guardo el precio parcial y la cantidad de ese producto seleccionado en la bd
                   detallePedidoDTO.setCantidadDetalle(cantidad);
-                  detallePedidoDao = detalleToDao.detallePedidoToDao(detallePedidoDTO);
-                  detallePedidoDao.setIdDet_Cat(productoRe.get());
                   detallePedidoDTO.setCantidades(cantidades);
-                  //me sirve para asignar el pedido con el detalle
-                  Optional<Pedido> pedidoRe = pedidoRepositorio.findById(pedidoDao.getIdPedido());
-                  detallePedidoDao.setIdDet_Ped(pedidoRe.get());
+               
+                  //añado los id de los dtos
+                  detallePedidoDTO.setIdDet_Cat(productoRe.get().getIdCatalogoProducto());
+                  detallePedidoDTO.setIdDet_Ped(pedidoRe.get().getIdPedido());
+                  //Añado el dto a la lista
+                  listaDetallesDTO.add(detallePedidoDTO);
                   
+                  //paso el pedido a dao
+                  detallePedidoDao = detalleToDao.detallePedidoToDao(detallePedidoDTO);
+                  //añado los los objetos al dao
+                  detallePedidoDao.setIdDet_Cat(productoRe.get());
+                  detallePedidoDao.setIdDet_Ped(pedidoRe.get());
+
                 //guardo el detalle en la bd
                   detallePedidoRepositorio.save(detallePedidoDao);
                   //Calculo el precio total del pedido
@@ -109,7 +119,7 @@ public class PedidoServicioImpl implements IPedidoServicio {
               detallePedidoDTO.setIdDetallePedido(detallePedidoDao.getIdDetallePedido());
               
               // Devolver el detallePedidoDTO con la información actualizada
-              return detallePedidoDTO;
+              return listaDetallesDTO;
           } catch (Exception e) {
               // Manejar cualquier excepción y relanzarla como RuntimeException
               throw new RuntimeException("Error al procesar el pedido: " + e.getMessage(), e);
