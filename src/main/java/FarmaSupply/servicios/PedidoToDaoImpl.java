@@ -25,8 +25,7 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 
 	@Autowired
 	private IMotoToDao motoToDao;
-	@Autowired
-	private ICubetaToDao cubetaToDao;
+
 	@Autowired
 	private TiendaRepositorio tiendaRepositorio;
 	@Override
@@ -43,10 +42,6 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 			if (pedidoDTO.getMisDetallesPedidos().size() > 0) {
 				pedidoDao.setList_Ped_Det((detallePedidoToDao.listdetallePedidoToDao(pedidoDTO.getMisDetallesPedidos())));
 
-			}
-
-			if (pedidoDTO.getMisCubetas().size() > 0) {
-				pedidoDao.setList_Ped_Cub((cubetaToDao.listaCubetaToDao(pedidoDTO.getMisCubetas())));
 			}
 
 			if (pedidoDTO.getMisMotos().size() > 0) {

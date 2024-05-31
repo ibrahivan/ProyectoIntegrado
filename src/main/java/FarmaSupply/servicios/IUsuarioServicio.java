@@ -125,5 +125,26 @@ public interface IUsuarioServicio {
 	 * @return Un array de bytes que representa la imagen convertida.
 	 */
 	public byte[] convertToByteArray(String base64String);
+	
+	/**
+	 * Busca a los usuarios que su email contenga la palabra de coincidencia pasada por parametro
+	 * @param palabra la palabra de coincidencia
+	 * @return la lista de usuarios
+	 */
+	public List<UsuarioDTO> buscarPorCoincidenciaEnEmail(String palabra);
+	
+	/**
+	 * Busca a los usuarios que su nombre contenga la palabra de coincidencia pasada por parametro
+	 * @param palabra la palabra de coincidencia
+	 * @return la lista de usuarios
+	 */
+	public List<UsuarioDTO> buscarPorCoincidenciaEnNombre(String palabra);
+	
+	/**
+	 * Cuenta el numero de usuarios que coinciden con el rol dado por parametro
+	 * @param rol El rol del usuario
+	 * @return el numero de usuarios que coinciden con el rol
+	 */
+	public int contarUsuariosPorRol(String rol);
 
 }

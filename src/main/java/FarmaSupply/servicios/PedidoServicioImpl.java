@@ -150,7 +150,7 @@ public class PedidoServicioImpl implements IPedidoServicio {
 	public void asignarPedidoAMoto(Long idPedido, Long idMoto) {
 		// Obtener el pedido y la moto por sus respectivos IDs
 		Optional<Pedido> pedidoRe = pedidoRepositorio.findById(idPedido);
-		Optional<Moto> motoRe = motoRepositorio.findById(idPedido);
+		Optional<Moto> motoRe = motoRepositorio.findById(idMoto);
 		
 		//Creo los dtos y los daos
 		MotoDTO motoDTO = new MotoDTO();

@@ -20,6 +20,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../static/css/style.css"
 	th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script th:src="@{/script/script1.js}"></script>
@@ -48,6 +49,9 @@
 .card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+.bienvenida {
+    margin-left: 55px; 
+}
 </style>
 </head>
 
@@ -62,7 +66,7 @@
 				class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
 
 				<div class="col-md-3 brand-logo">
-					<a th:href="@{/}"
+					<a 
 						class="d-inline-flex link-body-emphasis text-decoration-none">
 						<h2>FarmaSupply</h2>
 					</a>
@@ -92,10 +96,10 @@
 						class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
 						width="700" height="500" loading="lazy">
 				</div>
-				<div class="col-lg-6 py-md-5 my-md-5">
-					<h3 class="text-dark text-center mt-5">
-						Bienvenido <span th:text="${nombreUsuario}">usuario</span>
-					</h3>
+				<div class="col-lg-6 py-md-5 my-md-5 ">
+					<h3 class="text-dark text-center mt-3 bienvenida">
+						¡Bienvenido <span th:text="${nombreUsuario}"></span>!
+					</h3><br>
 					<div class="btn-container">
 					
 						<div class="col-md-4" sec:authorize="hasRole('ROLE_ADMIN')">
@@ -159,6 +163,63 @@
 				</div>
 			</div>
 		</div>
+		<footer class="text-center text-lg-start" style="background-color: #ebfdff; padding: 1rem;">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">FarmaSupply</h5>
+                <p>
+                    Su proveedor confiable de suministros farmacéuticos.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Sobre Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Síguenos</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 FarmaSupply. Todos los derechos reservados.
+    </div>
+</footer>
 	</section>
 
 	<script th:if="${not #strings.isEmpty(noAdmin)}">
@@ -173,6 +234,14 @@
 	mostrarNotificacion("¡Asignacion realizada correctamente!",
 			"La asignacion ha sido realizada correctamente", 'success');
 	</script>
+	<script th:if="${not #strings.isEmpty(noHayPedidos)}">
+	mostrarNotificacion("¡Error!",
+			"No puedes asignar una moto si no hay ningun pedido disponible", 'error');
+</script>
+<script th:if="${not #strings.isEmpty(noHayMotos)}">
+	mostrarNotificacion("¡Error!",
+			"No puedes asignar un pedido si no hay ninguna moto disponible", 'error');
+</script>
 </body>
 
 </html>

@@ -41,8 +41,7 @@ public class Pedido {
 	@OneToMany(mappedBy = "idMoto_Ped")
 	private List<Moto> list_Ped_Moto = new ArrayList<>();
 
-	@OneToMany(mappedBy = "idCubeta_Ped")
-	private List<Cubeta> list_Ped_Cub = new ArrayList<>();
+
 
 	private EstadoPedido estadoPedido;
 	// Constructores
@@ -57,13 +56,12 @@ public class Pedido {
 	// getters y setter
 
 	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, Tienda idPedido_Tie, List<Moto> list_Ped_Moto,
-			List<Cubeta> list_Ped_Cub, EstadoPedido estadoPedido) {
+		 EstadoPedido estadoPedido) {
 		super();
 		this.list_Ped_Det = list_Ped_Det;
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.list_Ped_Moto = list_Ped_Moto;
-		this.list_Ped_Cub = list_Ped_Cub;
 		this.estadoPedido = estadoPedido;
 	}
 
@@ -107,14 +105,6 @@ public class Pedido {
 
 	public void setList_Ped_Moto(List<Moto> list_Ped_Moto) {
 		this.list_Ped_Moto = list_Ped_Moto;
-	}
-
-	public List<Cubeta> getList_Ped_Cub() {
-		return list_Ped_Cub;
-	}
-
-	public void setList_Ped_Cub(List<Cubeta> list_Ped_Cub) {
-		this.list_Ped_Cub = list_Ped_Cub;
 	}
 
 

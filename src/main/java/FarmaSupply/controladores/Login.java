@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import FarmaSupply.daos.Usuario;
 import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.servicios.IUsuarioServicio;
 
@@ -133,8 +134,9 @@ public class Login {
 		try {
 			boolean cuentaConfirmada = usuarioServicio.estaLaCuentaConfirmada(authentication.getName());
 			System.out.println(authentication.getAuthorities());
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 			if (cuentaConfirmada) {
-				model.addAttribute("nombreUsuario", authentication.getName());
+				model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
 				return "home";
 			} else {
 				model.addAttribute("cuentaNoVerificada", "Error al confirmar su email");

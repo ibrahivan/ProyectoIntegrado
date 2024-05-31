@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import FarmaSupply.daos.EstadoMoto;
 import FarmaSupply.dtos.MotoDTO;
 
 import FarmaSupply.servicios.IMotoServicio;
@@ -66,14 +67,19 @@ public class MotoListado {
 	public String eliminarMoto(@PathVariable Long id, Model model) {
 		try {
 			MotoDTO moto = motoServicio.buscarPorId(id);
-			if (moto != null) {
+			List<MotoDTO> misMotos = motoServicio.obtenerTodas();
+			if (moto != null && moto.getEstadoMoto() == EstadoMoto.LIBRE) {
 				motoServicio.eliminarMoto(id);
-				List<MotoDTO> misMotos = motoServicio.obtenerTodas();
+				
 				model.addAttribute("misMotos", misMotos);
 				model.addAttribute("eliminacionCorrecta", "La moto se ha eliminado correctamente");
 				return "listadoMotos";
+			} else {
+				model.addAttribute("noPuedeEliminarMotoOcupada", "No puedes eliminar una moto que esta ocupada");
+				model.addAttribute("misMotos", misMotos);
+				return "listadoMotos";
 			}
-			return "listadoMotos";
+		
 
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al eliminar la moto");

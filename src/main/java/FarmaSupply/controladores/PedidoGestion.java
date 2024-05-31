@@ -48,25 +48,33 @@ public class PedidoGestion {
 			// lo llevo al model
 			model.addAttribute("pedidosPendientes", pedidosPendientesDTO);
 			model.addAttribute("motosLibres", motosLibresDTO);
-			model.addAttribute("idPedido", null); // or some default value
-		    model.addAttribute("idMoto", null);
+			
 			return "listadoGestionPedidos";
 		} catch (Exception e) {
 			model.addAttribute("error", "Error al mostrar el formulario para crear un nuevo pedido");
-			return "listadoTiendas";
+			return "home";
 		}
 	}
 
 	@PostMapping("/asignarPedidoMoto")
 	public String asignarPedidoMoto(@RequestParam Long idPedido, @RequestParam Long idMoto, Model model) {
 		try {
-			
+
+			if (idPedido == null)
+			{
+				model.addAttribute("noHayPedidos", "No puedes asignar moto si no hay pedido");
+				return "home";
+			}else if (idMoto==null)
+			{
+				model.addAttribute("noHayMotos", "No puedes asignar un pedido si no hay motos disponiles");
+				return "home";
+			}
 			pedidoServicio.asignarPedidoAMoto(idPedido, idMoto);
 			model.addAttribute("mensajeAsignacionRealizadaExito", "Asignacio entre el pedido y la moto realizada con éxito");
 			return "home";
 		} catch (Exception e) {
 			model.addAttribute("error", "Error al mostrar el formulario para crear un nuevo pedido");
-			return "listadoTiendas";
+			return "home";
 		}
 	}
 }

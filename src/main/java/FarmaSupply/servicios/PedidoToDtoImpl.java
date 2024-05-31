@@ -23,8 +23,7 @@ public class PedidoToDtoImpl implements IPedidoToDto {
 
 	@Autowired
 	private IMotoToDto motoToDto;
-	@Autowired
-	private ICubetaToDto cubetaToDto;
+
 
 	@Override
 	public PedidoDTO pedidoToDto(Pedido p) {
@@ -40,10 +39,7 @@ public class PedidoToDtoImpl implements IPedidoToDto {
 				dto.setMisDetallesPedidos(detallePedidoToDto.listaDetallePedidoToDto(p.getList_Ped_Det()));
 			}
 
-			if (p.getList_Ped_Cub().size() > 0) {
-				dto.setMisCubetas(cubetaToDto.listaCubetaToDto(p.getList_Ped_Cub()));
-			}
-
+		
 			if (p.getList_Ped_Moto().size() > 0) {
 				dto.setMisMotos(motoToDto.listaMotoToDto(p.getList_Ped_Moto()));
 			}

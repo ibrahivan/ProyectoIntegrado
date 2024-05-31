@@ -11,6 +11,7 @@ public enum EstadoPedido {
         this.displayName = displayName;
     }
 
+    
     @Override
     public String toString() {
         return this.displayName;

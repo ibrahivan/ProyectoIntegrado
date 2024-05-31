@@ -58,13 +58,40 @@ function confirmar() {
 }
 
 function confirmarEliminar(event) {
-	const idUsuario = event.currentTarget.getAttribute("data-id");
-	confirmar().then(function(confirmado) {
-		if (confirmado) {
-			window.location.href = 'http://localhost:8080/privada/eliminar/' + idUsuario;
+	const dataUsuario = event.currentTarget.getAttribute("data-usuario");
+    const usuarioProps = dataUsuario.split('|');
+    const idUsuario = usuarioProps[0];
+    const emailUsuario = usuarioProps[1].trim();
+
+	Swal.fire({
+		title: "¡Esta acción es irreversible!",
+		text: "Si está seguro de que desea eliminar este usuario",
+		input: "text",
+		inputLabel: `Introduce '${emailUsuario}' para confirmar la acción`,
+		inputPlaceholder: "Introduce aquí",
+		showCancelButton: true,
+		confirmButtonText: "Eliminar",
+		cancelButtonText: "Cancelar",
+		preConfirm: (inputValue) => {
+			if (inputValue.trim().toLowerCase() !== emailUsuario.toLowerCase()) {
+				Swal.showValidationMessage('La palabra introducida no es correcta');
+			}
+			return inputValue;
+		}
+	}).then((result) => {
+		if (result.isConfirmed) {
+			const inputValue = result.value;
+			if (inputValue.trim().toLowerCase() === emailUsuario.toLowerCase()) {
+				window.location.href = 'http://localhost:8080/privada/eliminar/' + idUsuario;
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: "La palabra introducida no es correcta"
+				});
+			}
 		}
 	});
-
 }
 
 function confirmarEliminarTienda(event) {
@@ -77,27 +104,113 @@ function confirmarEliminarTienda(event) {
 }
 
 function confirmarEliminarMoto(event) {
-	const idMoto = event.currentTarget.getAttribute("data-id");
-	confirmar().then(function(confirmado) {
-		if (confirmado) {
-			window.location.href = 'http://localhost:8080/privada/eliminar-moto/' + idMoto;
+	const dataMoto = event.currentTarget.getAttribute("data-moto");
+    const motoProps = dataMoto.split('|');
+    const idMoto = motoProps[0];
+    const nombreMoto = motoProps[1].trim();
+
+	Swal.fire({
+		title: "¡Esta acción es irreversible!",
+		text: "Si está seguro de que desea eliminar esta moto",
+		input: "text",
+		inputLabel: `Introduce '${nombreMoto}' para confirmar la acción`,
+		inputPlaceholder: "Introduce aquí",
+		showCancelButton: true,
+		confirmButtonText: "Eliminar",
+		cancelButtonText: "Cancelar",
+		preConfirm: (inputValue) => {
+			if (inputValue.trim().toLowerCase() !== nombreMoto.toLowerCase()) {
+				Swal.showValidationMessage('La palabra introducida no es correcta');
+			}
+			return inputValue;
 		}
-	});
-}
-function confirmarEliminarCubeta(event) {
-	const idCubeta = event.currentTarget.getAttribute("data-id");
-	confirmar().then(function(confirmado) {
-		if (confirmado) {
-			window.location.href = 'http://localhost:8080/privada/eliminar-cubeta/' + idCubeta;
+	}).then((result) => {
+		if (result.isConfirmed) {
+			const inputValue = result.value;
+			if (inputValue.trim().toLowerCase() === nombreMoto.toLowerCase()) {
+				window.location.href = 'http://localhost:8080/privada/eliminar-moto/' + idMoto;
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: "La palabra introducida no es correcta"
+				});
+			}
 		}
 	});
 }
 
+
 function confirmarEliminarProducto(event) {
-	const idCatalogoProducto = event.currentTarget.getAttribute("data-id");
-	confirmar().then(function(confirmado) {
-		if (confirmado) {
-			window.location.href = 'http://localhost:8080/privada/eliminar-producto/' + idCatalogoProducto;
+	const dataProducto = event.currentTarget.getAttribute("data-producto");
+    const productoProps = dataProducto.split('|');
+    const idProducto = productoProps[0];
+    const nombreProducto = productoProps[1].trim();
+
+	Swal.fire({
+		title: "¡Esta acción es irreversible!",
+		text: "Si está seguro de que desea eliminar este producto",
+		input: "text",
+		inputLabel: `Introduce '${nombreProducto}' para confirmar la acción`,
+		inputPlaceholder: "Introduce aquí",
+		showCancelButton: true,
+		confirmButtonText: "Eliminar",
+		cancelButtonText: "Cancelar",
+		preConfirm: (inputValue) => {
+			if (inputValue.trim().toLowerCase() !== nombreProducto.toLowerCase()) {
+				Swal.showValidationMessage('La palabra introducida no es correcta');
+			}
+			return inputValue;
+		}
+	}).then((result) => {
+		if (result.isConfirmed) {
+			const inputValue = result.value;
+			if (inputValue.trim().toLowerCase() === nombreProducto.toLowerCase()) {
+				window.location.href = 'http://localhost:8080/privada/eliminar-producto/' + idProducto;
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: "La palabra introducida no es correcta"
+				});
+			}
+		}
+	});
+}
+
+function confirmarEliminarTienda(event) {
+	const dataTienda = event.currentTarget.getAttribute("data-tienda");
+    const tiendaProps = dataTienda.split('|');
+    const idTienda = tiendaProps[0];
+    const nombreTienda = tiendaProps[1].trim();
+
+	Swal.fire({
+		title: "¡Esta acción es irreversible!",
+		text: "Si está seguro de que desea eliminar esta tienda",
+		input: "text",
+		inputLabel: `Introduce '${nombreTienda}' para confirmar la acción`,
+		inputPlaceholder: "Introduce aquí",
+		showCancelButton: true,
+		confirmButtonText: "Eliminar",
+		cancelButtonText: "Cancelar",
+		preConfirm: (inputValue) => {
+			if (inputValue.trim().toLowerCase() !== nombreTienda.toLowerCase()) {
+				Swal.showValidationMessage('La palabra introducida no es correcta');
+			}
+			return inputValue;
+		}
+	}).then((result) => {
+		if (result.isConfirmed) {
+			const inputValue = result.value;
+			if (inputValue.trim().toLowerCase() === nombreTienda.toLowerCase()) {
+				window.location.href = 'http://localhost:8080/privada/eliminar-tienda/' + idTienda;
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: "La palabra introducida no es correcta"
+				});
+			}
 		}
 	});
 }
@@ -147,5 +260,31 @@ function confirmarEliminarProducto(event) {
 			});
 		});
 	}
+
+function generarPDF() {
+    const element = document.querySelector('.card-body');
+    const options = {
+        margin: 10,
+        filename: 'Mis_Pedidos.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(options).save().then(() => {
+        console.log('PDF generado correctamente');
+    }).catch((error) => {
+        console.error('Error al generar el PDF:', error);
+    });
+    }
+function cambiarPlaceholder() {
+	let valorSelect = document.querySelector('select[name="filtro"]').value;
+	let input = document.getElementById('busquedaUser');
+
+	if (valorSelect === 'email_usuario') {
+		input.placeholder = "Buscar por el email del usuario";
+	} else if (valorSelect === 'nombre_usuario') {
+		input.placeholder = "Buscar por nombre";
+	}
+}
 
 
