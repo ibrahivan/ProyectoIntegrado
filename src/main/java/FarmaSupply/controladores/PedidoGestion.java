@@ -82,7 +82,7 @@ public class PedidoGestion {
     public String entregarPedidos(@RequestParam("idPedido") List<Long> listaId, Model model) {
         try {
         	
-        	pedidoServicio.
+        	
             for (Long pedidoId : selectedPedidos) {
                 Pedido pedido = pedidoService.findById(pedidoId);
                 if (pedido != null && pedido.getEstadoPedido().equals("En camino")) {

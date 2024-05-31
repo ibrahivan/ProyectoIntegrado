@@ -7,9 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import FarmaSupply.daos.Moto;
 import FarmaSupply.daos.Pedido;
 import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.PedidoDTO;
+import FarmaSupply.repositorios.MotoRepositorio;
 import FarmaSupply.repositorios.TiendaRepositorio;
 
 /**
@@ -28,26 +30,27 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 
 	@Autowired
 	private TiendaRepositorio tiendaRepositorio;
+	@Autowired
+	private MotoRepositorio motoRepositorio;
 	@Override
 	public Pedido pedidoToDao(PedidoDTO pedidoDTO) {
 
 		try {
 			Optional<Tienda> tiendaPropietaria = tiendaRepositorio.findById(pedidoDTO.getIdPedido_Tie());
+			Optional<Moto> motoPropietaria = motoRepositorio.findById(pedidoDTO.getIdPedido_Moto());
 			Pedido pedidoDao = new Pedido();
 			pedidoDao.setIdPedido(pedidoDTO.getIdPedido());
 			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
 			pedidoDao.setEstadoPedido(pedidoDTO.getEstadoPedido());
 			pedidoDao.setIdPedido_Tie(tiendaPropietaria.get());
+			pedidoDao.setIdPed_Moto(motoPropietaria.get());
 
 			if (pedidoDTO.getMisDetallesPedidos().size() > 0) {
 				pedidoDao.setList_Ped_Det((detallePedidoToDao.listdetallePedidoToDao(pedidoDTO.getMisDetallesPedidos())));
 
 			}
 
-			if (pedidoDTO.getMisMotos().size() > 0) {
-				pedidoDao.setList_Ped_Moto((motoToDao.listaMotoToDao(pedidoDTO.getMisMotos())));
-			}
-
+		
 			return pedidoDao;
 
 		} catch (Exception e) {

@@ -17,7 +17,7 @@ public class PedidoDTO {
 	private double precioPedido;
 	private long idPedido_Tie;
 	private List<DetallePedidoDTO> misDetallesPedidos = new ArrayList<>();
-	private List<MotoDTO> misMotos = new ArrayList<>();
+	private long idPedido_Moto ;
 	private EstadoPedido estadoPedido;
 
 	// Constructores
@@ -27,15 +27,17 @@ public class PedidoDTO {
 	}
 
 
+
 	public PedidoDTO(double precioPedido, long idPedido_Tie, List<DetallePedidoDTO> misDetallesPedidos,
-			List<MotoDTO> misMotos, EstadoPedido estadoPedido) {
+			long idPedido_Moto, EstadoPedido estadoPedido) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.misDetallesPedidos = misDetallesPedidos;
-		this.misMotos = misMotos;
+		this.idPedido_Moto = idPedido_Moto;
 		this.estadoPedido = estadoPedido;
 	}
+
 
 
 	// getters y setters
@@ -72,13 +74,18 @@ public class PedidoDTO {
 		this.misDetallesPedidos = misDetallesPedidos;
 	}
 
-	public List<MotoDTO> getMisMotos() {
-		return misMotos;
+
+	public long getIdPedido_Moto() {
+		return idPedido_Moto;
 	}
 
-	public void setMisMotos(List<MotoDTO> misMotos) {
-		this.misMotos = misMotos;
+
+
+	public void setIdPedido_Moto(long idPedido_Moto) {
+		this.idPedido_Moto = idPedido_Moto;
 	}
+
+
 
 	public EstadoPedido getEstadoPedido() {
 		return estadoPedido;

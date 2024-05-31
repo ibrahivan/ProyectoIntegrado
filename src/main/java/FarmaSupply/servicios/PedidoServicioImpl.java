@@ -159,18 +159,17 @@ public class PedidoServicioImpl implements IPedidoServicio {
 		Moto motoDao = new Moto();
 		PedidoDTO pedidoDTO = new PedidoDTO();
 		Pedido pedidoDao = new Pedido();
-		List<MotoDTO> listaMotoDTO = new ArrayList<MotoDTO>();
+		
 		
 		//Transformo los optional a dtos
 		motoDTO = motoToDto.motoToDto(motoRe.get());
 		pedidoDTO = pedidoToDto.pedidoToDto(pedidoRe.get());
 		
-		//añado la motoDTo a una lista
-		listaMotoDTO.add(motoDTO);
+		
 		//añado la lista en la de pedidos
-		pedidoDTO.setMisMotos(listaMotoDTO);
+		pedidoDTO.setIdPedido_Moto(motoRe.get().getIdMoto());
 		//asigno el id de pedido en la moto
-		motoDTO.setIdMoto_Ped(pedidoRe.get());
+		motoDTO.setIdMoto_Ped(pedidoRe.get().getIdPedido());
 		//cambio los estados
 		motoDTO.setEstadoMoto(EstadoMoto.OCUPADA);
 		pedidoDTO.setEstadoPedido(EstadoPedido.CAMINO);
@@ -219,7 +218,7 @@ public class PedidoServicioImpl implements IPedidoServicio {
                 //actualizo bd
                 pedidoRepositorio.save(pedidoDao);
                 //Hago lo mismo con la moto
-                motoDTO = motoServicio.buscarPorId(pedidoActual.get().getList_Ped_Moto().get(idPedido).getIdMoto());
+
                 if (moto != null) {
                     moto.setEstado("Libre");
                     motoService.save(moto);

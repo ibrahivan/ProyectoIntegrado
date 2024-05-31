@@ -21,8 +21,7 @@ public class PedidoToDtoImpl implements IPedidoToDto {
 	@Autowired
 	private IDetallePedidoToDto detallePedidoToDto;
 
-	@Autowired
-	private IMotoToDto motoToDto;
+
 
 
 	@Override
@@ -35,14 +34,12 @@ public class PedidoToDtoImpl implements IPedidoToDto {
 			dto.setPrecioPedido(p.getPrecioPedido());
 			dto.setEstadoPedido(p.getEstadoPedido());
 			dto.setIdPedido_Tie(p.getIdPedido_Tie().getIdTienda());
+			dto.setIdPedido_Moto(p.getIdPed_Moto().getIdMoto());
 			if (p.getList_Ped_Det().size() > 0) {
 				dto.setMisDetallesPedidos(detallePedidoToDto.listaDetallePedidoToDto(p.getList_Ped_Det()));
 			}
 
 		
-			if (p.getList_Ped_Moto().size() > 0) {
-				dto.setMisMotos(motoToDto.listaMotoToDto(p.getList_Ped_Moto()));
-			}
 
 			return dto;
 		} catch (Exception e) {

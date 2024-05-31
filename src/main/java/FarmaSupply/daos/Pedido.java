@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -38,8 +39,9 @@ public class Pedido {
 	@JoinColumn(name = "id_tienda")
 	private Tienda idPedido_Tie;
 
-	@OneToMany(mappedBy = "idMoto_Ped")
-	private List<Moto> list_Ped_Moto = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "id_moto")
+	private Moto idPed_Moto;
 
 
 
@@ -53,17 +55,22 @@ public class Pedido {
 
 
 
-	// getters y setter
-
-	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, Tienda idPedido_Tie, List<Moto> list_Ped_Moto,
-		 EstadoPedido estadoPedido) {
+	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, Tienda idPedido_Tie, Moto idPed_Moto,
+			EstadoPedido estadoPedido) {
 		super();
 		this.list_Ped_Det = list_Ped_Det;
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
-		this.list_Ped_Moto = list_Ped_Moto;
+		this.idPed_Moto = idPed_Moto;
 		this.estadoPedido = estadoPedido;
 	}
+
+
+
+
+	// getters y setter
+
+	
 
 
 
@@ -99,13 +106,19 @@ public class Pedido {
 		this.precioPedido = precioPedido;
 	}
 
-	public List<Moto> getList_Ped_Moto() {
-		return list_Ped_Moto;
+
+
+	public Moto getIdPed_Moto() {
+		return idPed_Moto;
 	}
 
-	public void setList_Ped_Moto(List<Moto> list_Ped_Moto) {
-		this.list_Ped_Moto = list_Ped_Moto;
+
+
+
+	public void setIdPed_Moto(Moto idPed_Moto) {
+		this.idPed_Moto = idPed_Moto;
 	}
+
 
 
 

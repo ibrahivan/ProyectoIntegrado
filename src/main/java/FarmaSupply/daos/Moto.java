@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -28,7 +28,7 @@ public class Moto {
 	@Column(name = "matricula_moto", nullable = false)
 	private String matriculaMoto;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "id_pedido")
 	private Pedido idMoto_Ped;
 	

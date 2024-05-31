@@ -12,7 +12,7 @@ public class MotoDTO {
 	private long idMoto;
 	private String matriculaMoto;
 	private String marcaMoto;
-	private Pedido idMoto_Ped;
+	private long idMoto_Ped;
 	private EstadoMoto estadoMoto;
 
 	// Constructores
@@ -26,7 +26,7 @@ public class MotoDTO {
 
 
 
-	public MotoDTO(String matriculaMoto, String marcaMoto, Pedido idMoto_Ped, EstadoMoto estadoMoto) {
+	public MotoDTO(String matriculaMoto, String marcaMoto, long idMoto_Ped, EstadoMoto estadoMoto) {
 		super();
 		this.matriculaMoto = matriculaMoto;
 		this.marcaMoto = marcaMoto;
@@ -59,13 +59,13 @@ public class MotoDTO {
 
 
 
-	public Pedido getIdMoto_Ped() {
+	public long getIdMoto_Ped() {
 		return idMoto_Ped;
 	}
 
 
 
-	public void setIdMoto_Ped(Pedido idMoto_Ped) {
+	public void setIdMoto_Ped(long idMoto_Ped) {
 		this.idMoto_Ped = idMoto_Ped;
 	}
 
