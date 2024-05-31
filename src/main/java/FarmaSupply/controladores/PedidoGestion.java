@@ -77,4 +77,29 @@ public class PedidoGestion {
 			return "home";
 		}
 	}
+	
+	@PostMapping("/entregarPedidos")
+    public String entregarPedidos(@RequestParam("idPedido") List<Long> listaId, Model model) {
+        try {
+        	
+        	pedidoServicio.
+            for (Long pedidoId : selectedPedidos) {
+                Pedido pedido = pedidoService.findById(pedidoId);
+                if (pedido != null && pedido.getEstadoPedido().equals("En camino")) {
+                    pedido.setEstadoPedido("Entregado");
+                    pedidoService.save(pedido);
+
+                    Moto moto = motoService.findByPedido(pedido);
+                    if (moto != null) {
+                        moto.setEstado("Libre");
+                        motoService.save(moto);
+                    }
+                }
+            }
+            model.addAttribute("successMessage", "Pedidos marcados como entregados.");
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Ocurrió un error en el servidor.");
+        }
+        return "redirect:/privada/listadoPedidos";
+    }
 }

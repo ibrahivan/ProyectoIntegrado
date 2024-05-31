@@ -8,13 +8,17 @@ import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.EstadoMoto;
 import FarmaSupply.daos.Moto;
+import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.MotoDTO;
 import FarmaSupply.repositorios.MotoRepositorio;
+import FarmaSupply.repositorios.PedidoRepositorio;
 @Service
 public class MotoServicioImpl implements IMotoServicio {
 
 	@Autowired
 	private MotoRepositorio repositorio;
+	@Autowired
+	private PedidoRepositorio pedidoRepositorio;
 
 	@Autowired
 	private IMotoToDao toDao;
@@ -58,6 +62,21 @@ public class MotoServicioImpl implements IMotoServicio {
 			Moto moto = repositorio.findById(id).orElse(null);
 			if (moto != null) {
 				return toDto.motoToDto(moto);
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println(
+					"[Error MotoServicioImpl - buscarPorId()] Al buscar la moto por su id " + iae.getMessage());
+		}
+		return null;
+	}
+	
+	@Override
+	public MotoDTO buscarMotoPorPedido(long id) {
+		// TODO Auto-generated method stub
+		try {
+			Pedido pedido = pedidoRepositorio.findById(id).orElse(null);
+			if (pedido != null) {
+				return toDto.motoToDto(pedido.getList_Ped_Moto());
 			}
 		} catch (IllegalArgumentException iae) {
 			System.out.println(

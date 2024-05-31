@@ -4,6 +4,7 @@ import java.util.List;
 
 import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.DetallePedidoDTO;
+import FarmaSupply.dtos.PedidoDTO;
 import FarmaSupply.dtos.TiendaDTO;
 
 /**
@@ -30,5 +31,17 @@ public interface IPedidoServicio {
 	 *  Asigna el pedido seleccionado a la moto seleccionada
 	 */
 	 public void asignarPedidoAMoto(Long idPedido, Long idMoto);
-
+	 
+	 
+	 /**
+	 *  Confirma la entrega de pedidos
+	 */
+	 public void confirmarEntrega(List<Long> idPedido);
+	 /**
+		 * Busca a un pedido por su identificador asignado en la bbdd
+		 * 
+		 * @param id del pedidoDTO a buscar
+		 * @return El pedidoDTO buscado
+		 */
+		public PedidoDTO buscarPorId(long id);
 }

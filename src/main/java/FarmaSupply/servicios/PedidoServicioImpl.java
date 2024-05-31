@@ -46,6 +46,8 @@ public class PedidoServicioImpl implements IPedidoServicio {
    @Autowired
    private IMotoToDto motoToDto;
    @Autowired
+   private IMotoServicio motoServicio;
+   @Autowired
    private IPedidoToDao pedidoToDao;
    @Autowired
    private IMotoToDao motoToDao;
@@ -183,6 +185,49 @@ public class PedidoServicioImpl implements IPedidoServicio {
 		
 		
 	}
+	@Override
+	public PedidoDTO buscarPorId(long id) {
+		// TODO Auto-generated method stub
+		try {
+			Pedido pedido = pedidoRepositorio.findById(id).orElse(null);
+			if (pedido != null) {
+				return pedidoToDto.pedidoToDto(pedido);
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println(
+					"[Error PedidoServicioImpl - buscarPorId()] Al buscar el pedido por su id " + iae.getMessage());
+		}
+		return null;
+	}
+	@Override
+	public void confirmarEntrega(List<Long> ListIdPedido) {
+		// TODO Auto-generated method stub
+		PedidoDTO pedidoDTO =  new PedidoDTO();
+		Pedido pedidoDao = new Pedido();
+	    Moto motoDao = new Moto();
+	    MotoDTO motoDTO = new MotoDTO();
+		for (Long idPedido : ListIdPedido) {
+            pedidoDTO = buscarPorId(idPedido);
+            //Me servira para la asignacion moto-pedido
+            Optional<Pedido> pedidoActual = pedidoRepositorio.findById(idPedido);
+            if (pedidoDTO != null && pedidoDTO.getEstadoPedido().equals(EstadoPedido.CAMINO))
+            {
+            	//asigno el nuevo estado al pedido
+                pedidoDTO.setEstadoPedido(EstadoPedido.ENTREGADO);
+                //lo paso a dao
+                pedidoDao = pedidoToDao.pedidoToDao(pedidoDTO);
+                //actualizo bd
+                pedidoRepositorio.save(pedidoDao);
+                //Hago lo mismo con la moto
+                motoDTO = motoServicio.buscarPorId(pedidoActual.get().getList_Ped_Moto().get(idPedido).getIdMoto());
+                if (moto != null) {
+                    moto.setEstado("Libre");
+                    motoService.save(moto);
+                }
+            }
+        }
+	}
+	
       
   }
 
