@@ -2,6 +2,7 @@ package FarmaSupply.servicios;
 
 import java.util.List;
 
+import FarmaSupply.daos.Moto;
 import FarmaSupply.dtos.MotoDTO;
 
 /**
@@ -39,4 +40,18 @@ public interface IMotoServicio {
 	 * @return la lista de todos las motos DTOS
 	 */
 	public List<MotoDTO> obtenerTodas();
+	/**
+	 * Obtiene la lista de todos las motos que estan libres
+	 * 
+	 * @return la lista de todos las motos DTOS
+	 */
+
+	public List<Moto> obtenerMotosLibres();
+	
+	/**
+	 * Obtiene la moto segun el pedido
+	 * 
+	 * @return la motoDTO
+	 */
+	public MotoDTO buscarMotoPorPedido(long id);
 }

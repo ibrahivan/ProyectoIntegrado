@@ -2,12 +2,15 @@ package FarmaSupply.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import FarmaSupply.daos.Pedido;
+import FarmaSupply.daos.Tienda;
 import FarmaSupply.dtos.PedidoDTO;
+import FarmaSupply.repositorios.TiendaRepositorio;
 
 /**
  * Servicio que implementa los metodos de la interface {@link IUPedidoToDao} y
@@ -20,32 +23,28 @@ public class PedidoToDaoImpl implements IPedidoToDao {
 	@Autowired
 	private IDetallePedidoToDao detallePedidoToDao;
 
+
 	@Autowired
-	private IMotoToDao motoToDao;
-	@Autowired
-	private ICubetaToDao cubetaToDao;
+	private TiendaRepositorio tiendaRepositorio;
+
 	@Override
 	public Pedido pedidoToDao(PedidoDTO pedidoDTO) {
 
 		try {
+			Optional<Tienda> tiendaPropietaria = tiendaRepositorio.findById(pedidoDTO.getIdPedido_Tie());
+
 			Pedido pedidoDao = new Pedido();
 			pedidoDao.setIdPedido(pedidoDTO.getIdPedido());
 			pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
-			pedidoDao.setEstado_pedido(pedidoDTO.getEstadoPedido());
-
+			pedidoDao.setEstadoPedido(pedidoDTO.getEstadoPedido());
+			pedidoDao.setIdPedido_Tie(tiendaPropietaria.get());
+			pedidoDao.setIdentificadorPedido(pedidoDTO.getIdentificadorPedido());
 			if (pedidoDTO.getMisDetallesPedidos().size() > 0) {
 				pedidoDao.setList_Ped_Det((detallePedidoToDao.listdetallePedidoToDao(pedidoDTO.getMisDetallesPedidos())));
 
 			}
 
-			if (pedidoDTO.getMisCubetas().size() > 0) {
-				pedidoDao.setList_Ped_Cub((cubetaToDao.listaCubetaToDao(pedidoDTO.getMisCubetas())));
-			}
-
-			if (pedidoDTO.getMisMotos().size() > 0) {
-				pedidoDao.setList_Ped_Moto((motoToDao.listaMotoToDao(pedidoDTO.getMisMotos())));
-			}
-
+		
 			return pedidoDao;
 
 		} catch (Exception e) {

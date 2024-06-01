@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="../static/css/style.css"
 	th:href="@{/css/style.css}">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <!-- script ================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -41,7 +42,7 @@
 				class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
 
 				<div class="col-md-3 brand-logo">
-					<a th:href="@{/}"
+					<a 
 						class="d-inline-flex link-body-emphasis text-decoration-none">
 						<h2>FarmaSupply</h2>
 					</a>
@@ -49,7 +50,7 @@
 				<div class="offcanvas-body ">
 					<ul class="navbar-nav  flex-grow-1">
 						<li class="btn btn-outline-dark mx-2 btn-volver"><a
-							th:href="@{/auth/registrar}">Volver</a></li>
+							th:href="@{/auth/login}">Volver</a></li>
 
 					</ul>
 				</div>
@@ -67,7 +68,7 @@
 				</div>
 				<div class="col-lg-6 py-md-5 my-md-5">
 					<p class="titulo">Restablecer contraseña</p>
-					<form th:action="@{/auth/recuperar}" th:object="${usuarioDTO}"
+					<form th:action="@{/auth/recuperar}" th:object="${usuarioDTO}" onsubmit="return validarFormularioRecuperar();"
 						method="post" class="form-group flex-wrap p-3">
 						<input type="hidden" th:field="*{token}" />
 						<div class="form-input col-lg-12 my-4">
@@ -76,6 +77,8 @@
 								contraseña</label> <input type="password" id="claveUsuario"
 								name="claveUsuario" class="form-control ps-3" required
 								th:field="*{password}" oninput="revisarContraseña()">
+								<span id="errorClaveUsuario" class="error"></span>
+								
 						</div>
 
 						<div class="form-input col-lg-12 my-4">
@@ -83,14 +86,16 @@
 								class="form-label fs-6 text-uppercase fw-bold text-black">Confirmar
 								contraseña</label> <input type="password" th:field="*{password2}"
 								id="confirmarClaveUsuario" name="confirmarClaveUsuario"
-								class="form-control ps-3" required oninput="revisarContraseña()">
+								class="form-control ps-3" required oninput="revisarConfirmarContraseña()">
+								<span id="errorConfirmarClaveUsuario" class="error"></span>
+								
 						</div>
 
 						<div class="d-grid my-3">
 							<button
 								class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6"
 								type="submit" id="btnRegistro">Recuperar</button>
-							<div class="mensajeContrasenya" id="mensajeContrasenya"></div>
+							
 						</div>
 					</form>
 
@@ -107,6 +112,63 @@
 							"Token no válido o usuario no encontrado", 'error');
 				}
 			</script>
+			<footer class="text-center text-lg-start" style="background-color: #ebfdff; padding: 1rem;">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">FarmaSupply</h5>
+                <p>
+                    Su proveedor confiable de suministros farmacéuticos.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Sobre Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Síguenos</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 FarmaSupply. Todos los derechos reservados.
+    </div>
+</footer>
 	</section>
 </body>
 

@@ -60,7 +60,7 @@ public class TiendaServicioImpl implements ITiendaServicio {
 			// Si llega a esta línea es que no existe la tienda con el nombre y direccion
 			// que se quiere
 			// registrar
-
+			
 			Tienda tiendaDao = toDao.tiendaToDao(tiendaDTO);
 			if (usuarioPropietario.isPresent()) {
 				tiendaDao.setIdTienda_Usu(usuarioPropietario.get());

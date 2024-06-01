@@ -3,6 +3,7 @@ package FarmaSupply.controladores;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import FarmaSupply.dtos.CatalogoProductoDTO;
+import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.servicios.ICatalogoProductoServicio;
+import FarmaSupply.servicios.IUsuarioServicio;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Clase que ejerce de controlador de la vista de registroProducto para
@@ -22,7 +26,8 @@ import FarmaSupply.servicios.ICatalogoProductoServicio;
 public class CatalogoProductoRegistro {
 	@Autowired
 	private ICatalogoProductoServicio productoServicio;
-
+	@Autowired
+	private IUsuarioServicio usuarioServicio;
 	/**
 	 * Gestiona la solicitud HTTP GET para mostrar la página de registro de productos.
 	 * 
@@ -30,11 +35,21 @@ public class CatalogoProductoRegistro {
 	 * @return La vista de registroProducto (registroProducto.html).
 	 */
 	@GetMapping("/registrarProducto")
-	public String registrarProductoGet(Model model) {
+	public String registrarProductoGet(Model model, HttpServletRequest request, Authentication authentication) {
 		try {
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
+			if (request.isUserInRole("ROLE_USER")) {
+				model.addAttribute("noAdmin", "No tiene los permisos suficientes para acceder al recurso");
+				model.addAttribute("usuarios", usuarios);
+				model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
 
+				return "home";
+
+			}else {
 			CatalogoProductoDTO nuevoProducto = new CatalogoProductoDTO();
 			model.addAttribute("productoDTO", nuevoProducto);
+			}
 			return "registroProducto";
 
 		} catch (Exception e) {
@@ -55,10 +70,19 @@ public class CatalogoProductoRegistro {
 	 *         (registroProducto.html).
 	 */
 	@PostMapping("/registrarProducto")
-	public String registrarProductoPost(@ModelAttribute CatalogoProductoDTO productoDTO, Model model) {
+	public String registrarProductoPost(@ModelAttribute CatalogoProductoDTO productoDTO, Model model, HttpServletRequest request, Authentication authentication) {
 
 		try {
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
+			if (request.isUserInRole("ROLE_USER")) {
+				model.addAttribute("noAdmin", "No tiene los permisos suficientes para acceder al recurso");
+				model.addAttribute("usuarios", usuarios);
+				model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
 
+				return "home";
+
+			}else {
 			List<CatalogoProductoDTO> misProductos = productoServicio.obtenerTodas();
 			CatalogoProductoDTO nuevoProducto = productoServicio.registrarProducto(productoDTO);
 
@@ -70,7 +94,9 @@ public class CatalogoProductoRegistro {
 				model.addAttribute("mensajeRegistroExitoso", "Registro del nuevo producto OK");
 				model.addAttribute("misProductos", misProductos);
 				
-			} 
+			}
+			}
+			
 			return "listadoProductos";
 		} catch (
 

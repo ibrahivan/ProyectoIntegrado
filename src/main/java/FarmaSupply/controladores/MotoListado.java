@@ -1,17 +1,22 @@
 package FarmaSupply.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import FarmaSupply.daos.EstadoMoto;
 import FarmaSupply.dtos.MotoDTO;
-
+import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.servicios.IMotoServicio;
+import FarmaSupply.servicios.IUsuarioServicio;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Clase que ejerce de controlador de la vista de listadoMotos para gestionar
@@ -23,7 +28,8 @@ public class MotoListado {
 
 	@Autowired
 	private IMotoServicio motoServicio;
-
+	@Autowired
+	private IUsuarioServicio usuarioServicio;
 	/**
 	 * Gestiona la solicitud HTTP GET para la url /privada/listadoMotos y muestra la
 	 * página de administración motos
@@ -33,8 +39,18 @@ public class MotoListado {
 	 * @return La vista de listado de motos (listadoMotos.html)
 	 */
 	@GetMapping("/listadoMotos")
-	public String mostrarMisMotos(Model model) {
+	public String mostrarMisMotos(Model model, HttpServletRequest request, Authentication authentication) {
 		try {
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
+		if (request.isUserInRole("ROLE_USER")) {
+			model.addAttribute("noAdmin", "No tiene los permisos suficientes para acceder al recurso");
+			model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
+
+			model.addAttribute("usuarios", usuarios);
+			return "home";
+
+		}else {
 
 			List<MotoDTO> misMotos = motoServicio.obtenerTodas();
 			if (misMotos != null) {
@@ -43,6 +59,7 @@ public class MotoListado {
 			} else {
 				System.out.println("La lista de motos actual es nula.");
 			}
+		}
 
 			return "listadoMotos";
 		} catch (Exception e) {
@@ -63,17 +80,34 @@ public class MotoListado {
 	 * @return La vista de listadoMotos.html con el listado de motos actualizado
 	 */
 	@GetMapping("/eliminar-moto/{id}")
-	public String eliminarMoto(@PathVariable Long id, Model model) {
+	public String eliminarMoto(@PathVariable Long id, Model model, HttpServletRequest request, Authentication authentication) {
 		try {
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
+			if (request.isUserInRole("ROLE_USER")) {
+				model.addAttribute("noAdmin", "No tiene los permisos suficientes para acceder al recurso");
+				model.addAttribute("usuarios", usuarios);
+				model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
+
+				return "home";
+
+			}else {
 			MotoDTO moto = motoServicio.buscarPorId(id);
-			if (moto != null) {
+			List<MotoDTO> misMotos = new ArrayList<MotoDTO>();
+			if (moto != null && moto.getEstadoMoto() == EstadoMoto.LIBRE) {
 				motoServicio.eliminarMoto(id);
-				List<MotoDTO> misMotos = motoServicio.obtenerTodas();
+				misMotos = motoServicio.obtenerTodas();
 				model.addAttribute("misMotos", misMotos);
 				model.addAttribute("eliminacionCorrecta", "La moto se ha eliminado correctamente");
 				return "listadoMotos";
+			} else {
+				misMotos = motoServicio.obtenerTodas();
+				model.addAttribute("noPuedeEliminarMotoOcupada", "No puedes eliminar una moto que esta ocupada");
+				model.addAttribute("misMotos", misMotos);
 			}
-			return "listadoMotos";
+				return "listadoMotos";
+			}
+		
 
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al eliminar la moto");

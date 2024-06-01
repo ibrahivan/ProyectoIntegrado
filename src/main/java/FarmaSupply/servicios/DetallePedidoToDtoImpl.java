@@ -18,7 +18,9 @@ public class DetallePedidoToDtoImpl implements IDetallePedidoToDto{
 
 		dto.setIdDetallePedido(dP.getIdDetallePedido());
 		dto.setCantidadDetalle(dP.getCantidadDetalle());
-		dto.setPrecioDetalle(dP.getPrecioDetalle());	
+		dto.setPrecioDetalle(dP.getPrecioDetalle());
+		dto.setIdDet_Cat(dP.getIdDet_Cat().getIdCatalogoProducto());
+		dto.setIdDet_Ped(dP.getIdDet_Ped().getIdPedido());
 		return dto;
 	} catch (Exception e) {
 		System.out.println(

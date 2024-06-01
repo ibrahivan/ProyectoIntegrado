@@ -1,12 +1,14 @@
 package FarmaSupply.daos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -28,9 +30,10 @@ public class Moto {
 	@Column(name = "matricula_moto", nullable = false)
 	private String matriculaMoto;
 
-	@ManyToOne
-	@JoinColumn(name = "id_pedido")
-	private Pedido idMoto_Ped;
+	@OneToMany(mappedBy = "idPed_Moto")
+	private List<Pedido> list_Moto_ped = new ArrayList<>();
+	
+	private EstadoMoto estadoMoto;
 
 	// Constructores
 
@@ -38,14 +41,20 @@ public class Moto {
 		super();
 	}
 
-	public Moto(String marcaMoto, String matriculaMoto, Pedido idMoto_Ped) {
+
+	public Moto(String marcaMoto, String matriculaMoto, List<Pedido> list_Moto_ped, EstadoMoto estadoMoto) {
 		super();
 		this.marcaMoto = marcaMoto;
 		this.matriculaMoto = matriculaMoto;
-		this.idMoto_Ped = idMoto_Ped;
+		this.list_Moto_ped = list_Moto_ped;
+		this.estadoMoto = estadoMoto;
 	}
 
+
+
 	// getters y setters
+
+
 
 	public long getIdMoto() {
 		return idMoto;
@@ -63,13 +72,16 @@ public class Moto {
 		this.matriculaMoto = matriculaMoto;
 	}
 
-	public Pedido getIdMoto_Ped() {
-		return idMoto_Ped;
+
+	public List<Pedido> getList_Moto_ped() {
+		return list_Moto_ped;
 	}
 
-	public void setIdMoto_Ped(Pedido idMoto_Ped) {
-		this.idMoto_Ped = idMoto_Ped;
+
+	public void setList_Moto_ped(List<Pedido> list_Moto_ped) {
+		this.list_Moto_ped = list_Moto_ped;
 	}
+
 
 	public String getMarcaMoto() {
 		return marcaMoto;
@@ -77,6 +89,18 @@ public class Moto {
 
 	public void setMarcaMoto(String marcaMoto) {
 		this.marcaMoto = marcaMoto;
+	}
+
+
+
+	public EstadoMoto getEstadoMoto() {
+		return estadoMoto;
+	}
+
+
+
+	public void setEstadoMoto(EstadoMoto estadoMoto) {
+		this.estadoMoto = estadoMoto;
 	}
 
 }

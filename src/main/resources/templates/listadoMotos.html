@@ -22,12 +22,18 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../static/css/style.css"
 	th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
 <!-- script ================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script th:src="@{/script/script1.js}"></script>
-
+<style>
+.tableCustom {
+	text-align: center;
+	vertical-align: middle;
+}
+</style>
 </head>
 
 <body>
@@ -41,7 +47,7 @@
 				class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
 
 				<div class="col-md-3 brand-logo">
-					<a th:href="@{/}"
+					<a 
 						class="d-inline-flex link-body-emphasis text-decoration-none">
 						<h2>FarmaSupply</h2>
 					</a>
@@ -55,13 +61,13 @@
 			</div>
 		</nav>
 	</section>
-
+<br>
 	<!-- Hero Section Starts -->
 	<div class="container py-4 mt-5">
 		<div class="card bg-light">
 
 			<div sec:authorize="hasRole('ROLE_ADMIN')" class="card-header">
-				<h4>Listado de motos</h4>
+				<h2 class="text-center">Listado de motos</h2>
 			</div>
 			<div class="card-body">
 				<th:block th:if="${not #lists.isEmpty(misMotos)}">
@@ -81,15 +87,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="moto : ${misMotos}">
-								<td th:text="${moto.marcaMoto}"></td>
-								<td th:text="${moto.matriculaMoto}"></td>
+							<tr th:each="moto : ${misMotos}" >
+								<td th:text="${moto.marcaMoto}"class="tableCustom"></td>
+								<td th:text="${moto.matriculaMoto}" class="tableCustom"></td>
 
 
-								<td><a class="btn btn-danger" th:attr="data-id=${moto.idMoto}"
-									onclick="confirmarEliminarMoto(event)"> <i
-										class="bi bi-trash">Eliminar</i>
-								</a></td>
+								<td><a class="btn btn-danger btn-sm float-end" th:attr="data-moto=${moto.idMoto + '|' + moto.marcaMoto}" onclick="confirmarEliminarMoto(event)">
+    								 Eliminar</td>
 							</tr>
 						</tbody>
 					</table>
@@ -100,9 +104,66 @@
 			</div>
 		</div>
 	</div>
-
+		 <div style="height: 200px;"></div>
+	
+<footer class="text-center text-lg-start" style="background-color: #ebfdff; padding: 1rem;">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">FarmaSupply</h5>
+                <p>
+                    Su proveedor confiable de suministros farmacéuticos.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Sobre Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Síguenos</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 FarmaSupply. Todos los derechos reservados.
+    </div>
+</footer>
 </body>
-</html>
 
 
 <script th:if="${not #strings.isEmpty(eliminacionCorrecta)}">
@@ -114,8 +175,9 @@
 	mostrarNotificacion("¡Moto creada correctamente!",
 			"La moto ha sido registrada correctamente", 'success');
 </script>
+<script th:if="${not #strings.isEmpty(noPuedeEliminarMotoOcupada)}">
+	    mostrarNotificacion("¡No se puede eliminar la moto!","Dicho moto esta ocupada en un reparto.", 'info');
+	</script>
 
-
-</body>
 
 </html>

@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -33,20 +34,19 @@ public class Pedido {
 
 	@Column(name = "precio_pedido", nullable = false)
 	private double precioPedido;
-	
-	@Column(name = "estado_pedido")
-	private int estado_pedido;
 
 	@ManyToOne
 	@JoinColumn(name = "id_tienda")
 	private Tienda idPedido_Tie;
 
-	@OneToMany(mappedBy = "idMoto_Ped")
-	private List<Moto> list_Ped_Moto = new ArrayList<>();
+	@OneToOne
+	@JoinColumn(name = "id_moto")
+	private Moto idPed_Moto;
 
-	@OneToMany(mappedBy = "idCubeta_Ped")
-	private List<Cubeta> list_Ped_Cub = new ArrayList<>();
+	@Column(name = "identificador_pedido")
+	private String identificadorPedido;
 
+	private EstadoPedido estadoPedido;
 	// Constructores
 
 	public Pedido() {
@@ -54,23 +54,22 @@ public class Pedido {
 	}
 
 
-
-
-	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, int estado_pedido, Tienda idPedido_Tie,
-			List<Moto> list_Ped_Moto, List<Cubeta> list_Ped_Cub) {
+	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, Tienda idPedido_Tie, Moto idPed_Moto,
+			String identificadorPedido, EstadoPedido estadoPedido) {
 		super();
 		this.list_Ped_Det = list_Ped_Det;
 		this.precioPedido = precioPedido;
-		this.estado_pedido = estado_pedido;
 		this.idPedido_Tie = idPedido_Tie;
-		this.list_Ped_Moto = list_Ped_Moto;
-		this.list_Ped_Cub = list_Ped_Cub;
+		this.idPed_Moto = idPed_Moto;
+		this.identificadorPedido = identificadorPedido;
+		this.estadoPedido = estadoPedido;
 	}
 
 
 
-
 	// getters y setter
+
+	
 
 	public Pedido(Tienda idPedido_Tie) {
 		super();
@@ -103,29 +102,33 @@ public class Pedido {
 		this.precioPedido = precioPedido;
 	}
 
-	public List<Moto> getList_Ped_Moto() {
-		return list_Ped_Moto;
+
+
+	public Moto getIdPed_Moto() {
+		return idPed_Moto;
 	}
 
-	public void setList_Ped_Moto(List<Moto> list_Ped_Moto) {
-		this.list_Ped_Moto = list_Ped_Moto;
+
+
+
+	public void setIdPed_Moto(Moto idPed_Moto) {
+		this.idPed_Moto = idPed_Moto;
 	}
 
-	public List<Cubeta> getList_Ped_Cub() {
-		return list_Ped_Cub;
+
+
+
+	public EstadoPedido getEstadoPedido() {
+		return estadoPedido;
 	}
 
-	public void setList_Ped_Cub(List<Cubeta> list_Ped_Cub) {
-		this.list_Ped_Cub = list_Ped_Cub;
+
+
+
+	public void setEstadoPedido(EstadoPedido estadoPedido) {
+		this.estadoPedido = estadoPedido;
 	}
 
-	public int getEstado_pedido() {
-		return estado_pedido;
-	}
-
-	public void setEstado_pedido(int estado_pedido) {
-		this.estado_pedido = estado_pedido;
-	}
 
 
 
@@ -138,6 +141,23 @@ public class Pedido {
 
 	public void setList_Ped_Det(List<DetallePedido> list_Ped_Det) {
 		this.list_Ped_Det = list_Ped_Det;
+	}
+
+
+
+
+
+
+
+	public String getIdentificadorPedido() {
+		return identificadorPedido;
+	}
+
+
+
+
+	public void setIdentificadorPedido(String identificadorPedido) {
+		this.identificadorPedido = identificadorPedido;
 	}
 
 	

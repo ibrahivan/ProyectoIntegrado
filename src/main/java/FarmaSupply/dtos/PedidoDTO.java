@@ -3,6 +3,9 @@ package FarmaSupply.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
+import FarmaSupply.daos.EstadoPedido;
+
+
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
@@ -13,11 +16,10 @@ public class PedidoDTO {
 	private long idPedido;
 	private double precioPedido;
 	private long idPedido_Tie;
-	private int estadoPedido;
-	private Double cantidadPedido;
 	private List<DetallePedidoDTO> misDetallesPedidos = new ArrayList<>();
-	private List<MotoDTO> misMotos = new ArrayList<>();
-	private List<CubetaDTO> misCubetas = new ArrayList<>();
+	private Long idPedido_Moto ;
+	private EstadoPedido estadoPedido;
+	private String identificadorPedido;
 	// Constructores
 
 	public PedidoDTO() {
@@ -27,21 +29,16 @@ public class PedidoDTO {
 
 
 
-
-
-	public PedidoDTO(double precioPedido, long idPedido_Tie, int estadoPedido, Double cantidadPedido,
-			List<DetallePedidoDTO> misDetallesPedidos, List<MotoDTO> misMotos, List<CubetaDTO> misCubetas) {
+	public PedidoDTO(double precioPedido, long idPedido_Tie, List<DetallePedidoDTO> misDetallesPedidos,
+			Long idPedido_Moto, EstadoPedido estadoPedido, String identificadorPedido) {
 		super();
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
-		this.estadoPedido = estadoPedido;
-		this.cantidadPedido = cantidadPedido;
 		this.misDetallesPedidos = misDetallesPedidos;
-		this.misMotos = misMotos;
-		this.misCubetas = misCubetas;
+		this.idPedido_Moto = idPedido_Moto;
+		this.estadoPedido = estadoPedido;
+		this.identificadorPedido = identificadorPedido;
 	}
-
-
 
 
 
@@ -80,43 +77,42 @@ public class PedidoDTO {
 		this.misDetallesPedidos = misDetallesPedidos;
 	}
 
-	public List<MotoDTO> getMisMotos() {
-		return misMotos;
+
+	public Long getIdPedido_Moto() {
+		return idPedido_Moto;
 	}
 
-	public void setMisMotos(List<MotoDTO> misMotos) {
-		this.misMotos = misMotos;
+
+
+	public void setIdPedido_Moto(Long idPedido_Moto) {
+		this.idPedido_Moto = idPedido_Moto;
 	}
 
-	public List<CubetaDTO> getMisCubetas() {
-		return misCubetas;
-	}
 
-	public void setMisCubetas(List<CubetaDTO> misCubetas) {
-		this.misCubetas = misCubetas;
-	}
 
-	public int getEstadoPedido() {
+	public EstadoPedido getEstadoPedido() {
 		return estadoPedido;
 	}
 
-	public void setEstadoPedido(int estadoPedido) {
+
+	public void setEstadoPedido(EstadoPedido estadoPedido) {
 		this.estadoPedido = estadoPedido;
 	}
 
 
 
 
-	public Double getCantidadPedido() {
-		return cantidadPedido;
+	public String getIdentificadorPedido() {
+		return identificadorPedido;
 	}
 
 
 
 
-	public void setCantidadPedido(Double cantidadPedido) {
-		this.cantidadPedido = cantidadPedido;
+	public void setIdentificadorPedido(String identificadorPedido) {
+		this.identificadorPedido = identificadorPedido;
 	}
+
 
 
 

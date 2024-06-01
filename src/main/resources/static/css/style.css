@@ -19,6 +19,7 @@ body {
 	font-size: 16px;
 	line-height: 36px;
 	color: var(--light-text-color);
+	background-color: var(--accent-color);
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -345,3 +346,21 @@ a.icon-link:hover:after {
     color: #192255; /* Cambiando el color del texto a un tono más oscuro */
     margin-bottom: 20px; /* Agregando un margen inferior para separar el elemento */
 }
+footer h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+footer a:hover {
+    color: #0056b3; /* Optional: Change link color on hover */
+}
+
+footer i {
+    margin-right: 8px;
+}
+

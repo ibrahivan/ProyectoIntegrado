@@ -1,18 +1,24 @@
 package FarmaSupply.servicios;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import FarmaSupply.daos.EstadoMoto;
 import FarmaSupply.daos.Moto;
+import FarmaSupply.daos.Pedido;
 import FarmaSupply.dtos.MotoDTO;
 import FarmaSupply.repositorios.MotoRepositorio;
+import FarmaSupply.repositorios.PedidoRepositorio;
 @Service
 public class MotoServicioImpl implements IMotoServicio {
 
 	@Autowired
 	private MotoRepositorio repositorio;
+	@Autowired
+	private PedidoRepositorio pedidoRepositorio;
 
 	@Autowired
 	private IMotoToDao toDao;
@@ -24,17 +30,25 @@ public class MotoServicioImpl implements IMotoServicio {
 	public MotoDTO registrarMoto(MotoDTO motoDTO) {
 
 		// TODO Auto-generated method stub
-		// Comprueba si ya existe una moto con la matricula que quiere registrar
 		try {
-			Moto motoDaoMatricula = repositorio.findByMatriculaMoto(motoDTO.getMatriculaMoto());
+			
+			// Comprueba si ya existe una moto con la matricula que quiere registrar
 
+			Moto motoDaoMatricula = repositorio.findByMatriculaMoto(motoDTO.getMatriculaMoto());
+			
+			
+			
 			if (motoDaoMatricula != null) {
 				motoDTO.setMatriculaMoto(null); //seteamos la matricula para el mensaje de error
 				return null; // Si no es null es que ya está registrada
 			}
+			//seteo el estado a libre
+			motoDTO.setEstadoMoto(EstadoMoto.LIBRE);
+			//añado un id del pedido porque sino me peta
+		
 			Moto motoDao = toDao.motoToDao(motoDTO);
-			// Guardar la moto en la base de datos
 			
+			//
 			repositorio.save(motoDao);
 			motoDTO.setIdMoto(motoDao.getIdMoto());
 			return motoDTO;
@@ -61,6 +75,21 @@ public class MotoServicioImpl implements IMotoServicio {
 		}
 		return null;
 	}
+	
+	@Override
+	public MotoDTO buscarMotoPorPedido(long id) {
+		// TODO Auto-generated method stub
+		try {
+			Pedido pedido = pedidoRepositorio.findById(id).orElse(null);
+			if (pedido != null) {
+				return toDto.motoToDto(pedido.getIdPed_Moto());
+			}
+		} catch (IllegalArgumentException iae) {
+			System.out.println(
+					"[Error MotoServicioImpl - buscarMotoPorPedido()] Al buscar la moto en el pedido " + iae.getMessage());
+		}
+		return null;
+	}
 
 	@Override
 	public void eliminarMoto(long id) {
@@ -82,5 +111,13 @@ public class MotoServicioImpl implements IMotoServicio {
 		// TODO Auto-generated method stub
 		return toDto.listaMotoToDto(repositorio.findAll());
 	}
+	
+	@Override
+	public List<Moto> obtenerMotosLibres() {
+        return repositorio.findAll()
+                             .stream()
+                             .filter(moto -> moto.getEstadoMoto() == EstadoMoto.LIBRE)
+                             .collect(Collectors.toList());
+    }
 
 }

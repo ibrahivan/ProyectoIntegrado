@@ -20,6 +20,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../static/css/style.css"
 	th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <!-- script ================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -36,6 +37,25 @@
 				.querySelectorAll('input[name="productosSeleccionadosIds"]:checked');
 		btnRealizarPedido.disabled = checkboxes.length === 0;
 	}
+
+	function validarCantidad() {
+	    var checkboxes = document.querySelectorAll('input[name="productosSeleccionadosIds"]:checked');
+	    for (var i = 0; i < checkboxes.length; i++) {
+	        var id = checkboxes[i].value;
+	        var cantidadInput = document.getElementById('cantidad-' + id);
+	        if (cantidadInput.disabled === false) {
+	            var cantidad = parseInt(cantidadInput.value.trim());
+	            if (isNaN(cantidad) || cantidad <= 0) {
+	                Swal.fire("Error", "Debe seleccionar una cantidad válida y positiva para los productos seleccionados. No puedes dejar cantidades vacías o negativas.", "error");
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
+	}
+
+
+   
 </script>
 
 </head>
@@ -51,7 +71,7 @@
 				class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
 
 				<div class="col-md-3 brand-logo">
-					<a th:href="@{/}"
+					<a 
 						class="d-inline-flex link-body-emphasis text-decoration-none">
 						<h2>FarmaSupply</h2>
 					</a>
@@ -82,7 +102,7 @@
 					<form id="form4" class="form-group flex-wrap p-3"
 						th:action="@{/privada/realizarPedido/{idTienda}(idTienda=${idTienda})}"
 						enctype="multipart/form-data" method="post"
-						th:object="${detallePedidoDTO}">
+						th:object="${detallePedidoDTO}" onsubmit="return validarCantidad();">
 						<input type="hidden" id="idTienda" name="idTienda"
 							value="${tiendaDTO.id}">
 
@@ -106,7 +126,7 @@
 											<div class="form-group">
 												<input type="number" class="form-control"
 													th:id="'cantidad-' + ${producto.idCatalogoProducto}"
-													name="cantidades" placeholder="Cantidad" disabled>
+													name="cantidades" placeholder="Cantidad" disabled min="1">
 											</div>
 										</div>
 									</div>
@@ -125,7 +145,63 @@
 				</div>
 			</div>
 		</div>
-
+<footer class="text-center text-lg-start" style="background-color: #ebfdff; padding: 1rem;">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">FarmaSupply</h5>
+                <p>
+                    Su proveedor confiable de suministros farmacéuticos.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Sobre Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Síguenos</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 FarmaSupply. Todos los derechos reservados.
+    </div>
+</footer>
 	</section>
 </body>
 <script th:if="*{not #strings.isEmpty(error)}">

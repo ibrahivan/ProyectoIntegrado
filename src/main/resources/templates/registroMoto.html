@@ -8,7 +8,6 @@
 
 <title>Registrar moto</title>
 
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
@@ -22,12 +21,12 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../static/css/style.css"
 	th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 
 <!-- script ================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script th:src="@{/script/script1.js}"></script>
-
 </head>
 
 <body>
@@ -41,7 +40,7 @@
 				class="navigation container-fluid d-flex flex-wrap align-items-center my-2 pe-4 ps-5 ">
 
 				<div class="col-md-3 brand-logo">
-					<a th:href="@{/}"
+					<a 
 						class="d-inline-flex link-body-emphasis text-decoration-none">
 						<h2>FarmaSupply</h2>
 					</a>
@@ -70,14 +69,15 @@
 					<form id="form4" class="form-group flex-wrap p-3"
 						th:action="@{/privada/registrarMoto}"
 						enctype="multipart/form-data" method="post"
-						th:object="${motoDTO}">
+						th:object="${motoDTO}" onsubmit="return validarFormularioMoto();">
 						
 
 						<div class="form-input col-lg-12 my-4">
 							<label for="marcaMoto"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Marca</label>
 							<input type="text" id="marcaMoto" name="marcaMoto"
-								class="form-control ps-3" required th:value="${marcaMoto}">
+								class="form-control ps-3" required th:value="${marcaMoto}" oninput="validarMarca()" >
+							<div id="errorMarcaMoto" class="text-danger"></div>
 						</div>
 
 						<div class="form-input col-lg-12 my-4">
@@ -85,7 +85,8 @@
 								class="form-label fs-6 text-uppercase fw-bold text-black">Matricula
 								</label> <input type="text" id="matriculaMoto"
 								name="matriculaMoto" class="form-control ps-3" required
-								th:value="${matriculaMoto}">
+								th:value="${matriculaMoto}" oninput="validarMatricula()">
+							<div id="errorMatriculaMoto" class="text-danger"></div>
 						</div>
 						<div class="d-grid my-3">
 							<button
@@ -106,7 +107,64 @@
 		<script th:if="${not #strings.isEmpty(error)}">mostrarNotificacion("¡Error!",
 					"Ocurrio un error no esperado, intentelo de nuevo", 'error');
 		</script>
+		<footer class="text-center text-lg-start" style="background-color: #ebfdff; padding: 1rem;">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">FarmaSupply</h5>
+                <p>
+                    Su proveedor confiable de suministros farmacéuticos.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Enlaces útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Sobre Nosotros</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Síguenos</h5>
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    <li>
+                        <a href="#!" class="text-dark">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2024 FarmaSupply. Todos los derechos reservados.
+    </div>
+</footer>
 	</section>
 </body>
 
 </html>
+                        

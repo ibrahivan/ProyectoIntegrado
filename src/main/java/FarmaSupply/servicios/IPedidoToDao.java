@@ -3,7 +3,6 @@ package FarmaSupply.servicios;
 import java.util.List;
 
 import FarmaSupply.daos.Pedido;
-import FarmaSupply.dtos.DetallePedidoDTO;
 import FarmaSupply.dtos.PedidoDTO;
 
 /**

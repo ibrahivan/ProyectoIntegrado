@@ -133,8 +133,9 @@ public class Login {
 		try {
 			boolean cuentaConfirmada = usuarioServicio.estaLaCuentaConfirmada(authentication.getName());
 			System.out.println(authentication.getAuthorities());
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 			if (cuentaConfirmada) {
-				model.addAttribute("nombreUsuario", authentication.getName());
+				model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
 				return "home";
 			} else {
 				model.addAttribute("cuentaNoVerificada", "Error al confirmar su email");
