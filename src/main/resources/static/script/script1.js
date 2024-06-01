@@ -360,7 +360,7 @@ function confirmarEliminar(event) {
 		if (result.isConfirmed) {
 			const inputValue = result.value;
 			if (inputValue.trim().toLowerCase() === emailUsuario.toLowerCase()) {
-				window.location.href = 'http://localhost:8080/privada/eliminar/' + idUsuario;
+				window.location.href = 'https://farmasupply.desappweb.es/privada/eliminar/' + idUsuario;
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -399,7 +399,7 @@ function confirmarEliminarMoto(event) {
 		if (result.isConfirmed) {
 			const inputValue = result.value;
 			if (inputValue.trim().toLowerCase() === nombreMoto.toLowerCase()) {
-				window.location.href = 'http://localhost:8080/privada/eliminar-moto/' + idMoto;
+				window.location.href = 'https://farmasupply.desappweb.es/privada/eliminar-moto/' + idMoto;
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -438,7 +438,7 @@ function confirmarEliminarTienda(event) {
 		if (result.isConfirmed) {
 			const inputValue = result.value;
 			if (inputValue.trim().toLowerCase() === nombreTienda.toLowerCase()) {
-				window.location.href = 'http://localhost:8080/privada/eliminar-tienda/' + idTienda;
+				window.location.href = 'https://farmasupply.desappweb.es/privada/eliminar-tienda/' + idTienda;
 			} else {
 				Swal.fire({
 					icon: "error",

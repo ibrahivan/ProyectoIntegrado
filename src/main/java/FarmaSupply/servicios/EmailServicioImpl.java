@@ -31,7 +31,7 @@ public class EmailServicioImpl implements IEmailServicio {
 			helper.setTo(emailDestino);
 			helper.setSubject("Restablecer contraseña FarmaSupply");
 
-			String urlDominio = "http://localhost:8080";
+			String urlDominio = "https://farmasupply.desappweb.es/";
 			String urlDeRecuperacion = String.format("%s/auth/recuperar?token=%s", urlDominio, token);
 
 			String cuerpoMensaje = String.format(
@@ -69,7 +69,7 @@ public class EmailServicioImpl implements IEmailServicio {
 			helper.setTo(emailDestino);
 			helper.setSubject("Confirmación de cuenta FarmaSupply");
 
-			String urlDominio = "http://localhost:8080";
+			String urlDominio = "https://farmasupply.desappweb.es/";
 			String urlDeConfirmacion = String.format("%s/auth/confirmar-cuenta?token=%s", urlDominio, token);
 
 			String cuerpoMensaje = String.format(
