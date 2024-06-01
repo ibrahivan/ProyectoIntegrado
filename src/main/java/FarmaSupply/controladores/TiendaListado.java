@@ -1,5 +1,6 @@
 package FarmaSupply.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,12 +77,18 @@ public class TiendaListado {
 	public String eliminarTienda(@PathVariable Long id, Model model, Authentication authentication) {
 		try {
 			TiendaDTO tienda = tiendaServicio.buscarPorId(id);
-			if (tienda != null) {
+			List<TiendaDTO> misTiendas = new ArrayList<TiendaDTO>();
+			if (tienda != null && tienda.getMisPedidos().isEmpty()) {
 				tiendaServicio.eliminarTienda(id);
 				UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 				model.addAttribute("misTiendas", usuario.getMisTiendas());
 				model.addAttribute("eliminacionCorrecta", "La tienda se ha eliminado correctamente");
 				return "listadoTiendas";
+			}else
+			{
+				misTiendas = tiendaServicio.obtenerTodas();
+				model.addAttribute("noPuedeEliminarTiendaConPedidos", "No puedes eliminar una tienda con pedidos");
+				model.addAttribute("misTiendas", misTiendas);
 			}
 			return "listadoTiendas";
 
