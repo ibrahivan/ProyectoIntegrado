@@ -25,9 +25,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-<!-- script ================================================== -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script th:src="@{/script/script1.js}"></script>
+    <!-- script ================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script th:src="@{/script/script1.js}"></script>
 
 </head>
 
@@ -71,21 +71,21 @@
 					<form id="form4" class="form-group flex-wrap p-3"
 						th:action="@{/privada/registrarProducto}"
 						enctype="multipart/form-data" method="post"
-						th:object="${catalogoProductoDTO}">
+						th:object="${catalogoProductoDTO}" onsubmit="return validarFormularioPrecioProducto();">
 						
 
 						<div class="form-input col-lg-12 my-4">
 							<label for="nombreProducto"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Nombre del producto</label>
 							<input type="text" id="nombreProducto" name="nombreProducto"
-								class="form-control ps-3" required th:value="${nombreProducto}">
+								class="form-control ps-3" required th:value="${nombreProducto}" oninput="validarNombreProducto()">
 						</div>
 						
 						<div class="form-input col-lg-12 my-4">
 							<label for="precioUnitario"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Precio unitario producto (€)</label>
-							<input type="text" id="precioUnitario" name="precioUnitario"
-								class="form-control ps-3" required th:value="${precioUnitario}">
+							<input  type="number" id="precioUnitario" step="0.01" min="0"  name="precioUnitario"
+								class="form-control ps-3" required th:value="${precioUnitario}" oninput="validarPrecioUnitario()">
 						</div>
 						
 					
@@ -95,7 +95,7 @@
 								class="form-label fs-6 text-uppercase fw-bold text-black">Descripcion
 								</label> <input type="text" id="descripcion"
 								name="descripcion" class="form-control ps-3" required
-								th:value="${descripcion}">
+								th:value="${descripcion}" oninput="validarDescripcion()">
 						</div>
 						<div class="d-grid my-3">
 							<button

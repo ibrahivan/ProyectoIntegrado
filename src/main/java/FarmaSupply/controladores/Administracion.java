@@ -94,6 +94,8 @@ public class Administracion {
 		if (request.isUserInRole("ROLE_USER")) {
 			model.addAttribute("noAdmin", "No tiene los permisos suficientes para acceder al recurso");
 			model.addAttribute("usuarios", usuarios);
+			model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
+
 			return "home";
 
 		} else if (emailUsuarioActual.equals(usuario.getEmailUsuario())) {
@@ -140,14 +142,27 @@ public class Administracion {
 	 * @return La vista de editarUsuario con el formulario de edición.
 	 */
 	@GetMapping("/privada/editar-usuario/{id}")
-	public String mostrarFormularioEdicion(@PathVariable Long id, Model model, HttpServletRequest request) {
+	public String mostrarFormularioEdicion(@PathVariable Long id, Model model, HttpServletRequest requestm,  HttpServletRequest request,Authentication authentication) {
 		try {
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
+			List<UsuarioDTO> usuarios = usuarioServicio.obtenerTodos();
+			if (request.isUserInRole("ROLE_USER")) {
+				model.addAttribute("noAdmin", "No tiene los permisos suficientes para acceder al recurso");
+				model.addAttribute("usuarios", usuarios);
+				model.addAttribute("nombreUsuario", usuario.getNombreUsuario());
 
+				return "home";
+
+			}else {
 			UsuarioDTO usuarioDTO = usuarioServicio.buscarPorId(id);
 			if (usuarioDTO == null) {
 				return "listado";
-			}
+				}
 			model.addAttribute("usuarioDTO", usuarioDTO);
+			model.addAttribute("idUsuario", usuarioDTO.getId());
+			}
+			
+
 			return "editarUsuario";
 
 		} catch (Exception e) {

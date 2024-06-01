@@ -8,7 +8,6 @@
 
 <title>Registrar moto</title>
 
-
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
@@ -28,7 +27,6 @@
 <!-- script ================================================== -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script th:src="@{/script/script1.js}"></script>
-
 </head>
 
 <body>
@@ -71,14 +69,15 @@
 					<form id="form4" class="form-group flex-wrap p-3"
 						th:action="@{/privada/registrarMoto}"
 						enctype="multipart/form-data" method="post"
-						th:object="${motoDTO}">
+						th:object="${motoDTO}" onsubmit="return validarFormularioMoto();">
 						
 
 						<div class="form-input col-lg-12 my-4">
 							<label for="marcaMoto"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Marca</label>
 							<input type="text" id="marcaMoto" name="marcaMoto"
-								class="form-control ps-3" required th:value="${marcaMoto}">
+								class="form-control ps-3" required th:value="${marcaMoto}" oninput="validarMarca()" >
+							<div id="errorMarcaMoto" class="text-danger"></div>
 						</div>
 
 						<div class="form-input col-lg-12 my-4">
@@ -86,7 +85,8 @@
 								class="form-label fs-6 text-uppercase fw-bold text-black">Matricula
 								</label> <input type="text" id="matriculaMoto"
 								name="matriculaMoto" class="form-control ps-3" required
-								th:value="${matriculaMoto}">
+								th:value="${matriculaMoto}" oninput="validarMatricula()">
+							<div id="errorMatriculaMoto" class="text-danger"></div>
 						</div>
 						<div class="d-grid my-3">
 							<button
@@ -150,7 +150,6 @@
                         <a href="#!" class="text-dark">
                             <i class="fab fa-instagram"></i> Instagram
                         </a>
-                    </li>
                     <li>
                         <a href="#!" class="text-dark">
                             <i class="fab fa-linkedin-in"></i> LinkedIn
@@ -168,3 +167,4 @@
 </body>
 
 </html>
+                        

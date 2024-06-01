@@ -80,21 +80,18 @@
 						<thead class="thead-inverse">
 							<tr>
 								<th class="tableCustom">Nombre producto</th>
-								<th class="tableCustom">Precio unitario (€)</th>
+								<th class="tableCustom">Precio unitario</th>
 								<th class="tableCustom">Descripcion</th>
-								<th class="tableCustom"></th>
 
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="producto : ${misProductos}">
 								<td th:text="${producto.nombreProducto} " class="tableCustom"></td>
-								<td th:text="${#numbers.formatDecimal(producto.precioUnitario, 0, 2)}" class="tableCustom"></td>
+								<td class="tableCustom"> <span th:text="${#numbers.formatDecimal(producto.precioUnitario, 0, 2)}"></span>€</td>
 								<td th:text="${producto.descripcion}" class="tableCustom"></td>
 
-								<td><a class="btn btn-danger" th:attr="data-producto=${producto.idCatalogoProducto + '|' + producto.nombreProducto}" onclick="confirmarEliminarProducto(event)">
-    								 Eliminar
-    						    </a></td>
+								
 							</tr>
 						</tbody>
 					</table>

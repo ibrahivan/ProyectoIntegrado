@@ -47,4 +47,11 @@ public interface IMotoServicio {
 	 */
 
 	public List<Moto> obtenerMotosLibres();
+	
+	/**
+	 * Obtiene la moto segun el pedido
+	 * 
+	 * @return la motoDTO
+	 */
+	public MotoDTO buscarMotoPorPedido(long id);
 }

@@ -38,10 +38,17 @@ public interface IPedidoServicio {
 	 */
 	 public void confirmarEntrega(List<Long> idPedido);
 	 /**
-		 * Busca a un pedido por su identificador asignado en la bbdd
-		 * 
-		 * @param id del pedidoDTO a buscar
-		 * @return El pedidoDTO buscado
-		 */
-		public PedidoDTO buscarPorId(long id);
+	* Busca a un pedido por su identificador asignado en la bbdd
+	* 
+	* @param id del pedidoDTO a buscar
+	* @return El pedidoDTO buscado
+	*/
+	public PedidoDTO buscarPorId(long id);
+	/**
+	* Genera un identificador para el pedido
+	* 
+	* 
+	* @return El identificador 
+	*/	
+	public String generarIdentificador() ;
 }

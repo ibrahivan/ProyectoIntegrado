@@ -30,19 +30,25 @@ public class MotoServicioImpl implements IMotoServicio {
 	public MotoDTO registrarMoto(MotoDTO motoDTO) {
 
 		// TODO Auto-generated method stub
-		// Comprueba si ya existe una moto con la matricula que quiere registrar
 		try {
-			Moto motoDaoMatricula = repositorio.findByMatriculaMoto(motoDTO.getMatriculaMoto());
+			
+			// Comprueba si ya existe una moto con la matricula que quiere registrar
 
+			Moto motoDaoMatricula = repositorio.findByMatriculaMoto(motoDTO.getMatriculaMoto());
+			
+			
+			
 			if (motoDaoMatricula != null) {
 				motoDTO.setMatriculaMoto(null); //seteamos la matricula para el mensaje de error
 				return null; // Si no es null es que ya está registrada
 			}
+			//seteo el estado a libre
 			motoDTO.setEstadoMoto(EstadoMoto.LIBRE);
-			
+			//añado un id del pedido porque sino me peta
+		
 			Moto motoDao = toDao.motoToDao(motoDTO);
-			// Guardar la moto en la base de datos
 			
+			//
 			repositorio.save(motoDao);
 			motoDTO.setIdMoto(motoDao.getIdMoto());
 			return motoDTO;
@@ -76,11 +82,11 @@ public class MotoServicioImpl implements IMotoServicio {
 		try {
 			Pedido pedido = pedidoRepositorio.findById(id).orElse(null);
 			if (pedido != null) {
-				return toDto.motoToDto(pedido.getList_Ped_Moto());
+				return toDto.motoToDto(pedido.getIdPed_Moto());
 			}
 		} catch (IllegalArgumentException iae) {
 			System.out.println(
-					"[Error MotoServicioImpl - buscarPorId()] Al buscar la moto por su id " + iae.getMessage());
+					"[Error MotoServicioImpl - buscarMotoPorPedido()] Al buscar la moto en el pedido " + iae.getMessage());
 		}
 		return null;
 	}

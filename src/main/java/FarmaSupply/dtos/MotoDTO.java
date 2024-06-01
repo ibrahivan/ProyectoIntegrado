@@ -1,7 +1,9 @@
 package FarmaSupply.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import FarmaSupply.daos.EstadoMoto;
-import FarmaSupply.daos.Pedido;
 
 /**
  * Clase DTO (Data Transfer Object) para pasar información entre capas para la
@@ -12,7 +14,7 @@ public class MotoDTO {
 	private long idMoto;
 	private String matriculaMoto;
 	private String marcaMoto;
-	private long idMoto_Ped;
+	private List<PedidoDTO> misPedidos = new ArrayList<>();
 	private EstadoMoto estadoMoto;
 
 	// Constructores
@@ -22,21 +24,13 @@ public class MotoDTO {
 
 
 
-
-
-
-
-	public MotoDTO(String matriculaMoto, String marcaMoto, long idMoto_Ped, EstadoMoto estadoMoto) {
+	public MotoDTO(String matriculaMoto, String marcaMoto, List<PedidoDTO> misPedidos, EstadoMoto estadoMoto) {
 		super();
 		this.matriculaMoto = matriculaMoto;
 		this.marcaMoto = marcaMoto;
-		this.idMoto_Ped = idMoto_Ped;
+		this.misPedidos = misPedidos;
 		this.estadoMoto = estadoMoto;
 	}
-
-
-
-
 
 
 
@@ -59,17 +53,15 @@ public class MotoDTO {
 
 
 
-	public long getIdMoto_Ped() {
-		return idMoto_Ped;
+	public List<PedidoDTO> getMisPedidos() {
+		return misPedidos;
 	}
 
 
 
-	public void setIdMoto_Ped(long idMoto_Ped) {
-		this.idMoto_Ped = idMoto_Ped;
+	public void setMisPedidos(List<PedidoDTO> misPedidos) {
+		this.misPedidos = misPedidos;
 	}
-
-
 
 
 

@@ -43,7 +43,8 @@ public class Pedido {
 	@JoinColumn(name = "id_moto")
 	private Moto idPed_Moto;
 
-
+	@Column(name = "identificador_pedido")
+	private String identificadorPedido;
 
 	private EstadoPedido estadoPedido;
 	// Constructores
@@ -53,27 +54,22 @@ public class Pedido {
 	}
 
 
-
-
 	public Pedido(List<DetallePedido> list_Ped_Det, double precioPedido, Tienda idPedido_Tie, Moto idPed_Moto,
-			EstadoPedido estadoPedido) {
+			String identificadorPedido, EstadoPedido estadoPedido) {
 		super();
 		this.list_Ped_Det = list_Ped_Det;
 		this.precioPedido = precioPedido;
 		this.idPedido_Tie = idPedido_Tie;
 		this.idPed_Moto = idPed_Moto;
+		this.identificadorPedido = identificadorPedido;
 		this.estadoPedido = estadoPedido;
 	}
-
 
 
 
 	// getters y setter
 
 	
-
-
-
 
 	public Pedido(Tienda idPedido_Tie) {
 		super();
@@ -145,6 +141,23 @@ public class Pedido {
 
 	public void setList_Ped_Det(List<DetallePedido> list_Ped_Det) {
 		this.list_Ped_Det = list_Ped_Det;
+	}
+
+
+
+
+
+
+
+	public String getIdentificadorPedido() {
+		return identificadorPedido;
+	}
+
+
+
+
+	public void setIdentificadorPedido(String identificadorPedido) {
+		this.identificadorPedido = identificadorPedido;
 	}
 
 	

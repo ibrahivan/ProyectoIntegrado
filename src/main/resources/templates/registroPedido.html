@@ -37,6 +37,25 @@
 				.querySelectorAll('input[name="productosSeleccionadosIds"]:checked');
 		btnRealizarPedido.disabled = checkboxes.length === 0;
 	}
+
+	function validarCantidad() {
+	    var checkboxes = document.querySelectorAll('input[name="productosSeleccionadosIds"]:checked');
+	    for (var i = 0; i < checkboxes.length; i++) {
+	        var id = checkboxes[i].value;
+	        var cantidadInput = document.getElementById('cantidad-' + id);
+	        if (cantidadInput.disabled === false) {
+	            var cantidad = parseInt(cantidadInput.value.trim());
+	            if (isNaN(cantidad) || cantidad <= 0) {
+	                Swal.fire("Error", "Debe seleccionar una cantidad válida y positiva para los productos seleccionados. No puedes dejar cantidades vacías o negativas.", "error");
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
+	}
+
+
+   
 </script>
 
 </head>
@@ -83,7 +102,7 @@
 					<form id="form4" class="form-group flex-wrap p-3"
 						th:action="@{/privada/realizarPedido/{idTienda}(idTienda=${idTienda})}"
 						enctype="multipart/form-data" method="post"
-						th:object="${detallePedidoDTO}">
+						th:object="${detallePedidoDTO}" onsubmit="return validarCantidad();">
 						<input type="hidden" id="idTienda" name="idTienda"
 							value="${tiendaDTO.id}">
 
@@ -107,7 +126,7 @@
 											<div class="form-group">
 												<input type="number" class="form-control"
 													th:id="'cantidad-' + ${producto.idCatalogoProducto}"
-													name="cantidades" placeholder="Cantidad" disabled>
+													name="cantidades" placeholder="Cantidad" disabled min="1">
 											</div>
 										</div>
 									</div>

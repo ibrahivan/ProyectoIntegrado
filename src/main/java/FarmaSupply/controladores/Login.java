@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import FarmaSupply.daos.Usuario;
 import FarmaSupply.dtos.UsuarioDTO;
 import FarmaSupply.servicios.IUsuarioServicio;
 

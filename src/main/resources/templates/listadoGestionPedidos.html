@@ -98,7 +98,6 @@ function habilitarBoton() {
 									<thead class="thead-inverse">
 										<tr>
 											<th>Identificador pedido</th>
-											<th>Nombre del producto</th>
 											<th>Cantidad (cajas)</th>
 											<th>Precio total del pedido</th>
 											<th>Seleccionar</th>
@@ -106,23 +105,16 @@ function habilitarBoton() {
 									</thead>
 									<tbody>
 										<tr th:each="pedido : ${pedidosPendientes}">
-											<td th:text="${pedido.idPedido}"></td>
-											<td><th:block
-													th:each="detalle : ${pedido.misDetallesPedidos}">
-													<th:block
-														th:each="producto : ${detalle.productosSeleccionados}">
-														<span th:text="${producto.nombreProducto}"></span>
-														<br />
-													</th:block>
-												</th:block></td>
+											<td th:text="${pedido.identificadorPedido}"></td>
+										
 
 											<td><th:block
 													th:each="detalle : ${pedido.misDetallesPedidos}">
-													<span th:text="${detalle.cantidadDetalle}"></span>
+													<span th:text="${#numbers.formatDecimal(detalle.cantidadDetalle, 0, 0)}"></span>
 													<br />
 												</th:block></td>
 
-											<td th:text="${pedido.precioPedido}">€</td>
+											<td th:text="${#numbers.formatDecimal(pedido.precioPedido,0,2)}">€</td>
 											<td><input type="radio" name="idPedido"
 												th:value="${pedido.idPedido}"
 												onclick="setSelectedPedido(this.value)"></td>

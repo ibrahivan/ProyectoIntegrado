@@ -48,7 +48,7 @@
 				<div class="offcanvas-body ">
 					<ul class="navbar-nav  flex-grow-1">
 						<li class="btn btn-outline-dark mx-2 btn-volver"><a
-							th:href="@{/auth/registrar}">Volver</a></li>
+							th:href="@{/auth/login}">Volver</a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,13 +68,14 @@
 					<p class="titulo">Restablecer la contraseña</p>
 					<form class="form-group flex-wrap p-3"
 						th:action="@{/auth/iniciarRecuperacion}"
-						enctype="multipart/form-data" th:object="${usuarioDTO}"
+						enctype="multipart/form-data" th:object="${usuarioDTO}" onsubmit="return validarFormularioEmail();"
 						method="post">
 						<div class="form-input col-lg-12 my-4">
 							<label for="claveUsuario"
 								class="form-label fs-6 text-uppercase fw-bold text-black">Email</label>
-							<input type="email" th:field="*{emailUsuario}"
+							<input type="email" th:field="*{emailUsuario}" required oninput="revisarCorreo()"
 								class="form-control ps-3" />
+								<span id="errorEmailUsuario" class="error"></span>
 						</div>
 						<div class="d-grid my-3">
 							<button

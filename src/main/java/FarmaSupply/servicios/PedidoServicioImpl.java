@@ -4,6 +4,7 @@ package FarmaSupply.servicios;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +55,10 @@ public class PedidoServicioImpl implements IPedidoServicio {
     
     @Autowired
     private IDetallePedidoToDao detalleToDao;
-    
+    private static  String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static  int ID_LENGTH = 8;
 
     @Transactional
-
     public List<DetallePedidoDTO> realizarPedido(DetallePedidoDTO detallePedidoDTO, TiendaDTO tiendaActual,  List<Double> cantidades) {
     	  try {
             //busco la tienda
@@ -122,7 +123,9 @@ public class PedidoServicioImpl implements IPedidoServicio {
               // Establecer el precio total en el pedidoDTO
               pedidoDTO.setPrecioPedido(precioTotal);
               pedidoDTO.setEstadoPedido(EstadoPedido.PENDIENTE);
-              
+              //genero un identificador para el pedido
+              pedidoDTO.setIdentificadorPedido(generarIdentificador());
+              pedidoDao.setIdentificadorPedido(pedidoDTO.getIdentificadorPedido());
               // Convertir el pedidoDTO a la entidad Pedido y guardarlo en la base de datos
               pedidoDao.setPrecioPedido(pedidoDTO.getPrecioPedido());
               pedidoDao.setEstadoPedido(pedidoDTO.getEstadoPedido());
@@ -159,24 +162,27 @@ public class PedidoServicioImpl implements IPedidoServicio {
 		Moto motoDao = new Moto();
 		PedidoDTO pedidoDTO = new PedidoDTO();
 		Pedido pedidoDao = new Pedido();
-		
+		List<PedidoDTO>listaPedidosDTO = new ArrayList<PedidoDTO>();
 		
 		//Transformo los optional a dtos
 		motoDTO = motoToDto.motoToDto(motoRe.get());
 		pedidoDTO = pedidoToDto.pedidoToDto(pedidoRe.get());
 		
 		
-		//añado la lista en la de pedidos
-		pedidoDTO.setIdPedido_Moto(motoRe.get().getIdMoto());
-		//asigno el id de pedido en la moto
-		motoDTO.setIdMoto_Ped(pedidoRe.get().getIdPedido());
+		//añado el pedido a la lista
+		listaPedidosDTO.add(pedidoDTO);
+		motoDTO.setMisPedidos(listaPedidosDTO);
+		
+		
 		//cambio los estados
 		motoDTO.setEstadoMoto(EstadoMoto.OCUPADA);
 		pedidoDTO.setEstadoPedido(EstadoPedido.CAMINO);
 		//paso a dao todo los datos
 		pedidoDao = pedidoToDao.pedidoToDao(pedidoDTO);
 		motoDao = motoToDao.motoToDao(motoDTO);
-		
+		//asigno el id de la moto al pedido
+		pedidoDTO.setIdPedido_Moto(motoRe.get().getIdMoto());
+		pedidoDao.setIdPed_Moto(motoRe.get());
 		//actualizamos la bbdd
 		
 		pedidoRepositorio.save(pedidoDao);
@@ -207,26 +213,40 @@ public class PedidoServicioImpl implements IPedidoServicio {
 	    MotoDTO motoDTO = new MotoDTO();
 		for (Long idPedido : ListIdPedido) {
             pedidoDTO = buscarPorId(idPedido);
-            //Me servira para la asignacion moto-pedido
-            Optional<Pedido> pedidoActual = pedidoRepositorio.findById(idPedido);
             if (pedidoDTO != null && pedidoDTO.getEstadoPedido().equals(EstadoPedido.CAMINO))
             {
             	//asigno el nuevo estado al pedido
                 pedidoDTO.setEstadoPedido(EstadoPedido.ENTREGADO);
-                //lo paso a dao
-                pedidoDao = pedidoToDao.pedidoToDao(pedidoDTO);
-                //actualizo bd
-                pedidoRepositorio.save(pedidoDao);
+               
                 //Hago lo mismo con la moto
-
-                if (moto != null) {
-                    moto.setEstado("Libre");
-                    motoService.save(moto);
-                }
+                motoDTO = motoServicio.buscarMotoPorPedido(idPedido);
+                motoDTO.setEstadoMoto(EstadoMoto.LIBRE);
+                
+                //los paso a daos
+                pedidoDao = pedidoToDao.pedidoToDao(pedidoDTO);
+                motoDao = motoToDao.motoToDao(motoDTO);
+                //seteo el id de la moto en el pedido a null para que pueda volver a usar la moto
+                pedidoDTO.setIdPedido_Moto(null);
+                pedidoDao.setIdPed_Moto(null);
+                //actualizo la bbdd
+                pedidoRepositorio.save(pedidoDao);
+                motoRepositorio.save(motoDao);
             }
         }
 	}
+
+	@Override
+	public String generarIdentificador() {
+		// TODO Auto-generated method stub
+		  StringBuilder sb = new StringBuilder();
+	        Random random = new Random();
+	        for (int i = 0; i < ID_LENGTH; i++) {
+	            int index = random.nextInt(CHARACTERS.length());
+	            sb.append(CHARACTERS.charAt(index));
+	        }
+	        return sb.toString();
+	    }
+	}
 	
       
-  }
 

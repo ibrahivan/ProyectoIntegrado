@@ -73,7 +73,9 @@
 				</div>
 				<div
 					class="offcanvas-body d-flex justify-content-end align-items-center">
+					
 					<ul class="navbar-nav flex-grow-1">
+					
 						<li>
 							<form th:action="@{/auth/logout}" method="post" id="logoutForm">
 								<button type="button"
@@ -81,6 +83,7 @@
 									onclick="confirmarLogout()">Cerrar sesion</button>
 							</form>
 						</li>
+						
 					</ul>
 				</div>
 			</div>
@@ -242,6 +245,10 @@
 	mostrarNotificacion("¡Error!",
 			"No puedes asignar un pedido si no hay ninguna moto disponible", 'error');
 </script>
+<script th:if="${not #strings.isEmpty(mensajeEntregaRealizadaExito)}">
+		mostrarNotificacion("¡Pedidos entregados correctamente!",
+				"Los pedidos han sido entregado correctamente", 'success');
+	</script>
 </body>
 
 </html>
