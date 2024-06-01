@@ -171,7 +171,9 @@
 		mostrarNotificacion("¡Tienda creada correctamente!",
 				"La tienda ha sido registrada correctamente", 'success');
 	</script>
-	
+	<script th:if="${not #strings.isEmpty(noPuedeEliminarTiendaConPedidos)}">
+	    mostrarNotificacion("¡No se puede eliminar la tienda!","Dicha tienda tiene pedidos asignados.", 'info');
+	</script>
 	
 
 </html>
