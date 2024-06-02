@@ -108,7 +108,7 @@ function habilitarBoton() {
 											<td th:text="${pedido.identificadorPedido}"></td>
 										
 
-											<td th:text="${#numbers.formatDecimal(pedido.precioPedido,0,2)}">€</td>
+											<td><span th:text="${#numbers.formatDecimal(pedido.precioPedido,0,2)}"></span>€</td>
 											<td><input type="radio" name="idPedido"
 												th:value="${pedido.idPedido}"
 												onclick="setSelectedPedido(this.value)"></td>
