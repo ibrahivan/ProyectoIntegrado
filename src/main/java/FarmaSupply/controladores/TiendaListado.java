@@ -80,8 +80,9 @@ public class TiendaListado {
 			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 			if (tienda != null && tienda.getMisPedidos().isEmpty()) {
 				tiendaServicio.eliminarTienda(id);
-				model.addAttribute("misTiendas", usuario.getMisTiendas());
+				
 				model.addAttribute("eliminacionCorrecta", "La tienda se ha eliminado correctamente");
+				model.addAttribute("misTiendas", usuario.getMisTiendas());
 				return "listadoTiendas";
 			}else
 			{
