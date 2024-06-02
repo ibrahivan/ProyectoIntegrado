@@ -6,10 +6,10 @@ function revisarNombre() {
         errorNombreUsuario.textContent = "El nombre no puede estar vacío.";
         errorNombreUsuario.style.color = 'red';
         return false; // Retorna falso si el nombre está vacío
-    } else if (!/^[A-Za-z]+$/.test(nombreUsuario)) {
-        errorNombreUsuario.textContent = "El nombre solo puede contener letras, ni números ni espacios en blanco";
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(nombreUsuario)) {
+        errorNombreUsuario.textContent = "El nombre solo puede contener letras, y no debe empezar por un espacio.";
         errorNombreUsuario.style.color = 'red';
-        return false; // Retorna falso si el nombre contiene caracteres no permitidos
+        return false; // Retorna falso si el nombre contiene caracteres no permitidos o empieza por un espacio
     } else {
         errorNombreUsuario.textContent = "";
         return true; // Retorna verdadero si el nombre es válido
@@ -24,15 +24,18 @@ function revisarApellidos() {
         errorApellidosUsuario.textContent = "Los apellidos no pueden estar vacíos.";
         errorApellidosUsuario.style.color = 'red';
         return false; // Retorna falso si los apellidos están vacíos
-    } else if (!/^[A-Za-z]+$/.test(apellidosUsuario)) {
-        errorApellidosUsuario.textContent = "Los apellidos solo pueden contener letras, ni números ni espacios en blanco";
+    } else if (!/^[A-Za-z][A-Za-z\s]*$/.test(apellidosUsuario)) {
+        errorApellidosUsuario.textContent = "Los apellidos solo pueden contener letras, y no deben empezar por un espacio.";
         errorApellidosUsuario.style.color = 'red';
-        return false; // Retorna falso si los apellidos contienen caracteres no permitidos
+        return false; // Retorna falso si los apellidos contienen caracteres no permitidos o empiezan por un espacio
     } else {
         errorApellidosUsuario.textContent = "";
         return true; // Retorna verdadero si los apellidos son válidos
     }
 }
+
+
+
 
 function revisarDNI() {
     var dniUsuario = document.getElementById("dniUsuario").value;
@@ -495,13 +498,10 @@ function confirmarEliminarTienda(event) {
 			});
 		});
 	}
-
+	
 function generarPDF() {
     // Clona la tabla original
     const tableClone = document.querySelector('.tableCustom').cloneNode(true);
-    // Elimina la última columna y los botones del clon
-    const rows = tableClone.querySelectorAll('tr');
-    rows.forEach(row => row.removeChild(row.lastElementChild)); // Eliminar la última celda de cada fila
 
     // Genera el PDF a partir del clon
     const options = {
@@ -517,6 +517,8 @@ function generarPDF() {
         console.error('Error al generar el PDF:', error);
     });
 }
+
+
 
 
 

@@ -77,20 +77,20 @@ public class TiendaListado {
 	public String eliminarTienda(@PathVariable Long id, Model model, Authentication authentication) {
 		try {
 			TiendaDTO tienda = tiendaServicio.buscarPorId(id);
-			List<TiendaDTO> misTiendas = new ArrayList<TiendaDTO>();
+			UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 			if (tienda != null && tienda.getMisPedidos().isEmpty()) {
 				tiendaServicio.eliminarTienda(id);
-				UsuarioDTO usuario = usuarioServicio.buscarPorEmail(authentication.getName());
 				model.addAttribute("misTiendas", usuario.getMisTiendas());
 				model.addAttribute("eliminacionCorrecta", "La tienda se ha eliminado correctamente");
 				return "listadoTiendas";
 			}else
 			{
-				misTiendas = tiendaServicio.obtenerTodas();
+				
 				model.addAttribute("noPuedeEliminarTiendaConPedidos", "No puedes eliminar una tienda con pedidos");
-				model.addAttribute("misTiendas", misTiendas);
+				model.addAttribute("misTiendas", usuario.getMisTiendas());
+				return "listadoTiendas";
 			}
-			return "listadoTiendas";
+			
 
 		} catch (Exception e) {
 			model.addAttribute("Error", "Ocurrió un error al eliminar la tienda");
